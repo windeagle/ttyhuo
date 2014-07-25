@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 这是范例ListView的布局文件，出了ListView，还可以放置其他控件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/activity_header_bg"
+            android:orientation="horizontal" >
+
+        <LinearLayout
+                android:layout_height="@dimen/search_area_lineHeight"
+                style="@style/search_area"
+                android:layout_weight="1"
+                android:background="@drawable/selector_search"
+                android:orientation="horizontal" >
+
+            <EditText
+                    android:id="@+id/tv_search"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/search_area_margin"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:hint="在此输入搜索内容" />
+
+            <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/big_icon_size"
+                    android:layout_height="@dimen/big_icon_size"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside"
+                    android:layout_marginRight="@dimen/search_area_margin"
+                    android:src="@drawable/icon_search" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_more"
+                style="@style/textsize_16_9F9F9F"
+                android:layout_marginRight="@dimen/search_area_margin"
+                android:paddingLeft="@dimen/info_padding"
+                android:paddingRight="@dimen/info_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/search_item_lineHeight_34"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="更多" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7.5"
+                    android:orientation="vertical" >
+
+                <TextView
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingBottom="@dimen/field_paddingBottom"
+                        android:paddingTop="@dimen/field_paddingTop"
+                        android:text="车型" />
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/white" />
+
+                <TextView
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingBottom="@dimen/field_paddingBottom"
+                        android:paddingTop="@dimen/field_paddingTop"
+                        android:text="载重" />
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/white" />
+
+                <TextView
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingBottom="@dimen/field_paddingBottom"
+                        android:paddingTop="@dimen/field_paddingTop"
+                        android:text="驾龄" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/field_name_value_blank"
+                    android:layout_weight="2.5"
+                    android:orientation="vertical" >
+
+                <LinearLayout
+                        android:id="@+id/ly_vehicle_type"
+                        android:background="@drawable/selector_button_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right" >
+
+
+                        <LinearLayout
+                                android:id="@+id/ly_vehicle_type_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/info_padding"
+                                android:paddingTop="@dimen/info_padding"
+                                android:orientation="horizontal" >
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="上海运输有限公司" />
+                        </LinearLayout>
+
+                        <ImageView
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_marginLeft="@dimen/field_name_value_blank"
+                                android:layout_marginRight="@dimen/info_padding"
+                                android:src="@drawable/btn_icon_arrow"
+                                android:scaleType="centerInside"
+                                android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/dash_divider" />
+
+                <LinearLayout
+                        android:id="@+id/ly_loadLimit"
+                        android:background="@drawable/selector_button_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right"  >
+
+                        <LinearLayout
+                                android:id="@+id/ly_loadLimit_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/info_padding"
+                                android:paddingTop="@dimen/info_padding"
+                                android:orientation="horizontal" >
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="上海运输有限公司" />
+                        </LinearLayout>
+
+                        <ImageView
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_marginLeft="@dimen/field_name_value_blank"
+                                android:layout_marginRight="@dimen/info_padding"
+                                android:src="@drawable/btn_icon_arrow"
+                                android:scaleType="centerInside"
+                                android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/dash_divider" />
+
+                <LinearLayout
+                        android:id="@+id/ly_driveAge"
+                        android:background="@drawable/selector_button_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right" >
+
+                        <LinearLayout
+                                android:id="@+id/ly_driveAge_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/info_padding"
+                                android:paddingTop="@dimen/info_padding"
+                                android:orientation="horizontal" >
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="上海运输有限公司" />
+                        </LinearLayout>
+
+                        <ImageView
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_marginLeft="@dimen/field_name_value_blank"
+                                android:layout_marginRight="@dimen/info_padding"
+                                android:src="@drawable/btn_icon_arrow"
+                                android:scaleType="centerInside"
+                                android:layout_gravity="center_vertical" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_height="@dimen/search_item_lineHeight"
+                style="@style/search_area"
+                android:orientation="horizontal" >
+
+            <Button
+                    android:id="@+id/tv_btn_do"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/search_area_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/icon_btn"
+                    android:text="筛选" />
+
+            <Button
+                    android:id="@+id/tv_btn_reset"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/search_area_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/icon_btn"
+                    android:text="重置" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+
+    <ListView
+            android:id="@+id/lv_userList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/white"
+            android:dividerHeight="0px"
+            android:scrollbars="none" >
+    </ListView>
+
+</LinearLayout>

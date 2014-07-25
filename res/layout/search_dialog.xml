@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/white">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+        <TextView
+                android:id="@+id/title"
+                style="@style/textsize_18_434343"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_item_lineHeight"
+                android:gravity="center"
+                android:text="车型" />
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#CACBCC" />
+
+        <LinearLayout style="@style/narrow_search_area" >
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/search_item_lineHeight_34">
+
+                <TextView
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:text="全部"/>
+
+                <CheckBox
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@drawable/rect_gray_2" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/search_item_lineHeight_34">
+
+                <TextView
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:text="全部"/>
+
+                <CheckBox
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/narrow_search_area"
+                android:layout_height="@dimen/search_item_lineHeight"
+                android:layout_marginTop="0px"
+                android:orientation="horizontal"  >
+
+            <Button
+                    android:id="@+id/positiveButton"
+                    android:layout_marginLeft="@dimen/search_area_margin"
+                    android:layout_marginRight="@dimen/search_area_margin"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/icon_quxiao"
+                    style="@style/textsize_16_white"
+                    android:text="取消" />
+
+            <Button
+                    android:id="@+id/negativeButton"
+                    android:layout_marginLeft="@dimen/search_area_margin"
+                    android:layout_marginRight="@dimen/search_area_margin"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/icon_quedin"
+                    style="@style/textsize_16_white"
+                    android:text="确定" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

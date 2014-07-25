@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <LinearLayout style="@style/field_layout">
+                <TextView style="@style/field_name" android:text="手机号" />
+                <EditText
+                        android:id="@+id/accountNo"
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入手机号"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        />
+            </LinearLayout>
+
+            <Button android:layout_width="match_parent"
+                    android:layout_height="@dimen/field_height"
+                    android:id="@+id/loginBtn"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/area_margin"
+                    android:text="确定"
+                    android:background="@color/button_bg"
+                    android:textSize="@dimen/font_middle"
+                    android:textColor="@color/my_write"></Button>
+
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>

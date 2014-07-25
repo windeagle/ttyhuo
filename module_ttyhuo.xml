@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ttyhuo" default="compile.module.ttyhuo">
+  <dirname property="module.ttyhuo.basedir" file="${ant.file.module_ttyhuo}"/>
+  
+  <property name="module.jdk.home.ttyhuo" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.ttyhuo" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.ttyhuo" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.ttyhuo" value="${compiler.args}"/>
+  
+  <property name="ttyhuo.output.dir" value="${module.ttyhuo.basedir}/bin/classes"/>
+  <property name="ttyhuo.testoutput.dir" value="${module.ttyhuo.basedir}/bin/classes"/>
+  
+  <path id="ttyhuo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ttyhuo.module.production.classpath">
+    <path refid="${module.jdk.classpath.ttyhuo}"/>
+    <path refid="library.commonlib.classpath"/>
+    <pathelement location="${android-support-v7-appcompat.output.dir}"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v7-appcompat.jar"/>
+    <pathelement location="${library.output.dir}"/>
+    <pathelement location="${pulltofreshlib.output.dir}"/>
+    <path refid="library.locsdk_4.2.classpath"/>
+    <path refid="library.baidulbs_android.classpath"/>
+  </path>
+  
+  <path id="ttyhuo.runtime.production.module.classpath">
+    <pathelement location="${ttyhuo.output.dir}"/>
+    <path refid="library.commonlib.classpath"/>
+    <path refid="android-support-v7-appcompat.runtime.production.module.classpath"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v7-appcompat.jar"/>
+    <path refid="library.runtime.production.module.classpath"/>
+    <path refid="pulltofreshlib.runtime.production.module.classpath"/>
+    <path refid="library.locsdk_4.2.classpath"/>
+    <path refid="library.baidulbs_android.classpath"/>
+  </path>
+  
+  <path id="ttyhuo.module.classpath">
+    <path refid="${module.jdk.classpath.ttyhuo}"/>
+    <pathelement location="${ttyhuo.output.dir}"/>
+    <path refid="library.commonlib.classpath"/>
+    <pathelement location="${android-support-v7-appcompat.output.dir}"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v7-appcompat.jar"/>
+    <pathelement location="${library.testoutput.dir}"/>
+    <pathelement location="${library.output.dir}"/>
+    <pathelement location="${pulltofreshlib.testoutput.dir}"/>
+    <pathelement location="${pulltofreshlib.output.dir}"/>
+    <path refid="library.locsdk_4.2.classpath"/>
+    <path refid="library.baidulbs_android.classpath"/>
+  </path>
+  
+  <path id="ttyhuo.runtime.module.classpath">
+    <pathelement location="${ttyhuo.output.dir}"/>
+    <path refid="library.commonlib.classpath"/>
+    <path refid="android-support-v7-appcompat.runtime.module.classpath"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/appcompat_v7/libs/android-support-v7-appcompat.jar"/>
+    <path refid="library.runtime.module.classpath"/>
+    <path refid="pulltofreshlib.runtime.module.classpath"/>
+    <path refid="library.locsdk_4.2.classpath"/>
+    <path refid="library.baidulbs_android.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ttyhuo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ttyhuo">
+    <patternset refid="excluded.from.module.ttyhuo"/>
+  </patternset>
+  
+  <path id="ttyhuo.module.sourcepath">
+    <dirset dir="${module.ttyhuo.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ttyhuo" depends="compile.module.ttyhuo.production,compile.module.ttyhuo.tests" description="Compile module TTyhuo"/>
+  
+  <target name="compile.module.ttyhuo.production" depends="register.custom.compilers,compile.module.android-support-v7-appcompat,compile.module.library,compile.module.pulltofreshlib" description="Compile module TTyhuo; production classes">
+    <mkdir dir="${ttyhuo.output.dir}"/>
+    <javac2 destdir="${ttyhuo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ttyhuo}/javac">
+      <compilerarg line="${compiler.args.ttyhuo}"/>
+      <bootclasspath refid="ttyhuo.module.bootclasspath"/>
+      <classpath refid="ttyhuo.module.production.classpath"/>
+      <src refid="ttyhuo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ttyhuo"/>
+    </javac2>
+    
+    <copy todir="${ttyhuo.output.dir}">
+      <fileset dir="${module.ttyhuo.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.ttyhuo.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ttyhuo.tests" depends="register.custom.compilers,compile.module.ttyhuo.production" description="compile module TTyhuo; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.ttyhuo" description="cleanup module">
+    <delete dir="${ttyhuo.output.dir}"/>
+    <delete dir="${ttyhuo.testoutput.dir}"/>
+  </target>
+</project>

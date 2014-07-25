@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+                android:id="@+id/fieldName"
+                style="@style/field_name_big_width"/>
+
+        <TextView
+                android:id="@+id/fieldValue"
+                style="@style/field_value_blank_16"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/ly_harfline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <FrameLayout
+                android:layout_width="@dimen/field_name_big_width"
+                android:layout_height="1px"
+                android:background="@color/white"/>
+
+        <FrameLayout
+                android:layout_marginLeft="@dimen/field_name_value_blank_16"
+                android:layout_width="match_parent"
+                android:layout_weight="3"
+                android:layout_height="1px"
+                android:background="@color/dash_divider"/>
+    </LinearLayout>
+</LinearLayout>
+
+                    

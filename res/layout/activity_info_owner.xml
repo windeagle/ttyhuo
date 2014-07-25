@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <TextView
+                    android:id="@+id/tv_edit_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/tw_light_black"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_tiny"
+                    android:layout_marginTop="@dimen/text_vertical_margin"
+                    />
+
+            <include layout="@layout/part_picgrid2"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请点击加号上传驾驶证、行驶证、运营证照片"
+                    android:textColor="@color/tw_light_black"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/font_tiny"
+                    android:layout_marginBottom="@dimen/text_vertical_margin"
+                    />
+	
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="点击看大图，长按可删除"
+	            android:textColor="@color/tw_gray"
+	            android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/font_tiny"
+                android:layout_marginBottom="@dimen/text_vertical_margin"
+	            />
+        </LinearLayout>
+
+        <LinearLayout style="@style/frame_ly">
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="车牌号" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入车牌号"
+                        android:id="@+id/edit_chepaihao" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="车型" />
+
+                <TextView
+                        style="@style/field_value_blank_16"
+                        android:hint="请选择车型"
+                        android:id="@+id/edit_chexing" />
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="载重" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入载重，单位：吨"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/edit_zaizhong" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="车长" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入车长，单位：米"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/edit_chechang" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="座位" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入座位数"
+                        android:inputType="number"
+                        android:id="@+id/edit_zuowei" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="驾龄" />
+
+                <TextView
+                        style="@style/field_value_blank_16"
+                        android:hint="请选择获取驾照年份"
+                        android:id="@+id/edit_date" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="具体型号" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入具体型号"
+                        android:id="@+id/edit_xinghao" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="厢体宽" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入厢体宽，单位：mm"
+                        android:inputType="number"
+                        android:id="@+id/edit_kuan" />
+
+	        </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="厢体高" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入厢体高，单位：mm"
+                        android:inputType="number"
+                        android:id="@+id/edit_gao" />
+
+	        </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

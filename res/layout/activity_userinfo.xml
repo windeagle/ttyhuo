@@ -1,0 +1,457 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
+    <RelativeLayout
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_header_height"
+                android:background="@color/activity_header_bg" >
+
+            <RelativeLayout
+                    android:id="@+id/ry_userImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_header_icon_marginLeft"
+                    android:layout_marginRight="@dimen/activity_header_icon_marginRight">
+                <ImageView
+                        android:id="@+id/iv_userFace"
+                        android:layout_width="@dimen/big_icon_size"
+                        android:layout_height="@dimen/big_icon_size"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/item_icon_fans" />
+                <ImageView
+                        android:id="@+id/iv_userVerify"
+                        android:layout_width="@dimen/small_icon_size"
+                        android:layout_height="@dimen/small_icon_size"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_verify_1" />
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/tv_userName"
+                    style="@style/textsize_18_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/ry_userImg"
+                    android:layout_toRightOf="@id/ry_userImg" />
+
+            <TextView
+                    android:id="@+id/tv_userStatus"
+                    style="@style/textsize_14_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_userName"
+                    android:layout_toRightOf="@id/tv_userName" />
+
+            <TextView
+                    android:id="@+id/tv_userTypeStr"
+                    style="@style/textsize_14_7F7F7F"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/ry_userImg"
+                    android:layout_toRightOf="@id/ry_userImg" />
+
+            <ImageView
+                    android:id="@+id/iv_userEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/activity_header_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/activity_header_leftBtn_bg"
+                    android:padding="@dimen/activity_header_right_icon_padding"
+                    android:src="@drawable/icon_bianji"
+                    android:scaleType="centerInside" />
+        </RelativeLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                <include layout="@layout/part_picgrid"/>
+
+                <include layout="@layout/part_line"/>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="@dimen/area_horizontal_padding_24"
+                        android:paddingBottom="@dimen/area_vertical_padding" >
+
+                    <LinearLayout
+                            android:id="@+id/ll_gender"
+                            android:layout_marginTop="@dimen/area_vertical_padding_8"
+                            android:background="@drawable/bg_nan"
+                            style="@style/little_info_area">
+
+                        <ImageView
+                                android:id="@+id/iv_gender"
+                                style="@style/little_info_area_icon"
+                                android:src="@drawable/icon_nan_big" />
+
+                        <TextView
+                                android:id="@+id/tv_userAge"
+                                android:paddingLeft="@dimen/info_horizontal_little_padding"
+                                style="@style/little_info_area_text"
+                                android:text="0" />
+                    </LinearLayout>
+
+                    <include layout="@layout/part_right_top_info"/>
+
+                    <LinearLayout
+                            android:id="@+id/ll_mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ll_gender"
+                            android:paddingTop="@dimen/info_padding"
+                            android:orientation="horizontal" >
+
+                        <TextView
+                                style="@style/textsize_16_434343"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="手机号: " />
+
+                        <TextView
+                                android:id="@+id/tv_mobileNo"
+                                style="@style/textsize_16_434343"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/right_bottom_info_area"
+                                  android:layout_below="@id/ll_mobile">
+
+                        <ImageView
+                                android:id="@+id/iv_hasProduct"
+                                style="@style/little_info_area_icon"
+                                android:src="@drawable/btn_icon_flag" />
+                        <TextView
+                                android:id="@+id/tv_hasProduct"
+                                android:text="他的货源"
+                                style="@style/right_bottom_info_text"/>
+
+                        <ImageView
+                                style="@style/little_info_area_icon"
+                                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                                android:src="@drawable/btn_icon_love" />
+                        <TextView
+                                android:id="@+id/tv_favoriteUserCount"
+                                android:text="关注(0)"
+                                style="@style/right_bottom_info_text"/>
+                        <ImageView
+                                style="@style/little_info_area_icon"
+                                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                                android:src="@drawable/btn_icon_thumbup" />
+                        <TextView
+                                android:id="@+id/tv_thumbUpCount"
+                                style="@style/right_bottom_info_text"
+                                android:text="顶(0)"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <include layout="@layout/part_line"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/ly_dongTai"
+                        android:orientation="horizontal" style="@style/big_item">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                style="@style/textsize_16_9F9F9F"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="个人动态" />
+
+                        <TextView
+                                android:id="@+id/tv_dongTaiNum"
+                                style="@style/textsize_32_DADADA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dongTaiNum_marginTop"
+                                android:text="4" />
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/field_name_value_blank"
+                            android:layout_weight="3"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal" >
+                        <ImageView
+                                android:id="@+id/iv_dongTaiImg"
+                                android:layout_width="@dimen/big_icon_size"
+                                android:layout_height="@dimen/big_icon_size"
+                                android:background="@color/img_bg" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include android:id="@+id/line_truck" layout="@layout/part_line"/>
+
+                <LinearLayout
+                        android:id="@+id/ly_truck"
+                        android:orientation="horizontal" style="@style/big_item">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                        <ImageView
+                                android:id="@+id/iv_truckTypeImg"
+                                android:layout_width="@dimen/big_icon_size"
+                                android:layout_height="@dimen/big_icon_size"
+                                android:src="@drawable/a1" />
+
+                        <TextView
+                                android:id="@+id/tv_truckType"
+                                style="@style/textsize_16_9F9F9F"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/truck_text_padding_top"
+                                android:text="平板" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/field_name_value_blank"
+                            android:layout_weight="3"
+                            android:orientation="vertical" >
+
+                        <TextView
+                                android:id="@+id/tv_licensePlate"
+                                style="@style/textsize_16_434343"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/truck_text_lineHeight"
+                                android:gravity="center_vertical" />
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/truck_text_lineHeight"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical" >
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="载重" />
+
+                            <TextView
+                                    android:id="@+id/tv_loadLimit"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="吨" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/truck_text_horizontal_padding"
+                                    android:text="长" />
+
+                            <TextView
+                                    android:id="@+id/tv_truckLength"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="米" />
+
+                            <TextView
+                                    android:id="@+id/tv_seatingCapacity"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/truck_text_horizontal_padding" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="座" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/truck_text_lineHeight"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical" >
+
+                            <TextView
+                                    android:id="@+id/tv_driveAge"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/truck_text_lineHeight"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical" >
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="型号: " />
+
+                            <TextView
+                                    android:id="@+id/tv_modelNumber"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/truck_text_lineHeight"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical" >
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="厢体: " />
+
+                            <TextView
+                                    android:id="@+id/tv_truckWidth"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="mm" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" * " />
+
+                            <TextView
+                                    android:id="@+id/tv_truckHeight"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="mm" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include android:id="@+id/line_route" layout="@layout/part_line"/>
+
+                <LinearLayout android:id="@+id/ly_route" style="@style/narrow_field_area">
+
+                    <TextView
+                            style="@style/textsize_16_9F9F9F"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/route_lineHeight"
+                            android:gravity="center"
+                            android:text="常跑路线" />
+
+                    <ListView
+                            android:id="@+id/lv_routes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/white"
+                            android:dividerHeight="0px"
+                            android:scrollbars="none" />
+
+                </LinearLayout>
+
+                <include android:id="@+id/line_company" layout="@layout/part_line"/>
+
+                <LinearLayout android:id="@+id/ly_company" style="@style/field_area">
+
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_company" ttyhuo:fieldName="公司" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_industryName" ttyhuo:fieldName="行业" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_fixPhoneNo" ttyhuo:fieldName="办公电话" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_jobPosition" ttyhuo:fieldName="职业" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_address" ttyhuo:fieldName="地址" ttyhuo:showLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <include layout="@layout/part_line"/>
+
+                <LinearLayout style="@style/field_area">
+
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/title" ttyhuo:fieldName="个性签名" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/hobby" ttyhuo:fieldName="兴趣爱好" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/homeTown" ttyhuo:fieldName="家乡" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/description" ttyhuo:fieldName="个人说明" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/createDate" ttyhuo:fieldName="注册时间" ttyhuo:showLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <include  layout="@layout/part_line"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include  layout="@layout/part_phone_footer"/>
+    </LinearLayout>
+</LinearLayout>

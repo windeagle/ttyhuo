@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.ttyhuo.view.ExpandableHeightGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pic_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:paddingBottom="10dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:scrollbars="none"
+        android:verticalSpacing="10dip"
+        android:horizontalSpacing="5dip"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>

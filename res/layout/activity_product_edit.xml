@@ -1,0 +1,244 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+    <RelativeLayout
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <RelativeLayout style="@style/header_area">
+            <TextView style="@style/header_center_title" android:text="货源详情"/>
+            <ImageView style="@style/header_right_action_icon" android:visibility="gone" android:src="@drawable/icon_bianji" />
+        </RelativeLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <include layout="@layout/part_picgrid"/>
+
+                <include layout="@layout/part_line"/>
+
+                <include  layout="@layout/part_route"/>
+
+                <include layout="@layout/part_line"/>
+
+                <include layout="@layout/part_right_top_info"/>
+
+                <LinearLayout
+                        android:paddingBottom="0px"
+                        style="@style/big_item">
+
+                    <LinearLayout
+                            android:id="@+id/ly_provider"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/tv_productTitle"
+                                android:layout_width="@dimen/user_face_size"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/text_vertical_margin"
+                                android:gravity="center"
+                                style="@style/textsize_16_9F9F9F"/>
+
+                        <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <ImageView
+                                    android:id="@+id/iv_userFace"
+                                    android:layout_width="@dimen/user_face_size"
+                                    android:layout_height="@dimen/user_face_size"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/item_icon_fans" />
+                            <ImageView
+                                    android:id="@+id/iv_userVerify"
+                                    android:layout_width="@dimen/big_icon_size"
+                                    android:layout_height="@dimen/big_icon_size"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_verify_1" />
+                        </RelativeLayout>
+
+                        <TextView
+                                android:id="@+id/tv_userName"
+                                android:layout_width="@dimen/user_face_size"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/text_vertical_margin"
+                                android:gravity="center"
+                                style="@style/textsize_16_9F9F9F"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/field_name_value_blank"
+                            android:orientation="vertical">
+
+                        <LinearLayout android:id="@+id/ly_truck" android:paddingBottom="@dimen/field_paddingBottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                            <TextView android:id="@+id/tv_truckType" style="@style/info_text_no_paddingBottom" android:text="平板" />
+                            <TextView android:id="@+id/tv_loadLimit" style="@style/info_text_only_paddingLeft" android:text="5吨" />
+                            <TextView android:id="@+id/tv_truckLength" style="@style/info_text_only_paddingLeft" android:text="8米" />
+                        </LinearLayout>
+
+                        <LinearLayout android:paddingBottom="@dimen/field_paddingBottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                            <TextView android:id="@+id/tv_departureTime" style="@style/info_text_no_paddingBottom" android:text="一天后出发" />
+                            <TextView android:id="@+id/tv_genhuo" style="@style/info_text_only_paddingLeft" />
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                            <TextView android:id="@+id/tv_price" style="@style/info_text_no_paddingBottom" android:paddingRight="@dimen/info_padding" android:text="3000元" />
+                            <TextView android:id="@+id/tv_countInfo" style="@style/info_text_only_paddingLeft" android:paddingLeft="0px" android:text="2车/8车" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right">
+
+                    <TextView
+                            android:id="@+id/tv_totalInfo"
+                            style="@style/textsize_14_434343"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="@dimen/area_horizontal_padding" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/right_bottom_info_area"
+                              android:paddingBottom="@dimen/area_vertical_padding_8">
+
+                    <ImageView
+                            android:id="@+id/iv_purchase"
+                            style="@style/little_info_area_icon"
+                            android:src="@drawable/btn_icon_flag" />
+                    <TextView
+                            android:id="@+id/tv_purchase"
+                            android:text="接货"
+                            style="@style/right_bottom_info_text"/>
+
+                    <ImageView
+                            style="@style/little_info_area_icon"
+                            android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                            android:src="@drawable/btn_icon_love" />
+                    <TextView
+                            android:id="@+id/tv_favoriteUserCount"
+                            android:text="关注(0)"
+                            style="@style/right_bottom_info_text"/>
+                    <ImageView
+                            style="@style/little_info_area_icon"
+                            android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                            android:src="@drawable/btn_icon_thumbup" />
+                    <TextView
+                            android:id="@+id/tv_thumbUpCount"
+                            style="@style/right_bottom_info_text"
+                            android:text="顶(0)"/>
+                </LinearLayout>
+
+                <include  layout="@layout/part_line"/>
+
+                <LinearLayout style="@style/field_area"
+                              android:paddingLeft="@dimen/area_horizontal_padding"
+                              android:background="@color/main_bg">
+
+                    <LinearLayout style="@style/field_layout"
+                                  android:layout_marginTop="@dimen/text_vertical_margin"
+                                  android:layout_marginBottom="@dimen/text_vertical_margin">
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="只可修改以下四个字段，如需修改其他信息，请重新发布货源。"
+                                android:textColor="@color/tw_light_black"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="@dimen/font_tiny"
+                                />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="提货时间" />
+                        <TextView android:id="@+id/edit_fromTime" android:cursorVisible="false" style="@style/field_edit_custom_blank_16" android:hint="选择提货时间" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="抵达时间" />
+                        <TextView android:id="@+id/edit_toTime" android:cursorVisible="false" style="@style/field_edit_custom_blank_16" android:hint="选择抵达时间" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <LinearLayout android:layout_height="wrap_content"
+                                      android:layout_width="@dimen/field_name_width"
+                                      android:orientation="vertical"
+                                      android:gravity="right">
+                            <TextView style="@style/field_name"
+                                      android:layout_width="wrap_content"
+                                      android:drawableLeft="@drawable/icon_star"
+                                      android:text="需求车数" />
+                        </LinearLayout>
+                        <EditText android:id="@+id/edit_limitCount" style="@style/field_edit_blank_16"
+                                  android:inputType="number" android:text="1" android:hint="请输入需求车数" />
+                        <TextView style="@style/field_edit_unit" android:text="辆" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="单车运价" />
+                        <EditText android:id="@+id/edit_price" style="@style/field_edit_blank_16"
+                                  android:inputType="numberDecimal" android:hint="请输入单车运价" />
+                        <TextView style="@style/field_edit_unit" android:text="元/辆" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include  layout="@layout/part_line"/>
+
+                <LinearLayout style="@style/field_area">
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fromTime" android:visibility="gone" ttyhuo:fieldName="提货时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fromAddr" ttyhuo:fieldName="提货地址" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/toTime" android:visibility="gone" ttyhuo:fieldName="抵达时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/toAddr" ttyhuo:fieldName="卸货地址" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_company" ttyhuo:fieldName="公司" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_fixPhoneNo" ttyhuo:fieldName="办公室电话" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_jobPosition" ttyhuo:fieldName="职位" ttyhuo:showLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                </LinearLayout>
+
+                <include  layout="@layout/part_line"/>
+
+                <LinearLayout style="@style/field_area">
+                    <cn.ttyhuo.view.FieldLayout android:id="@+id/description" ttyhuo:fieldName="货源介绍" ttyhuo:showLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                </LinearLayout>
+
+                <include  layout="@layout/part_line"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <include layout="@layout/part_operation_footer"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:id="@+id/ly_product"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:paddingBottom="@dimen/area_vertical_padding_8">
+
+    <include layout="@layout/part_line"/>
+
+    <include  layout="@layout/part_route"/>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@drawable/rect_gray_2"
+            android:layout_marginRight="@dimen/area_horizontal_padding"
+            android:layout_marginLeft="@dimen/area_horizontal_padding" />
+
+    <include layout="@layout/part_right_top_info"/>
+
+    <LinearLayout
+            android:paddingTop="0px"
+            android:paddingBottom="0px"
+            style="@style/big_item">
+        <TextView
+                android:id="@+id/tv_productTitle"
+                android:paddingTop="@dimen/area_vertical_padding_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/textsize_16_9F9F9F"/>
+    </LinearLayout>
+
+    <LinearLayout
+            style="@style/big_item">
+
+        <LinearLayout
+                android:id="@+id/ly_provider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <ImageView
+                        android:id="@+id/iv_userFace"
+                        android:layout_width="@dimen/user_face_size"
+                        android:layout_height="@dimen/user_face_size"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/item_icon_fans" />
+                <ImageView
+                        android:id="@+id/iv_userVerify"
+                        android:layout_width="@dimen/big_icon_size"
+                        android:layout_height="@dimen/big_icon_size"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_verify_1" />
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/tv_userName"
+                    android:layout_width="@dimen/user_face_size"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_vertical_margin"
+                    android:gravity="center"
+                    style="@style/textsize_16_9F9F9F"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/field_name_value_blank"
+                android:orientation="vertical">
+
+            <LinearLayout android:id="@+id/ly_truck" android:paddingBottom="@dimen/field_paddingBottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:id="@+id/tv_truckType" style="@style/info_text_no_paddingBottom" android:text="平板" />
+                <TextView android:id="@+id/tv_loadLimit" style="@style/info_text_only_paddingLeft" android:text="5吨" />
+                <TextView android:id="@+id/tv_truckLength" style="@style/info_text_only_paddingLeft" android:text="8米" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                    <TextView
+                            android:id="@+id/tv_departureTime"
+                            style="@style/info_text"
+                            android:text="一天后出发" />
+
+                    <TextView
+                            android:id="@+id/tv_price"
+                            style="@style/info_text"
+                            android:text="3000元" />
+
+                    <TextView
+                            android:id="@+id/tv_countInfo"
+                            style="@style/info_text_no_paddingBottom"
+                            android:text="2车/8车" />
+
+                </LinearLayout>
+
+                <ImageView
+                        android:id="@+id/iv_phoneIcon"
+                        android:layout_width="@dimen/big_icon_size"
+                        android:layout_height="@dimen/big_icon_size"
+                        android:scaleType="centerInside"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/btn_icon_call" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@drawable/rect_gray_2"
+            android:layout_marginRight="@dimen/area_horizontal_padding"
+            android:layout_marginLeft="@dimen/area_horizontal_padding" />
+
+    <LinearLayout style="@style/field_area"
+                  android:id="@+id/ly_purchaseInfo"
+                  android:paddingBottom="@dimen/area_vertical_padding_8">
+        <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_purchaseTime" ttyhuo:fieldName="接单时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+        <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_checkTime" ttyhuo:fieldName="提货时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+        <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_confirmTime" ttyhuo:fieldName="卸货时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+        <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_providerSeqNo" ttyhuo:fieldName="接单序列号" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@drawable/rect_gray_2"
+            android:layout_marginRight="@dimen/area_horizontal_padding"
+            android:layout_marginLeft="@dimen/area_horizontal_padding" />
+
+    <LinearLayout style="@style/right_bottom_info_area">
+
+        <ImageView
+                android:id="@+id/iv_purchase"
+                style="@style/little_info_area_icon"
+                android:src="@drawable/btn_icon_flag" />
+        <TextView
+                android:id="@+id/tv_purchase"
+                android:text="接货"
+                style="@style/right_bottom_info_text"/>
+
+        <ImageView
+                android:id="@+id/iv_cancel"
+                style="@style/little_info_area_icon"
+                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                android:src="@drawable/btn_icon_love" />
+        <TextView
+                android:id="@+id/tv_cancel"
+                android:text="取消"
+                style="@style/right_bottom_info_text"/>
+
+        <ImageView
+                style="@style/little_info_area_icon"
+                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                android:src="@drawable/btn_icon_love" />
+        <TextView
+                android:id="@+id/tv_favoriteUserCount"
+                android:text="关注(0)"
+                style="@style/right_bottom_info_text"/>
+        <ImageView
+                style="@style/little_info_area_icon"
+                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                android:src="@drawable/btn_icon_thumbup" />
+        <TextView
+                android:id="@+id/tv_thumbUpCount"
+                style="@style/right_bottom_info_text"
+                android:text="顶(0)"/>
+    </LinearLayout>
+</LinearLayout>

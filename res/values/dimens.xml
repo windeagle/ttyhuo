@@ -1,0 +1,84 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">12dp</dimen>
+
+    <!-- font相关 -->
+    <dimen name="font_big">18sp</dimen>
+    <dimen name="font_middle">16sp</dimen>
+    <dimen name="font_tiny">14sp</dimen>
+
+    <dimen name="LargeTextSize">16dp</dimen>
+    <dimen name="BasicTextSize">15dp</dimen>
+    <dimen name="TitleTextSize">18dp</dimen>
+    <dimen name="SmallTextSize">14dp</dimen>
+    <dimen name="SmallerTextSize">13dp</dimen>
+    <dimen name="LargestTextSize">30dp</dimen>
+    <dimen name="ChattingTextSize">16dp</dimen>
+    <dimen name="ChattingContentMinHeight">49dp</dimen>
+    <dimen name="PreferenceItemHeight">42dp</dimen>
+    <dimen name="ConversationItemHeight">58dp</dimen>
+    <dimen name="LargeAvatarSize">56dp</dimen>
+
+    <!-- header footer相关 -->
+    <dimen name="activity_header_height">56dp</dimen>
+    <dimen name="activity_header_icon_marginLeft">12dp</dimen>
+    <dimen name="activity_header_icon_marginRight">8dp</dimen>
+    <dimen name="activity_header_right_icon_padding">8dp</dimen>
+    <dimen name="activity_footer_height">56dp</dimen>
+
+    <!-- 常跑路线相关 -->
+    <dimen name="route_from_to_blank_line_length">50dp</dimen>
+    <dimen name="route_lineHeight">40dp</dimen>
+    <dimen name="route_item_horizontal_margin">12dp</dimen>
+
+    <!-- 车辆信息相关 -->
+    <dimen name="truck_text_lineHeight">24dp</dimen>
+    <dimen name="truck_text_horizontal_padding">12dp</dimen>
+    <dimen name="truck_text_padding_top">6dp</dimen>
+
+    <!--  区块相关  -->
+    <dimen name="area_margin">12dp</dimen>
+    <dimen name="area_horizontal_padding">12dp</dimen>
+    <dimen name="area_vertical_padding_8">8dp</dimen>
+    <dimen name="area_vertical_padding">16dp</dimen>
+    <dimen name="area_horizontal_padding_24">24dp</dimen>
+
+    <!-- 字段域相关 -->
+    <dimen name="field_paddingTop">16dp</dimen>
+    <dimen name="field_paddingBottom">8dp</dimen>
+    <dimen name="field_name_value_blank_16">16dp</dimen>
+    <dimen name="field_name_value_blank">24dp</dimen>
+    <dimen name="field_name_width">85dp</dimen>
+    <dimen name="field_name_big_width">105dp</dimen>
+    <dimen name="field_height">45dp</dimen>
+    <dimen name="field_horizontal_padding">16dp</dimen>
+
+    <dimen name="info_padding">12dp</dimen>
+    <dimen name="info_horizontal_little_padding">6dp</dimen>
+
+    <dimen name="button_bottom_margin">8dp</dimen>
+    <dimen name="text_vertical_margin">5dp</dimen>
+
+    <!-- 各种图标大小 -->
+    <dimen name="small_icon_size">14dp</dimen>
+    <dimen name="item_icon_size">36dp</dimen>
+    <dimen name="middle_icon_size">24dp</dimen>
+    <dimen name="big_icon_size">42dp</dimen>
+    <dimen name="user_face_size">96dp</dimen>
+
+    <!-- search相关 -->
+    <dimen name="search_area_margin">16dp</dimen>
+    <dimen name="search_area_margin_24">24dp</dimen>
+    <dimen name="search_area_lineHeight">42dp</dimen>
+    <dimen name="search_item_lineHeight_34">34dp</dimen>
+    <dimen name="search_item_lineHeight">46dp</dimen>
+    <dimen name="search_icon_padding">8dp</dimen>
+
+    <!-- 其他特殊 -->
+    <dimen name="dongTaiNum_marginTop">-24dp</dimen>
+    <dimen name="slidingmenu_offset">50dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+
+</resources>

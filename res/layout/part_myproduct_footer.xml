@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ly_myproduct_footer"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/activity_footer_height"
+              android:background="@color/activity_footer_bg"
+              android:gravity="center"
+              android:orientation="horizontal" >
+    <LinearLayout android:id="@+id/lv_new_window_btn"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        <TextView android:id="@+id/tv_new_window_btn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:drawableTop="@drawable/tab_icon_cube"
+                  android:gravity="center_vertical"
+                  android:text="修改"
+                  style="@style/textsize_16_white" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="1px"
+                 android:layout_height="match_parent" android:background="@color/white"></FrameLayout>
+    <LinearLayout android:id="@+id/lv_pause_btn"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        <TextView android:id="@+id/tv_pause_btn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:drawableTop="@drawable/tab_icon_pause"
+                  android:gravity="center_vertical"
+                  android:text="暂停"
+                  style="@style/textsize_16_white" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="1px"
+                 android:layout_height="match_parent" android:background="@color/white"></FrameLayout>
+    <LinearLayout android:id="@+id/lv_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        <TextView android:id="@+id/tv_delete_btn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:drawableTop="@drawable/tab_icon_del"
+                  android:gravity="center_vertical"
+                  android:text="删除"
+                  style="@style/textsize_16_white" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@color/white">
+    <LinearLayout
+            android:id="@+id/ly_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/area_vertical_padding_8">
+
+        <include layout="@layout/part_line"/>
+
+        <include  layout="@layout/part_route"/>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@drawable/rect_gray_2"
+                android:layout_marginRight="@dimen/area_horizontal_padding"
+                android:layout_marginLeft="@dimen/area_horizontal_padding" />
+
+        <LinearLayout
+                android:paddingBottom="0px"
+                style="@style/big_item">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/tv_productTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/textsize_16_9F9F9F"/>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/iv_lastPlace"
+                            style="@style/little_info_area_icon"
+                            android:src="@drawable/icon_positiontwo_big"/>
+
+                    <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tv_lastPlace"
+                            style="@style/right_top_info_text"
+                            android:text="0.00Km"/>
+
+                    <ImageView
+                            style="@style/little_info_area_icon"
+                            android:src="@drawable/icon_time_big"/>
+
+                    <TextView
+                            android:id="@+id/tv_lastTime"
+                            style="@style/right_top_info_text"
+                            android:text="当前在线"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingBottom="0px"
+                style="@style/big_item">
+
+            <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ly_provider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:id="@+id/iv_userFace"
+                            android:layout_width="@dimen/user_face_size"
+                            android:layout_height="@dimen/user_face_size"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/item_icon_fans" />
+                    <ImageView
+                            android:id="@+id/iv_userVerify"
+                            android:layout_width="@dimen/big_icon_size"
+                            android:layout_height="@dimen/big_icon_size"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_verify_1" />
+                </RelativeLayout>
+
+                <TextView
+                        android:id="@+id/tv_userName"
+                        android:layout_width="@dimen/user_face_size"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_vertical_margin"
+                        android:gravity="center"
+                        style="@style/textsize_16_9F9F9F"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <LinearLayout android:id="@+id/ly_truck" android:paddingBottom="@dimen/field_paddingBottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:id="@+id/tv_truckType" style="@style/info_text_no_paddingBottom" android:text="平板" />
+                    <TextView android:id="@+id/tv_loadLimit" style="@style/info_text_only_paddingLeft" android:text="5吨" />
+                    <TextView android:id="@+id/tv_truckLength" style="@style/info_text_only_paddingLeft" android:text="8米" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <LinearLayout android:layout_width="0px" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <TextView
+                                android:id="@+id/tv_departureTime"
+                                style="@style/info_text_no_paddingBottom"
+                                android:text="一天后出发" />
+
+                        <TextView
+                                android:id="@+id/tv_price"
+                                style="@style/info_text_only_paddingLeft"
+                                android:text="3000元" />
+
+                        <TextView
+                                android:id="@+id/tv_countInfo"
+                                style="@style/info_text_only_paddingLeft"
+                                android:text="2车/8车" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/iv_phoneIcon"
+                            android:layout_width="@dimen/big_icon_size"
+                            android:layout_height="@dimen/big_icon_size"
+                            android:scaleType="centerInside"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/btn_icon_call" />
+
+                    <ImageView
+                            android:id="@+id/iv_toggleIcon"
+                            android:layout_width="@dimen/item_icon_size"
+                            android:layout_height="@dimen/item_icon_size"
+                            android:scaleType="centerInside"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:visibility="gone"
+                style="@style/right_bottom_info_area">
+
+            <ImageView
+                    android:id="@+id/iv_purchase"
+                    style="@style/little_info_area_icon"
+                    android:src="@drawable/btn_icon_flag" />
+            <TextView
+                    android:id="@+id/tv_purchase"
+                    android:text="接货"
+                    style="@style/right_bottom_info_text"/>
+
+            <ImageView
+                    style="@style/little_info_area_icon"
+                    android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                    android:src="@drawable/btn_icon_love" />
+            <TextView
+                    android:id="@+id/tv_favoriteUserCount"
+                    android:text="关注(0)"
+                    style="@style/right_bottom_info_text"/>
+            <ImageView
+                    style="@style/little_info_area_icon"
+                    android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                    android:src="@drawable/btn_icon_thumbup" />
+            <TextView
+                    android:id="@+id/tv_thumbUpCount"
+                    style="@style/right_bottom_info_text"
+                    android:text="顶(0)"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+            android:visibility="gone"
+            android:id="@+id/lv_purchaseDetailList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/white"
+            android:dividerHeight="0px"
+            android:scrollbars="none" >
+    </ListView>
+
+</LinearLayout>

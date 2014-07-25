@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FieldLayout">
+        <!--<attr name="custom_id" format="integer" />-->
+        <!--<attr name="src" format="reference" />-->
+        <!--<attr name="background" format="reference" />-->
+        <attr name="fieldName" format="string" />
+        <attr name="showLine" format="boolean" />
+        <!--<attr name="textColor" format="color" />-->
+        <!--<attr name="textSize" format="dimension" />-->
+    </declare-styleable>
+
+    <declare-styleable name="BigItemLayout">
+        <attr name="bigItemText" format="string" />
+        <attr name="showHarfLine" format="boolean" />
+        <attr name="bigItemIcon" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_myself" ttyhuo:bigItemIcon="@drawable/item_icon_info" ttyhuo:bigItemText="我的资料" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_real_verify" ttyhuo:bigItemIcon="@drawable/item_icon_real_verify" ttyhuo:bigItemText="实名认证" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_truck" ttyhuo:bigItemIcon="@drawable/item_icon_truck" ttyhuo:bigItemText="车辆信息" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_company" ttyhuo:bigItemIcon="@drawable/item_icon_company" ttyhuo:bigItemText="公司信息" ttyhuo:showHarfLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+            <include layout="@layout/part_line"/>
+
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_huoyuan" ttyhuo:bigItemIcon="@drawable/item_icon_cube" ttyhuo:bigItemText="我的货源" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_shoucang" ttyhuo:bigItemIcon="@drawable/item_icon_love" ttyhuo:bigItemText="收藏货源" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_guanzhu" ttyhuo:bigItemIcon="@drawable/item_icon_view" ttyhuo:bigItemText="关注的人" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_fensi" ttyhuo:bigItemIcon="@drawable/item_icon_fans" ttyhuo:bigItemText="我的粉丝" ttyhuo:showHarfLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:visibility="gone" android:id="@+id/ly_link" ttyhuo:bigItemIcon="@drawable/item_icon_link" ttyhuo:bigItemText="邀请朋友" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+            <include layout="@layout/part_line"/>
+
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_change_password" ttyhuo:bigItemIcon="@drawable/item_icon_change_password" ttyhuo:bigItemText="修改密码" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_help" ttyhuo:bigItemIcon="@drawable/item_icon_help" ttyhuo:bigItemText="帮助" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_exit" ttyhuo:bigItemIcon="@drawable/item_icon_exit" ttyhuo:bigItemText="退出" ttyhuo:showHarfLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+            <ProgressBar
+                    android:id="@+id/progressBar1"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

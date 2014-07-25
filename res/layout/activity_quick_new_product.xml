@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ttyhuo="http://schemas.android.com/apk/res/cn.ttyhuo"
+              android:background="@color/white"
+              style="@style/root_linear_layout">
+    <RelativeLayout
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <LinearLayout style="@style/root_linear_layout">
+        <RelativeLayout style="@style/header_area">
+            <TextView style="@style/header_center_title" android:text="发布货源"/>
+            <ImageView android:id="@+id/iv_action_done" style="@style/header_right_action_icon" android:src="@drawable/ic_action_done_big" />
+        </RelativeLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView android:id="@+id/tv_single_truck_fabu"
+                      android:layout_height="@dimen/activity_header_height"
+                      android:layout_width="0px"
+                      android:layout_weight="1"
+                      android:background="@color/activity_select_tag_bg"
+                      android:gravity="center"
+                      android:text="简易货源"
+                      style="@style/textsize_16_white"/>
+            <FrameLayout android:layout_width="1px"
+                         android:layout_height="match_parent" android:background="@color/white"></FrameLayout>
+            <TextView android:id="@+id/tv_multi_truck_fabu"
+                      android:layout_height="@dimen/activity_header_height"
+                      android:layout_width="0px"
+                      android:layout_weight="1"
+                      android:gravity="center"
+                      android:background="@color/activity_footer_bg"
+                      android:text="多车货源"
+                      style="@style/textsize_16_white"/>
+        </LinearLayout>
+
+        <ScrollView style="@style/frame_scroll" android:id="@+id/root">
+            <LinearLayout style="@style/scroll_inner_ly" >
+
+                <LinearLayout android:visibility="gone" style="@style/frame_ly_first">
+                    <include layout="@layout/part_picgrid"/>
+
+                    <TextView
+                            style="@style/wrap_h_center_content"
+                            android:text="长按图标可以删除"
+                            android:textColor="@color/tw_gray"
+                            android:textSize="@dimen/font_tiny"
+                            android:layout_marginBottom="@dimen/text_vertical_margin"
+                            />
+                </LinearLayout>
+
+                <LinearLayout style="@style/frame_ly_first">
+
+                    <LinearLayout style="@style/field_layout">
+                        <LinearLayout android:layout_height="wrap_content"
+                                      android:layout_width="@dimen/field_name_width"
+                                      android:orientation="vertical"
+                                      android:gravity="right">
+                            <TextView style="@style/field_name"
+                                      android:layout_width="wrap_content"
+                                      android:drawableLeft="@drawable/icon_star"
+                                      android:text="出发城市" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/edit_fromCity" style="@style/field_value_blank_16" android:hint="选择出发城市" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/fromCity_spinner_ly" style="@style/field_layout">
+                        <Spinner
+                                android:id="@+id/country"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/province"
+                                />
+                        <Spinner
+                                android:id="@+id/city"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/city"
+                                />
+                        <Spinner
+                                android:id="@+id/ccity"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/county"
+                                />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <LinearLayout android:layout_height="wrap_content"
+                                      android:layout_width="@dimen/field_name_width"
+                                      android:orientation="vertical"
+                                      android:gravity="right">
+                            <TextView style="@style/field_name"
+                                      android:layout_width="wrap_content"
+                                      android:drawableLeft="@drawable/icon_star"
+                                      android:text="到达城市" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/edit_toCity" style="@style/field_value_blank_16" android:hint="选择到达城市" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/toCity_spinner_ly" style="@style/field_layout">
+                        <Spinner
+                                android:id="@+id/country"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/province"
+                                />
+                        <Spinner
+                                android:id="@+id/city"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/city"
+                                />
+                        <Spinner
+                                android:id="@+id/ccity"
+                                android:layout_width="0px"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="false"
+                                android:prompt="@string/county"
+                                />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="提货地址" />
+                        <TextView android:id="@+id/edit_fromAddr" style="@style/field_edit_custom_blank_16" android:hint="选择提货地址" />
+                        <ImageView android:id="@+id/btn_fromAddr" style="@style/field_edit_img_unit" android:src="@drawable/icon_qi"/>
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="卸货地址" />
+                        <TextView android:id="@+id/edit_toAddr" style="@style/field_edit_custom_blank_16" android:hint="选择卸货地址" />
+                        <ImageView android:id="@+id/btn_toAddr" style="@style/field_edit_img_unit" android:src="@drawable/icon_position"/>
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="提货时间" />
+                        <TextView android:id="@+id/edit_fromTime" android:cursorVisible="false" style="@style/field_edit_custom_blank_16" android:hint="选择提货时间" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="抵达时间" />
+                        <TextView android:id="@+id/edit_toTime" android:cursorVisible="false" style="@style/field_edit_custom_blank_16" android:hint="选择抵达时间" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <LinearLayout android:layout_height="wrap_content"
+                                      android:layout_width="@dimen/field_name_width"
+                                      android:orientation="vertical"
+                                      android:gravity="right">
+                            <TextView style="@style/field_name"
+                                      android:layout_width="wrap_content"
+                                      android:drawableLeft="@drawable/icon_star"
+                                      android:text="车型" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/edit_truckType" android:text="短途小货" style="@style/field_value_blank_16" android:hint="选择车型" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="货重" />
+                        <EditText android:id="@+id/edit_loadLimit" style="@style/field_edit_custom_blank_16"
+                                  android:inputType="numberDecimal" android:hint="输入货重" />
+                        <TextView style="@style/field_edit_unit" android:text="吨" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="货长" />
+                        <EditText android:id="@+id/edit_truckLength" style="@style/field_edit_custom_blank_16"
+                                  android:inputType="numberDecimal" android:hint="请输入货长" />
+                        <TextView style="@style/field_edit_unit" android:text=" 米" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" android:visibility="gone" />
+
+                    <LinearLayout style="@style/field_layout" android:visibility="gone">
+                        <TextView style="@style/field_name" android:drawableLeft="@drawable/icon_star" android:text="需求车数" />
+                        <EditText android:id="@+id/edit_limitCount" style="@style/field_edit_custom_blank_16"
+                                  android:inputType="number" android:text="1" android:hint="请输入需求车数" />
+                        <TextView style="@style/field_edit_unit" android:text="辆" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/frame_ly">
+
+                    <LinearLayout style="@style/field_layout" android:visibility="gone">
+                        <TextView style="@style/field_name" android:text="货源名称" />
+                        <EditText android:id="@+id/edit_title" style="@style/field_edit_custom_blank_16" android:hint="请输入货源名称" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" android:visibility="gone" />
+
+                    <LinearLayout style="@style/field_layout" android:visibility="gone">
+                        <TextView style="@style/field_name" android:text="单车运价" />
+                        <EditText android:id="@+id/edit_price" style="@style/field_edit_custom_blank_16"
+                                  android:inputType="numberDecimal" android:hint="请输入单车运价" />
+                        <TextView style="@style/field_edit_unit" android:text="元/辆" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" android:visibility="gone" />
+
+                    <LinearLayout style="@style/field_layout" android:visibility="gone">
+                        <TextView style="@style/field_name" android:text="跟车员数" />
+                        <EditText android:id="@+id/edit_gendan" style="@style/field_edit_custom_blank_16"
+                                  android:inputType="number" android:hint="请输入跟车员数" />
+                        <TextView style="@style/field_edit_unit" android:text="位/辆" />
+                    </LinearLayout>
+                    <FrameLayout style="@style/field_divider_line" android:visibility="gone" />
+
+                    <LinearLayout style="@style/field_layout">
+                        <TextView style="@style/field_name" android:text="详情备注" />
+                        <EditText android:id="@+id/edit_description" style="@style/field_edit_custom_blank_16" android:hint="请输入详情备注" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

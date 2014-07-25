@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <TextView
+                    android:id="@+id/tv_edit_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/tw_light_black"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_tiny"
+                    android:layout_marginTop="@dimen/text_vertical_margin"
+                    />
+
+            <include layout="@layout/part_picgrid2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请点击加号上传公司授权书图片和营业执照复印件（加盖公司公章）图片!"
+                android:textColor="@color/tw_light_black"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/font_tiny"
+                android:layout_marginBottom="@dimen/text_vertical_margin"
+                />
+
+            <TextView android:id="@+id/tv_table_sample"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="下载公司认证授权书表格"
+                      android:textColor="@color/tw_blue"
+                      android:layout_gravity="center_horizontal"
+                      android:gravity="center_horizontal"
+                      android:textSize="@dimen/font_tiny"
+                      android:layout_marginBottom="@dimen/text_vertical_margin"
+                    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/font_tiny"
+                android:layout_marginBottom="@dimen/text_vertical_margin"
+                android:text="点击看大图，长按可删除"
+                android:textColor="@color/tw_gray" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/frame_ly">
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name_big_width" android:text="公司名" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="输入公司名"
+                        android:id="@+id/edit_name" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name_big_width" android:text="职位" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="输入职位"
+                        android:id="@+id/edit_title" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name_big_width" android:text="办公电话" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="输入电话"
+                        android:inputType="phone"
+                        android:id="@+id/edit_phone" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name_big_width" android:text="物流货运行业" />
+
+                <RadioGroup
+                    android:id="@+id/radio"
+                    android:layout_marginLeft="@dimen/field_name_value_blank_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/field_paddingTop"
+                    android:paddingBottom="@dimen/field_paddingBottom"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                            android:id="@+id/radio_industryType_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="是"
+                        android:textColor="@color/tw_light_black"
+                        android:textSize="@dimen/font_middle" />
+
+                    <RadioButton
+                            android:id="@+id/radio_industryType_0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="否"
+                        android:textColor="@color/tw_light_black"
+                        android:textSize="@dimen/font_middle" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/radio_root"
+                style="@style/scroll_inner_ly"
+                android:visibility="gone" >
+
+                <FrameLayout style="@style/field_divider_line" />
+
+                <LinearLayout style="@style/field_layout">
+
+                    <TextView style="@style/field_name_big_width" android:text="行业" />
+
+                    <EditText
+                            style="@style/field_edit_blank_16"
+                            android:hint="输入行业"
+                            android:id="@+id/edit_industry" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name_big_width" android:text="地址" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="输入地址"
+                        android:id="@+id/edit_address" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

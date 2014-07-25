@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly"
+                  android:id="@+id/root">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <include layout="@layout/part_picgrid"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="长按图标，可以设为头像或删除"
+                    android:textColor="@color/tw_gray"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/font_tiny"
+                    android:layout_marginBottom="@dimen/text_vertical_margin"
+                    />
+        </LinearLayout>
+
+        <LinearLayout style="@style/frame_ly">
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="昵称" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:singleLine="true"
+                        android:hint="请输入昵称"
+                        android:id="@+id/edit_name" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="性别" />
+
+                <RadioGroup
+                        android:id="@+id/radio_sex"
+                        android:layout_marginLeft="@dimen/field_name_value_blank_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/field_paddingTop"
+                        android:paddingBottom="@dimen/field_paddingBottom"
+                        android:orientation="horizontal"
+                        >
+                    <RadioButton
+                            android:id="@+id/radio_sex_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="男"
+                            android:textColor="@color/tw_light_black"
+                            android:textSize="@dimen/font_middle"
+                            />
+                    <RadioButton
+                            android:id="@+id/radio_sex_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="女"
+                            android:textColor="@color/tw_light_black"
+                            android:textSize="@dimen/font_middle"
+                            />
+                    <RadioButton
+                            android:id="@+id/radio_sex_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="@color/tw_light_black"
+                            android:textSize="@dimen/font_middle"
+                            />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="出生日期" />
+
+                <TextView
+                        style="@style/field_value_blank_16"
+                        android:hint="选择出生日期"
+                        android:id="@+id/edit_date" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="个性签名" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入个性签名"
+                        android:id="@+id/edit_sign" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="兴趣爱好" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入兴趣爱好"
+                        android:id="@+id/edit_hobby" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="家乡" />
+
+                <TextView
+                        style="@style/field_value_blank_16"
+                        android:hint="选择家乡"
+                        android:id="@+id/edit_hometown" />
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="个人说明" />
+
+                <EditText
+                        style="@style/field_edit_blank_16"
+                        android:hint="选择个人说明"
+                        android:id="@+id/edit_personal" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

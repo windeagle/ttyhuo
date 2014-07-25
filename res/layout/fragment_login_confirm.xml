@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="手机号" />
+
+                <TextView style="@style/field_value_blank_16"
+                        android:singleLine="true"
+                        android:id="@+id/tv_mobileNo"></TextView>
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="昵称" />
+
+                <TextView style="@style/field_value_blank_16"
+                          android:singleLine="true"
+                          android:id="@+id/tv_userName"></TextView>
+
+            </LinearLayout>
+
+            <FrameLayout style="@style/field_divider_line" />
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name" android:text="密码" />
+
+                <EditText
+                        android:id="@+id/password"
+                        style="@style/field_edit_blank_16"
+                        android:hint="请输入密码"
+                        android:singleLine="true"
+                        android:inputType="textPassword"/>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/field_layout"
+                          android:layout_margin="@dimen/area_margin">
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/field_height"
+                        android:id="@+id/forgetBtn"
+                        android:gravity="center"
+                        android:text="忘记密码"
+                        android:background="@color/button_bg"
+                        android:textSize="@dimen/font_middle"
+                        android:textColor="@color/my_write"></Button>
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/field_height"
+                        android:id="@+id/loginBtn"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/field_horizontal_padding"
+                        android:text="登录"
+                        android:background="@color/button_bg"
+                        android:textSize="@dimen/font_middle"
+                        android:textColor="@color/my_write"></Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>

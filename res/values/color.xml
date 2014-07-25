@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>
+    <color name="activity_header_bg">#343434</color>
+    <color name="img_bg">#eeeeee</color>
+    <color name="activity_header_leftBtn_bg">#319A93</color>
+    <color name="activity_footer_bg">#3BB43C</color>
+    <color name="activity_select_tag_bg">#3AA43C</color>
+
+
+    <color name="dash_divider">#D5D5D5</color>
+    <color name="divider">#DBDBDB</color>
+
+    <color name="white">#FFFFFF</color>
+
+
+    <drawable name="my_lightergray">#f0f0f0</drawable>
+    <drawable name="my_gray">#dcdcdc</drawable>  
+    <drawable name="my_null">#00000000</drawable>
+
+    <color name="button_bg">#3bb43c</color>
+
+    <color name="tw_hard_black">#353535</color>
+    <color name="tw_light_black">#555555</color>
+    <color name="tw_gray">#b3b3b3</color>
+    <color name="tw_blue">#0dadf1</color>
+    <color name="tw_red">#fe5454</color>
+    <color name="tw_green">#4bb42a</color>
+    <color name="tw_yellow">#ffa300</color>
+    
+    
+    <color name="main_bg">#f0f0f0</color>
+    <color name="my_orange">#ff6600</color>
+    <color name="my_lightergray">#E6E6E6</color>
+    <color name="my_lightgray">#cccccc</color>
+    <color name="my_heavygray">#999999</color>
+    <color name="my_linegray">#c8c8c8</color>
+    
+    
+    <color name="my_cyan">#128ca2</color>
+    <color name="my_write">#FFFFFF</color>
+    <color name="my_black">#000000</color>
+    
+    
+    
+    <color name="base_dark_purple">#9933CC</color>
+    <color name="base_purple">#AA66CC</color>
+    
+    <color name="base_dark_orange">#FF8800</color>
+    <color name="base_orange">#FFBB33</color>
+    
+    
+    <color name="data_grey">#F3F3F3</color>
+    <color name="blue">#81CFEB</color>
+</resources>  

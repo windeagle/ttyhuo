@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/activity_footer_bg">
+
+        <EditText
+                android:visibility="gone"
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="北京" />
+
+        <AutoCompleteTextView
+                android:id="@+id/searchkey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
+        <Button
+                android:id="@+id/geocode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_nan"
+                android:onClick="SearchButtonProcess"
+                android:text="查找" />
+
+        <Button
+                android:visibility="gone"
+                android:id="@+id/map_next_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_nv"
+                android:onClick="goToNextPage"
+                android:text="下一页" />
+    </LinearLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        <com.baidu.mapapi.map.MapView
+                android:id="@+id/bmapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+
+        <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="100dp">
+
+            <RadioGroup
+                    android:id="@+id/RadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                <RadioButton
+                        android:id="@+id/normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:onClick="setMapMode"
+                        android:text="普通图" />
+
+                <RadioButton
+                        android:id="@+id/statellite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="setMapMode"
+                        android:text="卫星图" />
+            </RadioGroup>
+
+            <CheckBox
+                    android:id="@+id/traffice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:onClick="setTraffic"
+                    android:text="交通图" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="140dip"
+                android:background="#D000"
+                android:minWidth="100dip"
+                android:orientation="vertical"
+                android:padding="2dp" >
+
+            <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="定位icon" >
+
+                <RadioButton
+                        android:id="@+id/defaulticon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="默认图标" >
+                </RadioButton>
+
+                <RadioButton
+                        android:id="@+id/customicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自定义图标" >
+                </RadioButton>
+            </RadioGroup>
+        </LinearLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"
+                android:padding="12dp">
+
+            <ImageView android:id="@+id/returnMyLoc" android:src="@drawable/icon_myloc"
+                       style="@style/big_item_icon" />
+
+            <Button
+                    android:visibility="gone"
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="跟随" />
+
+            <Button
+                    android:visibility="gone"
+                    android:id="@+id/savescreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="截图"
+                    android:layout_alignParentRight="true" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

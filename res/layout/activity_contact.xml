@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/activity_header_bg"
+            android:orientation="horizontal">
+        <LinearLayout
+                android:layout_height="@dimen/search_area_lineHeight"
+                style="@style/search_area"
+                android:layout_weight="1"
+                android:background="@drawable/selector_search"
+                android:orientation="horizontal" >
+            <EditText
+                    android:id="@+id/tv_search"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/search_area_margin"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:hint="在此输入搜索内容" />
+            <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/big_icon_size"
+                    android:layout_height="@dimen/big_icon_size"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside"
+                    android:layout_marginRight="@dimen/search_area_margin"
+                    android:src="@drawable/icon_search" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_invite"
+                style="@style/textsize_16_9F9F9F"
+                android:layout_marginRight="@dimen/search_area_margin"
+                android:paddingLeft="@dimen/info_padding"
+                android:paddingRight="@dimen/info_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/search_item_lineHeight_34"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="直接邀请" />
+    </LinearLayout>
+    <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"/>
+</LinearLayout>
