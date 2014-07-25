@@ -191,7 +191,7 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
         Activity context = getActivity();
 
         iv_huoyuan = (ImageView)getView().findViewById(R.id.iv_huoyuan);
-        iv_huoyuan.getLayoutParams().width = (PxUtils.getDeviceWidth(context) -  context.getResources().getDimensionPixelSize(R.dimen.area_horizontal_padding) * 2 - PxUtils.dip2px(context, 10))/2;
+        iv_huoyuan.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
         iv_huoyuan.getLayoutParams().height = iv_huoyuan.getLayoutParams().width;
         iv_huoyuan.setOnClickListener(editClick);
 
@@ -201,18 +201,18 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
         iv_yonghu.setOnClickListener(editClick);
 
         iv_fabu = (ImageView)getView().findViewById(R.id.iv_fabu);
-        iv_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) -  context.getResources().getDimensionPixelSize(R.dimen.area_horizontal_padding) * 2 - PxUtils.dip2px(context, 10))/2;
-        iv_fabu.getLayoutParams().height = (int)(iv_fabu.getLayoutParams().width * 265.0f/525.0f);
+        iv_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
+        iv_fabu.getLayoutParams().height = (int)(iv_fabu.getLayoutParams().width * 263.0f/532.0f);
         iv_fabu.setOnClickListener(editClick);
 
         iv_quick_fabu = (ImageView)getView().findViewById(R.id.iv_quick_fabu);
-        iv_quick_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) -  context.getResources().getDimensionPixelSize(R.dimen.area_horizontal_padding) * 2 - PxUtils.dip2px(context, 10))/2;
-        iv_quick_fabu.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 265.0f/525.0f);
+        iv_quick_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
+        iv_quick_fabu.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 263.0f/532.0f);
         iv_quick_fabu.setOnClickListener(editClick);
 
         iv_invite = (ImageView)getView().findViewById(R.id.iv_invite);
         iv_invite.getLayoutParams().width = iv_quick_fabu.getLayoutParams().width;
-        iv_invite.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 265.0f/525.0f);
+        iv_invite.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 263.0f/532.0f);
         iv_invite.setOnClickListener(editClick);
 
         ly_fensi = (LinearLayout)getView().findViewById(R.id.ly_fensi);

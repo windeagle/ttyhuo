@@ -44,6 +44,7 @@ public class LeftSlidingMenuFragment extends Fragment {
     private LinearLayout ly_real_verify;
     private LinearLayout ly_truck;
     private LinearLayout ly_company;
+    private LinearLayout ly_shuoshuo;
 
     private LinearLayout ly_fensi;
     private LinearLayout ly_guanzhu;
@@ -139,6 +140,8 @@ public class LeftSlidingMenuFragment extends Fragment {
         ly_truck.setOnClickListener(editClick);
         ly_company = (LinearLayout)getView().findViewById(R.id.ly_company);
         ly_company.setOnClickListener(editClick);
+        ly_shuoshuo = (LinearLayout)getView().findViewById(R.id.ly_shuoshuo);
+        ly_shuoshuo.setOnClickListener(editClick);
 
         ly_fensi = (LinearLayout)getView().findViewById(R.id.ly_fensi);
         ly_fensi.setOnClickListener(editClick);
@@ -196,6 +199,12 @@ public class LeftSlidingMenuFragment extends Fragment {
                     break;
                 case R.id.ly_link:
                     intent = new Intent(mContext,ContactActivity.class);
+                    break;
+                case R.id.ly_shuoshuo:
+                    intent = new Intent(mContext, MainPage.class);
+                    intent.putExtra("contentFragment", "DriverShuoShuoFragment");
+                    intent.putExtra("windowTitle", "车源说说");
+                    intent.putExtra("hasWindowTitle", true);
                     break;
             }
 

@@ -101,7 +101,7 @@ public class BaseAddPicActivity extends ActionBarActivity implements
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-                                    Map<String, String> params = new HashMap<String, String>();
+                                    Map<String, String> params = getParams();
                                     params.put("imgUrl", mPicData.get(position));
 
 									mPicData.remove(position);
@@ -210,6 +210,12 @@ public class BaseAddPicActivity extends ActionBarActivity implements
     protected RequestParams getRequestParams()
     {
         RequestParams params = new RequestParams();
+        return params;
+    }
+
+    protected Map<String, String> getParams()
+    {
+        Map<String, String> params = new HashMap<String, String>();
         return params;
     }
 

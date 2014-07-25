@@ -19,6 +19,7 @@
             <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_myself" ttyhuo:bigItemIcon="@drawable/item_icon_info" ttyhuo:bigItemText="我的资料" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
             <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_real_verify" ttyhuo:bigItemIcon="@drawable/item_icon_real_verify" ttyhuo:bigItemText="实名认证" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
             <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_truck" ttyhuo:bigItemIcon="@drawable/item_icon_truck" ttyhuo:bigItemText="车辆信息" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_shuoshuo" ttyhuo:bigItemIcon="@drawable/item_icon_new" ttyhuo:bigItemText="车源说说" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
             <cn.ttyhuo.view.BigItemLayout android:id="@+id/ly_company" ttyhuo:bigItemIcon="@drawable/item_icon_company" ttyhuo:bigItemText="公司信息" ttyhuo:showHarfLine="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
 
             <include layout="@layout/part_line"/>

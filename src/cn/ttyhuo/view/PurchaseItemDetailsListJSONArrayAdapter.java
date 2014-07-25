@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import baidumapsdk.demo.BaseMapDemo;
 import cn.ttyhuo.R;
+import cn.ttyhuo.activity.PurchaseStatusImageActivity;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.JSONUtil;
 import cn.ttyhuo.utils.UrlThread;
@@ -124,6 +125,8 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
             TextView tv_confirm = (TextView) userOrgView.findViewById(R.id.tv_confirm);
             ImageView iv_hisPlace = (ImageView) userOrgView.findViewById(R.id.iv_hisPlace);
             TextView tv_hisPlace = (TextView) userOrgView.findViewById(R.id.tv_hisPlace);
+            ImageView iv_statusImg = (ImageView) userOrgView.findViewById(R.id.iv_statusImg);
+            TextView tv_statusImg = (TextView) userOrgView.findViewById(R.id.tv_statusImg);
 
             final int pdID = purchaseJObject.getInt("pdid");
             final int status = purchaseJObject.getInt("status");
@@ -180,7 +183,8 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                     tv_receipt.setVisibility(View.VISIBLE);
                     iv_deny.setVisibility(View.VISIBLE);
                     tv_deny.setVisibility(View.VISIBLE);
-                    tv_receipt.setOnClickListener(new View.OnClickListener() {
+
+                    View.OnClickListener receiptListener = new View.OnClickListener() {
                         // 点击按钮 追加数据 并通知适配器
                         @Override
                         public void onClick(View v)
@@ -189,8 +193,11 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                             progressDialog.show();
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_check_" + pdID, 2).start();
                         }
-                    });
-                    tv_deny.setOnClickListener(new View.OnClickListener() {
+                    };
+                    tv_receipt.setOnClickListener(receiptListener);
+                    iv_receipt.setOnClickListener(receiptListener);
+
+                    View.OnClickListener denyListener = new View.OnClickListener() {
                         // 点击按钮 追加数据 并通知适配器
                         @Override
                         public void onClick(View v)
@@ -199,7 +206,9 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                             progressDialog.show();
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_check_" + pdID + "?reject=1", 1).start();
                         }
-                    });
+                    };
+                    tv_deny.setOnClickListener(denyListener);
+                    iv_deny.setOnClickListener(denyListener);
                 }
                 else
                 {
@@ -214,7 +223,8 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                     tv_confirm.setVisibility(View.VISIBLE);
                     iv_hisPlace.setVisibility(View.VISIBLE);
                     tv_hisPlace.setVisibility(View.VISIBLE);
-                    tv_confirm.setOnClickListener(new View.OnClickListener() {
+
+                    View.OnClickListener confirmListener = new View.OnClickListener() {
                         // 点击按钮 追加数据 并通知适配器
                         @Override
                         public void onClick(View v)
@@ -223,9 +233,11 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                             progressDialog.show();
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_send_" + pdID, 1).start();
                         }
-                    });
+                    };
+                    tv_confirm.setOnClickListener(confirmListener);
+                    iv_confirm.setOnClickListener(confirmListener);
 
-                    tv_hisPlace.setOnClickListener(new View.OnClickListener() {
+                    View.OnClickListener hisPlaceListener = new View.OnClickListener() {
                         // 点击按钮 追加数据 并通知适配器
                         @Override
                         public void onClick(View v)
@@ -254,7 +266,29 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                             }
                             catch(Exception eee){}
                         }
-                    });
+                    };
+                    tv_hisPlace.setOnClickListener(hisPlaceListener);
+                    iv_hisPlace.setOnClickListener(hisPlaceListener);
+
+                    if(iv_statusImg != null && tv_statusImg != null)
+                    {
+                        iv_statusImg.setVisibility(View.VISIBLE);
+                        tv_statusImg.setVisibility(View.VISIBLE);
+
+                        View.OnClickListener statusImgListener = new View.OnClickListener() {
+                            // 点击按钮 追加数据 并通知适配器
+                            @Override
+                            public void onClick(View v)
+                            {
+                                Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context, PurchaseStatusImageActivity.class);
+                                intent.putExtra("purchaseDetailID", pdID);
+                                context.startActivity(intent);
+                            }
+                        };
+                        iv_statusImg.setOnClickListener(statusImgListener);
+                        iv_statusImg.setOnClickListener(statusImgListener);
+                    }
                 }
                 else
                 {
@@ -262,6 +296,12 @@ public class PurchaseItemDetailsListJSONArrayAdapter extends BaseAdapter {
                     tv_confirm.setVisibility(View.GONE);
                     iv_hisPlace.setVisibility(View.GONE);
                     tv_hisPlace.setVisibility(View.GONE);
+
+                    if(iv_statusImg != null && tv_statusImg != null)
+                    {
+                        iv_statusImg.setVisibility(View.GONE);
+                        tv_statusImg.setVisibility(View.GONE);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

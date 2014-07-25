@@ -30,7 +30,7 @@
     <string name="user_latlngDate">最后登录：%s</string>
 
     <string name="user_typeStr">(%s)</string>
-    <string name="user_driveAgeStr">%s年驾龄</string>
+    <string name="user_driverAgeStr">%s年驾龄</string>
     <string name="user_loadLimitStr">%s吨</string>
     <string name="user_truckLengthStr">%s米</string>
     <string name="user_thumbUpCount">顶(%s)</string>

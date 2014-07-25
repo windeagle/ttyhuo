@@ -15,6 +15,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Andrew
@@ -136,5 +138,64 @@ public class CommonUtils {
             ex.printStackTrace();
             userVerifyImg.setVisibility(View.GONE);
         }
+    }
+
+    public static void processCheckBoxList(TextView textView, CharSequence[] items, boolean[] itemFlags, int which, boolean isChecked) {
+        //点了全部后（不管是选中还是取消选中），其他的选项都设置为未选
+        if(which == 0)
+        {
+            itemFlags[0] = true;
+            textView.setText(items[0]);
+            for(int i = 1; i < itemFlags.length; i++)
+                itemFlags[i] = false;
+        }
+        else
+        {
+            itemFlags[which] = isChecked;
+            //选了某一项后，把全部取消
+            if(isChecked)
+            {
+                String txt = "";
+                itemFlags[0] = false;
+                for(int i = 1; i < itemFlags.length; i++)
+                {
+                    if(itemFlags[i])
+                        txt += "  " + items[i];
+                }
+                textView.setText(txt.trim());
+            }
+            else
+            {
+                //取消了某一项后，如果没有其他选项，则直接选中全部
+                String txt = "";
+                boolean hasCheckedOther = false;
+                for(int i = 1; i < itemFlags.length; i++)
+                {
+                    if(itemFlags[i])
+                    {
+                        hasCheckedOther = true;
+                        txt += "  " + items[i];
+                    }
+                }
+                if(!hasCheckedOther)
+                {
+                    itemFlags[0] = true;
+                    textView.setText("全部");
+                }
+                else
+                    textView.setText(txt.trim());
+            }
+        }
+    }
+
+    public static void setOptionsPostStr(Map<String, String> ret, String optionName, boolean[] flags) {
+        StringBuilder buf = new StringBuilder();
+        for(int i = 0; i<flags.length; i++)
+        {
+            if(flags[i])
+                buf.append("," + i);
+        }
+        buf.deleteCharAt(0);
+        ret.put(optionName, buf.toString());
     }
 }

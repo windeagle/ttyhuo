@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import cn.ttyhuo.R;
+import cn.ttyhuo.activity.login.DriverShuoShuoFragment;
 import cn.ttyhuo.activity.login.LoginRegGuideFragment;
 import cn.ttyhuo.activity.product.MyFavoriteProductFragment;
 import cn.ttyhuo.activity.product.MyProductFragment;
@@ -75,6 +76,8 @@ public class MainPage extends SlidingFragmentActivity {
                 mContent = new PurchaseContainerFragment();
             else if(contentFragment.equals("PurchaseToContainerFragment"))
                 mContent = new PurchaseToContainerFragment();
+            else if(contentFragment.equals("DriverShuoShuoFragment"))
+                mContent = new DriverShuoShuoFragment();
             else
                 mContent = new LoginRegGuideFragment();
 

@@ -139,7 +139,10 @@
                 android:name=".activity.product.ProductEditActivity"
                 android:screenOrientation="portrait"
                 />
-
+        <activity
+                android:name=".activity.PurchaseStatusImageActivity"
+                android:screenOrientation="portrait"
+                />
 
         <activity
                 android:name="baidumapsdk.demo.BMapApiDemoMain"

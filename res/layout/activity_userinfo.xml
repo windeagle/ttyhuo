@@ -331,7 +331,7 @@
                                 android:gravity="center_vertical" >
 
                             <TextView
-                                    android:id="@+id/tv_driveAge"
+                                    android:id="@+id/tv_driverAge"
                                     style="@style/textsize_16_434343"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
@@ -400,6 +400,19 @@
                                     android:text="mm" />
                         </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:paddingTop="0px"
+                        android:paddingBottom="0px"
+                        style="@style/big_item">
+                    <TextView
+                            android:id="@+id/tv_driverShuoShuo"
+                            android:paddingTop="@dimen/area_vertical_padding_8"
+                            android:paddingBottom="@dimen/area_vertical_padding_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/textsize_16_434343"/>
                 </LinearLayout>
 
                 <include android:id="@+id/line_route" layout="@layout/part_line"/>

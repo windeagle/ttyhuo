@@ -158,12 +158,24 @@
 
         <ImageView
                 android:id="@+id/iv_cancel"
-                style="@style/little_info_area_icon"
+                style="@style/big_item_icon"
                 android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                android:src="@drawable/btn_icon_love" />
+                android:src="@drawable/btn_op_cancel" />
         <TextView
                 android:id="@+id/tv_cancel"
-                android:text="取消"
+                android:paddingLeft="0px"
+                android:text=""
+                style="@style/right_bottom_info_text"/>
+
+        <ImageView
+                android:id="@+id/iv_statusImg"
+                style="@style/big_item_icon"
+                android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                android:src="@drawable/btn_op_loc" />
+        <TextView
+                android:id="@+id/tv_statusImg"
+                android:paddingLeft="0px"
+                android:text=""
                 style="@style/right_bottom_info_text"/>
 
         <ImageView

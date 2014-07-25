@@ -79,13 +79,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/ll_driveAge"
+                        android:id="@+id/ll_driverAge"
                         android:background="@drawable/bg_nan"
                         android:layout_marginLeft="@dimen/area_horizontal_padding_24"
                         style="@style/little_info_area">
 
                     <TextView
-                            android:id="@+id/tv_driveAge"
+                            android:id="@+id/tv_driverAge"
                             style="@style/little_info_area_text"
                             android:text="驾龄0年"/>
                 </LinearLayout>
@@ -117,6 +117,19 @@
             </RelativeLayout>
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+            android:paddingTop="0px"
+            android:paddingBottom="0px"
+            style="@style/big_item">
+        <TextView
+                android:id="@+id/tv_driverShuoShuo"
+                android:paddingTop="@dimen/area_vertical_padding_8"
+                android:paddingBottom="@dimen/area_vertical_padding_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/textsize_16_434343"/>
     </LinearLayout>
 
     <LinearLayout style="@style/right_bottom_info_area">

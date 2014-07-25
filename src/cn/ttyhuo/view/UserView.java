@@ -41,7 +41,8 @@ public class UserView {
     TextView tv_licensePlate;
     TextView tv_loadLimit;
     TextView tv_truckLength;
-    TextView tv_driveAge;
+    TextView tv_driverAge;
+    TextView tv_driverShuoShuo;
 
     TextView tv_thumbUpCount;
     TextView tv_favoriteUserCount;
@@ -54,7 +55,7 @@ public class UserView {
     LinearLayout ll_gender;
     LinearLayout ly_truck;
     LinearLayout line_truck;
-    LinearLayout ll_driveAge;
+    LinearLayout ll_driverAge;
     LinearLayout ly_company;
     LinearLayout line_company;
     LinearLayout ly_route;
@@ -103,7 +104,8 @@ public class UserView {
         tv_licensePlate = (TextView) convertView.findViewById(R.id.tv_licensePlate);
         tv_loadLimit = (TextView) convertView.findViewById(R.id.tv_loadLimit);
         tv_truckLength = (TextView) convertView.findViewById(R.id.tv_truckLength);
-        tv_driveAge = (TextView) convertView.findViewById(R.id.tv_driveAge);
+        tv_driverAge = (TextView) convertView.findViewById(R.id.tv_driverAge);
+        tv_driverShuoShuo = (TextView) convertView.findViewById(R.id.tv_driverShuoShuo);
 
         tv_thumbUpCount = (TextView) convertView.findViewById(R.id.tv_thumbUpCount);
         tv_favoriteUserCount = (TextView) convertView.findViewById(R.id.tv_favoriteUserCount);
@@ -115,7 +117,7 @@ public class UserView {
 
         ll_gender = (LinearLayout) convertView.findViewById(R.id.ll_gender);
         ly_truck = (LinearLayout) convertView.findViewById(R.id.ly_truck);
-        ll_driveAge = (LinearLayout) convertView.findViewById(R.id.ll_driveAge);
+        ll_driverAge = (LinearLayout) convertView.findViewById(R.id.ll_driverAge);
         ly_company = (LinearLayout)convertView.findViewById(R.id.ly_company);
         ly_route = (LinearLayout)convertView.findViewById(R.id.ly_route);
         line_route = (LinearLayout)convertView.findViewById(R.id.line_route);
@@ -403,9 +405,11 @@ public class UserView {
             if(line_route != null) line_route.setVisibility(View.GONE);
             if(ly_route != null)
                 ly_route.setVisibility(View.GONE);
-            if(ll_driveAge != null)
-                ll_driveAge.setVisibility(View.GONE);
+            if(ll_driverAge != null)
+                ll_driverAge.setVisibility(View.GONE);
             tv_licensePlate.setVisibility(View.GONE);
+            if(tv_driverShuoShuo != null)
+                tv_driverShuoShuo.setVisibility(View.GONE);
         }
         else
         {
@@ -422,8 +426,8 @@ public class UserView {
 //                    ly_route.setVisibility(View.GONE);
 //            }
 //            catch (Exception e){}
-            if(ll_driveAge != null)
-                ll_driveAge.setVisibility(View.VISIBLE);
+            if(ll_driverAge != null)
+                ll_driverAge.setVisibility(View.VISIBLE);
             tv_licensePlate.setVisibility(View.VISIBLE);
 
             try {
@@ -437,6 +441,7 @@ public class UserView {
 
                 JSONUtil.setValueFromJson(tv_licensePlate, truckInfoJsonObj, "licensePlate", "未知", true);
 
+                //NOTE: 用 tv_truckWidth 判断是列表还是详情
                 if(tv_truckWidth == null)
                 {
                     tv_loadLimit.setText(context.getResources().getString(R.string.user_loadLimitStr, JSONUtil.getStringFromJson(truckInfoJsonObj, "loadLimit", "未知")));
@@ -453,8 +458,23 @@ public class UserView {
                 JSONUtil.setValueFromJson(tv_modelNumber, truckInfoJsonObj, "modelNumber", "未知");
                 JSONUtil.setValueFromJson(tv_seatingCapacity, truckInfoJsonObj, "seatingCapacity", 0, "未知", true);
 
+                if(tv_driverShuoShuo != null)
+                {
+                    String tmpValue = JSONUtil.getStringFromJson(truckInfoJsonObj, "memo", "");
+                    if(tmpValue.isEmpty())
+                        tv_driverShuoShuo.setVisibility(View.GONE);
+                    else
+                    {
+                        tv_driverShuoShuo.setVisibility(View.VISIBLE);
+                         //NOTE: 用 tv_truckWidth 判断是列表还是详情
+                        if(tv_truckWidth == null && tmpValue.length() > 38)
+                            tmpValue = tmpValue.substring(0, 35) + "...";
+                        tv_driverShuoShuo.setText(tmpValue);
+                    }
+                }
+
                 Integer age = new Date().getYear()  + 1900 - truckInfoJsonObj.getInt("releaseYear");
-                tv_driveAge.setText(context.getResources().getString(R.string.user_driveAgeStr, age));
+                tv_driverAge.setText(context.getResources().getString(R.string.user_driverAgeStr, age));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

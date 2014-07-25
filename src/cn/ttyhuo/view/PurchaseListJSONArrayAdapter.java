@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import cn.ttyhuo.R;
+import cn.ttyhuo.activity.PurchaseStatusImageActivity;
 import cn.ttyhuo.activity.product.ProductInfoActivity;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.JSONUtil;
@@ -133,6 +134,9 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
             ImageView iv_cancel = (ImageView) productOrgView.findViewById(R.id.iv_cancel);
             TextView tv_cancel = (TextView) productOrgView.findViewById(R.id.tv_cancel);
 
+            ImageView iv_statusImg = (ImageView) productOrgView.findViewById(R.id.iv_statusImg);
+            TextView tv_statusImg = (TextView) productOrgView.findViewById(R.id.tv_statusImg);
+
             final int pdID = purchaseJObject.getInt("pdid");
             final int status = purchaseJObject.getInt("status");
             try{
@@ -186,7 +190,14 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                 {
                     iv_cancel.setVisibility(View.VISIBLE);
                     tv_cancel.setVisibility(View.VISIBLE);
-                    tv_cancel.setOnClickListener(new View.OnClickListener() {
+
+                    if(iv_statusImg != null && tv_statusImg != null)
+                    {
+                        iv_statusImg.setVisibility(View.GONE);
+                        tv_statusImg.setVisibility(View.GONE);
+                    }
+
+                    View.OnClickListener cancelListener = new View.OnClickListener() {
                         // 点击按钮 追加数据 并通知适配器
                         @Override
                         public void onClick(View v)
@@ -195,12 +206,34 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                             progressDialog.show();
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_cancel_" + pdID, 2).start();
                         }
-                    });
+                    };
+                    tv_cancel.setOnClickListener(cancelListener);
+                    iv_cancel.setOnClickListener(cancelListener);
                 }
                 else
                 {
                     iv_cancel.setVisibility(View.GONE);
                     tv_cancel.setVisibility(View.GONE);
+
+                    if(status == 1 && iv_statusImg != null && tv_statusImg != null)
+                    {
+                        iv_statusImg.setVisibility(View.VISIBLE);
+                        tv_statusImg.setVisibility(View.VISIBLE);
+
+                        View.OnClickListener statusImgListener = new View.OnClickListener() {
+                            // 点击按钮 追加数据 并通知适配器
+                            @Override
+                            public void onClick(View v)
+                            {
+                                Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context, PurchaseStatusImageActivity.class);
+                                intent.putExtra("purchaseDetailID", pdID);
+                                context.startActivity(intent);
+                            }
+                        };
+                        iv_statusImg.setOnClickListener(statusImgListener);
+                        iv_statusImg.setOnClickListener(statusImgListener);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

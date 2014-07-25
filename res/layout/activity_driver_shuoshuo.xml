@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/frame_scroll">
+
+    <LinearLayout style="@style/scroll_inner_ly"
+                  android:id="@+id/root">
+
+        <LinearLayout style="@style/frame_ly_first">
+
+            <LinearLayout style="@style/field_layout">
+
+                <TextView style="@style/field_name"
+                          android:gravity="left" android:text="车源说说" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/field_layout">
+
+                <EditText
+                        style="@style/field_edit"
+                        android:layout_marginLeft="0px"
+                        android:hint="车主在这里发布自己的车辆状态，求货源、求回程带货？在这里喊出来，货主根据关键字搜素就能找到你了！"
+                        android:id="@+id/edit_driver_shuoshuo" />
+
+            </LinearLayout>
+
+            <Button android:layout_width="match_parent"
+                    android:layout_height="@dimen/field_height"
+                    android:id="@+id/okBtn"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/area_margin"
+                    android:text="发布"
+                    android:background="@color/button_bg"
+                    android:textSize="@dimen/font_middle"
+                    android:textColor="@color/my_write"></Button>
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

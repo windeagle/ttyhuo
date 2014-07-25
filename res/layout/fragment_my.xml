@@ -9,7 +9,10 @@
                 android:layout_height="0px"
                 android:layout_weight="1"
                 android:scrollbars="none"
-                style="@style/frame_scroll">
+                android:background="@color/main_bg"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -69,7 +72,7 @@
                             android:src="@drawable/big_img_cube" />
 
                     <FrameLayout
-                            android:layout_height="10dp"
+                            android:layout_height="5dp"
                             android:layout_width="1px">
                     </FrameLayout>
 
@@ -86,7 +89,7 @@
                 <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:orientation="vertical">
 
                     <ImageView
@@ -100,7 +103,7 @@
 
                     <FrameLayout
                             android:visibility="gone"
-                            android:layout_height="10dp"
+                            android:layout_height="5dp"
                             android:layout_width="1px">
                     </FrameLayout>
 
@@ -113,7 +116,7 @@
                             android:src="@drawable/big_img_new" />
 
                     <FrameLayout
-                            android:layout_height="10dp"
+                            android:layout_height="5dp"
                             android:layout_width="1px">
                     </FrameLayout>
 
@@ -127,6 +130,14 @@
 
                 </LinearLayout>
             </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/iv_guanggao"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/img_guanggao" />
 
             <cn.ttyhuo.view.BigItemLayout android:visibility="gone" android:id="@+id/ly_huoyuan" ttyhuo:bigItemIcon="@drawable/item_icon_cube" ttyhuo:bigItemText="我要找货" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
             <cn.ttyhuo.view.BigItemLayout android:visibility="gone" android:id="@+id/ly_yonghu" ttyhuo:bigItemIcon="@drawable/item_icon_fans" ttyhuo:bigItemText="我要找车" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
@@ -199,5 +210,9 @@
         </LinearLayout>
 
     </ScrollView>
+    <FrameLayout android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/main_bg">
+    </FrameLayout>
     <include layout="@layout/part_common_footer"/>
 </LinearLayout>

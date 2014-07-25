@@ -87,13 +87,13 @@
                     </LinearLayout>
 
                     <LinearLayout
-                            android:id="@+id/ll_driveAge"
+                            android:id="@+id/ll_driverAge"
                             android:background="@drawable/bg_nan"
                             android:layout_marginLeft="@dimen/area_horizontal_padding_24"
                             style="@style/little_info_area">
 
                         <TextView
-                                android:id="@+id/tv_driveAge"
+                                android:id="@+id/tv_driverAge"
                                 style="@style/little_info_area_text"
                                 android:text="驾龄0年"/>
                     </LinearLayout>
@@ -125,6 +125,19 @@
                 </RelativeLayout>
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingTop="0px"
+                android:paddingBottom="0px"
+                style="@style/big_item">
+            <TextView
+                    android:id="@+id/tv_driverShuoShuo"
+                    android:paddingTop="@dimen/area_vertical_padding_8"
+                    android:paddingBottom="@dimen/area_vertical_padding_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textsize_16_434343"/>
         </LinearLayout>
 
         <FrameLayout
@@ -159,42 +172,57 @@
 
             <ImageView
                     android:id="@+id/iv_receipt"
-                    style="@style/little_info_area_icon"
+                    style="@style/big_item_icon"
                     android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                    android:src="@drawable/btn_icon_love" />
+                    android:src="@drawable/btn_op_receipt"  />
             <TextView
                     android:id="@+id/tv_receipt"
-                    android:text="接受"
+                    android:paddingLeft="0px"
+                    android:text=""
                     style="@style/right_bottom_info_text"/>
 
             <ImageView
                     android:id="@+id/iv_deny"
-                    style="@style/little_info_area_icon"
+                    style="@style/big_item_icon"
                     android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                    android:src="@drawable/btn_icon_love" />
+                    android:src="@drawable/btn_op_deny"  />
             <TextView
                     android:id="@+id/tv_deny"
-                    android:text="拒绝"
+                    android:paddingLeft="0px"
+                    android:text=""
                     style="@style/right_bottom_info_text"/>
 
             <ImageView
                     android:id="@+id/iv_confirm"
-                    style="@style/little_info_area_icon"
+                    style="@style/big_item_icon"
                     android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                    android:src="@drawable/btn_icon_love" />
+                    android:src="@drawable/btn_op_confirm" />
             <TextView
                     android:id="@+id/tv_confirm"
-                    android:text="确认"
+                    android:paddingLeft="0px"
+                    android:text=""
                     style="@style/right_bottom_info_text"/>
 
             <ImageView
                     android:id="@+id/iv_hisPlace"
-                    style="@style/little_info_area_icon"
+                    style="@style/big_item_icon"
                     android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                    android:src="@drawable/icon_position" />
+                    android:src="@drawable/btn_op_loc" />
             <TextView
                     android:id="@+id/tv_hisPlace"
-                    android:text="位置"
+                    android:paddingLeft="0px"
+                    android:text=""
+                    style="@style/right_bottom_info_text"/>
+
+            <ImageView
+                    android:id="@+id/iv_statusImg"
+                    style="@style/big_item_icon"
+                    android:layout_marginLeft="@dimen/area_horizontal_padding_24"
+                    android:src="@drawable/btn_op_loc" />
+            <TextView
+                    android:id="@+id/tv_statusImg"
+                    android:paddingLeft="0px"
+                    android:text=""
                     style="@style/right_bottom_info_text"/>
 
             <ImageView android:visibility="gone"
