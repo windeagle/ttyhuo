@@ -1,5 +1,7 @@
 package cn.ttyhuo.helper;
 
+import cn.ttyhuo.common.AddressData;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,17 +12,57 @@ public class CityList {
 
 	public static List<String> getProvinceData() {
 		if (provinceData == null) {
-			init();
-			provinceData = Arrays.asList(cityMap.keySet()
-					.toArray(new String[0]));
-		}
+//			init();
+//			provinceData = Arrays.asList(cityMap.keySet()
+//					.toArray(new String[0]));
+            provinceData = Arrays.asList(AddressData.PROVINCES);
+        }
 
 		return provinceData;
 	}
 
 	public static List<String> getCity(String province) {
-		return Arrays.asList(cityMap.get(province));
+        //return Arrays.asList(cityMap.get(province));
+
+        int tmpIndex = -1;
+        int provinceIndex = -1;
+        for(String provinceI : AddressData.PROVINCES)
+        {
+            tmpIndex ++;
+            if(provinceI.equals(province))
+                provinceIndex = tmpIndex;
+        }
+        if(provinceIndex > -1)
+            return Arrays.asList(AddressData.CITIES[provinceIndex]);
+        return Arrays.asList(AddressData.NO_LIMITS);
 	}
+
+    public static List<String> getCounty(String province, String city) {
+
+        List<String> cityArr = Arrays.asList(AddressData.NO_LIMITS);
+        int tmpIndex = -1;
+        int provinceIndex = -1;
+        for(String provinceI : AddressData.PROVINCES)
+        {
+            tmpIndex ++;
+            if(provinceI.equals(province))
+                provinceIndex = tmpIndex;
+        }
+        if(provinceIndex > -1)
+            cityArr = Arrays.asList(AddressData.CITIES[provinceIndex]);
+
+        tmpIndex = -1;
+        int cityIndex = -1;
+        for(String cityI : cityArr)
+        {
+            tmpIndex ++;
+            if(cityI.equals(city))
+                cityIndex = tmpIndex;
+        }
+        if(cityIndex > -1)
+            return Arrays.asList(AddressData.COUNTIES[provinceIndex][cityIndex]);
+        return Arrays.asList(AddressData.NO_LIMITS);
+    }
 
 	private static void init() {
 		cityMap = new LinkedHashMap<String, String[]>();

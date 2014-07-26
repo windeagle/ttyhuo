@@ -75,12 +75,17 @@ public class ProductListViewFragment extends BaseListFragment {
             ret.put("fromProvince", cityArr[0]);
         if(cityArr.length > 1)
             ret.put("fromCity", cityArr[1]);
+        if(cityArr.length > 2)
+            ret.put("fromCity", cityArr[1] + " " + cityArr[2]);
+
 
         cityArr = tv_end_city.getText().toString().split(" ");
         if(cityArr.length > 0)
             ret.put("toProvince", cityArr[0]);
         if(cityArr.length > 1)
             ret.put("toCity", cityArr[1]);
+        if(cityArr.length > 2)
+            ret.put("toCity", cityArr[1] + " " + cityArr[2]);
 
         ret.put("orderFlag", String.valueOf(orderFlag));
         ret.put("windowOpenTimeFlag", String.valueOf(openTimeFlag));
@@ -376,15 +381,22 @@ public class ProductListViewFragment extends BaseListFragment {
 
     PopupWindow mPopupWindow;
     View popupView;
+
     ListView mProvinceList;
     ListView mCityList;
+    ListView mCountyList;
 
     CityListAdapter mProvinceAdapter;
     CityListAdapter mCityAdapter;
+    CityListAdapter mCountyAdapter;
+
     List<String> mProvinceData;
     List<String> mCityData;
+    List<String> mCountyData;
+
     TextView currentCityTextView;
     String mCheckProvince;
+    String mCheckCity;
 
     private void initPopup() {
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -396,15 +408,19 @@ public class ProductListViewFragment extends BaseListFragment {
 
         mProvinceList = (ListView) popupView.findViewById(R.id.province);
         mCityList = (ListView) popupView.findViewById(R.id.city);
+        mCountyList = (ListView) popupView.findViewById(R.id.county);
 
         mProvinceData = CityList.getProvinceData();
         mCityData = CityList.getCity(mProvinceData.get(0));
+        mCountyData = CityList.getCounty(mProvinceData.get(0), mCityData.get(0));
 
         mProvinceAdapter = new CityListAdapter(mContext, mProvinceData);
         mCityAdapter = new CityListAdapter(mContext, mCityData);
+        mCountyAdapter = new CityListAdapter(mContext, mCountyData);
 
         mProvinceList.setAdapter(mProvinceAdapter);
         mCityList.setAdapter(mCityAdapter);
+        mCountyList.setAdapter(mCountyAdapter);
 
         mProvinceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -414,7 +430,8 @@ public class ProductListViewFragment extends BaseListFragment {
                 mCheckProvince = mProvinceData.get(arg2);
                 mCityData = CityList.getCity(mCheckProvince);
                 mCityAdapter.updateData(mCityData);
-
+                mCountyData = CityList.getCounty(mCheckProvince, mCityData.get(0));
+                mCountyAdapter.updateData(mCountyData);
             }
         });
 
@@ -423,13 +440,34 @@ public class ProductListViewFragment extends BaseListFragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
+                mCheckCity = mCityData.get(arg2);
+                mCountyData = CityList.getCounty(mCheckProvince, mCheckCity);
+                mCountyAdapter.updateData(mCountyData);
+            }
+        });
+
+        mCountyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+
                 String showCity = null;
-                String city = mCityData.get(arg2);
-                if (mCheckProvince.equals(city)) {
-                    showCity = city;
-                } else {
-                    showCity = mCheckProvince + " " + city;
+                String county = mCountyData.get(arg2);
+
+                if (!county.equals("不限"))
+                {
+                    showCity = mCheckProvince + " " + mCheckCity + " " + county;
                 }
+                else if (!mCheckCity.equals("不限"))
+                {
+                    showCity = mCheckProvince + " " + mCheckCity;
+                }
+                else
+                {
+                    showCity = mCheckProvince;
+                }
+
                 currentCityTextView.setText(showCity);
                 dismissPopup();
             }

@@ -198,70 +198,103 @@ public class InfoBasicActivity extends BaseAddPicActivity {
 
 	PopupWindow mPopupWindow;
 	View popupView;
-	ListView mProvinceList;
-	ListView mCityList;
 
-	CityListAdapter mProvinceAdapter;
-	CityListAdapter mCityAdapter;
-	List<String> mProvinceData;
-	List<String> mCityData;
-	String mCheckProvince;
+    ListView mProvinceList;
+    ListView mCityList;
+    ListView mCountyList;
+
+    CityListAdapter mProvinceAdapter;
+    CityListAdapter mCityAdapter;
+    CityListAdapter mCountyAdapter;
+
+    List<String> mProvinceData;
+    List<String> mCityData;
+    List<String> mCountyData;
+
+    TextView currentCityTextView;
+    String mCheckProvince;
+    String mCheckCity;
 
 	private void initPopup() {
-		LayoutInflater inflater = LayoutInflater.from(mContext);
-		popupView = inflater.inflate(R.layout.popup_hometown, null, false);
-		mPopupWindow = new PopupWindow(popupView, LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT, true);
-		mPopupWindow.setOutsideTouchable(true);
-		mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        popupView = inflater.inflate(R.layout.popup_hometown, null, false);
+        mPopupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 
-		mProvinceList = (ListView) popupView.findViewById(R.id.province);
-		mCityList = (ListView) popupView.findViewById(R.id.city);
+        mProvinceList = (ListView) popupView.findViewById(R.id.province);
+        mCityList = (ListView) popupView.findViewById(R.id.city);
+        mCountyList = (ListView) popupView.findViewById(R.id.county);
 
-		mProvinceData = CityList.getProvinceData();
-		mCityData = CityList.getCity(mProvinceData.get(0));
+        mProvinceData = CityList.getProvinceData();
+        mCityData = CityList.getCity(mProvinceData.get(0));
+        mCountyData = CityList.getCounty(mProvinceData.get(0), mCityData.get(0));
 
-		mProvinceAdapter = new CityListAdapter(this, mProvinceData);
-		mCityAdapter = new CityListAdapter(this, mCityData);
+        mProvinceAdapter = new CityListAdapter(mContext, mProvinceData);
+        mCityAdapter = new CityListAdapter(mContext, mCityData);
+        mCountyAdapter = new CityListAdapter(mContext, mCountyData);
 
-		mProvinceList.setAdapter(mProvinceAdapter);
-		mCityList.setAdapter(mCityAdapter);
+        mProvinceList.setAdapter(mProvinceAdapter);
+        mCityList.setAdapter(mCityAdapter);
+        mCountyList.setAdapter(mCountyAdapter);
 
-        mCheckProvince = mProvinceData.get(0);
+        mProvinceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-		mProvinceList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                mCheckProvince = mProvinceData.get(arg2);
+                mCityData = CityList.getCity(mCheckProvince);
+                mCityAdapter.updateData(mCityData);
+                mCountyData = CityList.getCounty(mCheckProvince, mCityData.get(0));
+                mCountyAdapter.updateData(mCountyData);
+            }
+        });
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				mCheckProvince = mProvinceData.get(arg2);
-				mCityData = CityList.getCity(mCheckProvince);
-				mCityAdapter.updateData(mCityData);
+        mCityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-			}
-		});
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                mCheckCity = mCityData.get(arg2);
+                mCountyData = CityList.getCounty(mCheckProvince, mCheckCity);
+                mCountyAdapter.updateData(mCountyData);
+            }
+        });
 
-		mCityList.setOnItemClickListener(new OnItemClickListener() {
+        mCountyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				String showCity = null;
-				String city = mCityData.get(arg2);
-				if (mCheckProvince.equals(city)) {
-					showCity = city;
-				} else {
-					showCity = mCheckProvince + " " + city;
-				}
-				mEditHometown.setText(showCity);
-				dismissPopup();
-			}
-		});
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+
+                String showCity = null;
+                String county = mCountyData.get(arg2);
+
+                if (!county.equals("不限"))
+                {
+                    showCity = mCheckProvince + " " + mCheckCity + " " + county;
+                }
+                else if (!mCheckCity.equals("不限"))
+                {
+                    showCity = mCheckProvince + " " + mCheckCity;
+                }
+                else
+                {
+                    showCity = mCheckProvince;
+                }
+
+                currentCityTextView.setText(showCity);
+                dismissPopup();
+            }
+        });
 	}
 
 	private void showPopup() {
 		mPopupWindow.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0,
 				0);
+        currentCityTextView = mEditHometown;
 	}
 
 	private void dismissPopup() {
