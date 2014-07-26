@@ -432,6 +432,7 @@ public class ProductListViewFragment extends BaseListFragment {
                 mCityAdapter.updateData(mCityData);
                 mCountyData = CityList.getCounty(mCheckProvince, mCityData.get(0));
                 mCountyAdapter.updateData(mCountyData);
+                mCheckCity = mCityData.get(0);
             }
         });
 
