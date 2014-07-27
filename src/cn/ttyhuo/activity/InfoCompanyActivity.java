@@ -20,6 +20,7 @@ import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.DialogUtils;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,6 +98,10 @@ public class InfoCompanyActivity extends BaseAddPic2Activity {
         if(progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
         isDoingUpdate = true;
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, UrlList.MAIN + "mvc/editCompanyInfoJson".toString(), 1).start();
     }
 

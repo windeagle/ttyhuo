@@ -14,6 +14,7 @@ import cn.ttyhuo.activity.PurchaseStatusImageActivity;
 import cn.ttyhuo.activity.product.ProductInfoActivity;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.JSONUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -204,6 +205,10 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                         {
                             Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
                             progressDialog.show();
+                            if(!NetworkUtils.isNetworkAvailable(context))
+                            {
+                                Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                            }
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_cancel_" + pdID, 2).start();
                         }
                     };

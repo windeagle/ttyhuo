@@ -21,6 +21,7 @@ import cn.ttyhuo.activity.user.UserInfoActivity;
 import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.StringUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONException;
@@ -247,6 +248,10 @@ public class LeftSlidingMenuFragment extends Fragment {
                     dialog.dismiss();
                 }
             });
+            if(!NetworkUtils.isNetworkAvailable(context))
+            {
+                Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+            }
             new UrlThread(new Handler() {
                 public void handleMessage(android.os.Message msg) {
                     Toast.makeText(context, "退出成功", Toast.LENGTH_SHORT);

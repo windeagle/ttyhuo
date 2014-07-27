@@ -13,10 +13,7 @@ import cn.ttyhuo.activity.MainPage;
 import cn.ttyhuo.common.ConstHolder;
 import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
-import cn.ttyhuo.utils.JSONUtil;
-import cn.ttyhuo.utils.PhotoUtils;
-import cn.ttyhuo.utils.PxUtils;
-import cn.ttyhuo.utils.UrlThread;
+import cn.ttyhuo.utils.*;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import org.json.JSONException;
@@ -540,6 +537,10 @@ public class UserView {
 //                        if(progressBar != null)
 //                            progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                    if(!NetworkUtils.isNetworkAvailable(context))
+                    {
+                        Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(innerHandler, UrlList.MAIN + "mvc/thumbUp_0_" + userID, 2).start();
                 }
             });
@@ -553,6 +554,10 @@ public class UserView {
 //                        if(progressBar != null)
 //                            progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                        if(!NetworkUtils.isNetworkAvailable(context))
+                        {
+                            Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/unFollow_" + userID, 1).start();
                     }
                 });
@@ -567,6 +572,10 @@ public class UserView {
 //                        if(progressBar != null)
 //                            progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                        if(!NetworkUtils.isNetworkAvailable(context))
+                        {
+                            Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/follow_" + userID, 1).start();
                     }
                 });

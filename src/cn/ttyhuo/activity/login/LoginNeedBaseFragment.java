@@ -18,6 +18,7 @@ import cn.ttyhuo.activity.MainPage;
 import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -161,6 +162,7 @@ public class LoginNeedBaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Context mContext = getActivity();
 
         if(isLogin)
         {
@@ -173,6 +175,10 @@ public class LoginNeedBaseFragment extends Fragment {
             progressBar = setProgressBar();
             if(progressBar != null)
                 progressBar.setVisibility(View.VISIBLE);
+            if(!NetworkUtils.isNetworkAvailable(mContext))
+            {
+                Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+            }
             new UrlThread(handler, url.toString(), 1).start();
         }
         else

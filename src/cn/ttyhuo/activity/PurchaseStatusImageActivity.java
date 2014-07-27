@@ -9,8 +9,8 @@ import android.widget.Toast;
 import cn.ttyhuo.R;
 import cn.ttyhuo.activity.base.BaseAddPicActivity;
 import cn.ttyhuo.common.UrlList;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
-import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,20 +26,13 @@ public class PurchaseStatusImageActivity extends BaseAddPicActivity {
     @Override
     protected String getPicUploadUrl()
     {
-        return UrlList.MAIN + "mvc/uploadPurchaseStatusImg";
+        return UrlList.MAIN + "mvc/uploadPurchaseStatusImgFromUPYun";
     }
 
     @Override
     protected String getPicDeleteUrl()
     {
         return UrlList.MAIN + "mvc/deletePurchaseStatusImg";
-    }
-
-    protected RequestParams getRequestParams()
-    {
-        RequestParams params = new RequestParams();
-        params.put("purchaseDetailID", purchaseDetailID);
-        return params;
     }
 
     protected Map<String, String> getParams()
@@ -68,6 +61,10 @@ public class PurchaseStatusImageActivity extends BaseAddPicActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         if(progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, UrlList.MAIN + "mvc/getPurchaseStatusImg?purchaseDetailID=" + purchaseDetailID, 1).start();
 	}
 

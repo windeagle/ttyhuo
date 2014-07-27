@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import cn.ttyhuo.R;
 import cn.ttyhuo.activity.base.BaseWithPicActivity;
 import cn.ttyhuo.common.UrlList;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import cn.ttyhuo.view.ProductView;
 import org.json.JSONArray;
@@ -58,6 +60,10 @@ public class ProductInfoActivity extends BaseWithPicActivity {
         }
 
         int productID = getIntent().getIntExtra("productID", 0);
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, UrlList.MAIN + "mvc/product_viewByUserJson_" + productID, 1).start();
     }
 

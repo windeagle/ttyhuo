@@ -11,6 +11,7 @@ import cn.ttyhuo.R;
 import cn.ttyhuo.activity.InfoBasicActivity;
 import cn.ttyhuo.activity.base.BaseWithPicActivity;
 import cn.ttyhuo.common.UrlList;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import cn.ttyhuo.view.RoutesJSONArrayAdapter;
 import cn.ttyhuo.view.UserView;
@@ -82,6 +83,10 @@ public class UserInfoActivity extends BaseWithPicActivity {
             ly_call_footer.setVisibility(View.VISIBLE);
         }
 
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, UrlList.MAIN + "mvc/viewUserJson_" + userID, 1).start();
     }
 

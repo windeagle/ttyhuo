@@ -15,10 +15,7 @@ import cn.ttyhuo.adapter.CityListAdapter;
 import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.helper.CityList;
-import cn.ttyhuo.utils.CommonUtils;
-import cn.ttyhuo.utils.DialogUtils;
-import cn.ttyhuo.utils.JSONUtil;
-import cn.ttyhuo.utils.UrlThread;
+import cn.ttyhuo.utils.*;
 import cn.ttyhuo.view.ProductListJSONArrayAdapter;
 import com.baidu.location.BDLocation;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -362,6 +359,10 @@ public class ProductListViewFragment extends BaseListFragment {
                         progressBar.setVisibility(View.VISIBLE);
                     detail.setVisibility(View.GONE);
                     mJson = null;
+                    if(!NetworkUtils.isNetworkAvailable(mContext))
+                    {
+                        Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(handler, getUrl(), geParams(), 1).start();
                     break;
                 case R.id.tv_more:

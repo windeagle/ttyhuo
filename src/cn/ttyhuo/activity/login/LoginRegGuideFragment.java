@@ -421,9 +421,14 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
     View.OnClickListener logoutClick=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Context mContext = getActivity();
             ProgressBar progressBar = setProgressBar();
             if(progressBar != null)
                 progressBar.setVisibility(View.VISIBLE);
+            if(!NetworkUtils.isNetworkAvailable(mContext))
+            {
+                Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+            }
             new UrlThread(handler, UrlList.MAIN + "mvc/logoutJson", 1).start();
         }
     };

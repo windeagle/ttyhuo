@@ -26,8 +26,10 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.ttyhuo.activity.login.LoginNeedBaseFragment;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -233,6 +235,10 @@ public class MyApplication extends Application {
                 params.put("lon", String.valueOf(location.getLongitude()));
                 params.put("memo", location.getAddrStr());
 
+                if(!NetworkUtils.isNetworkAvailable(context))
+                {
+                    Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                }
                 if(info != null && isFirst)
                 {
                     isFirst = false;

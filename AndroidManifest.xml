@@ -76,7 +76,8 @@
         <activity
             android:name=".activity.MainPage"
             android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -126,6 +127,7 @@
         <activity
                 android:name=".activity.ContactActivity"
                 android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                 />
         <activity
                 android:name=".activity.product.NewProductActivity"

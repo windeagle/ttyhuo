@@ -13,6 +13,7 @@ import android.widget.Toast;
 import cn.ttyhuo.R;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.model.ContactModel;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -169,6 +170,10 @@ public class ContactAdapter extends BaseAdapter {
                     public void onClick(View v) {
                         Toast.makeText(mContext, "正在操作", Toast.LENGTH_SHORT).show();
                         progressDialog.show();
+                        if(!NetworkUtils.isNetworkAvailable(mContext))
+                        {
+                            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/follow_" + mModel.getUserID(), 0).start();
                     }
                 });
@@ -186,6 +191,10 @@ public class ContactAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Toast.makeText(mContext, "正在操作", Toast.LENGTH_SHORT).show();
                     progressDialog.show();
+                    if(!NetworkUtils.isNetworkAvailable(mContext))
+                    {
+                        Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(innerHandler, UrlList.MAIN + "mvc/inviteUserByPhoneNo_" + mModel.getPhone().replace(" ",""), 1).start();
                 }
             });

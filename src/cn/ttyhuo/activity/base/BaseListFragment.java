@@ -8,11 +8,9 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 import cn.ttyhuo.R;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -126,6 +124,10 @@ public class BaseListFragment extends Fragment {
         if(progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
 
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, getUrl(), geParams(), 1).start();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -157,6 +159,10 @@ public class BaseListFragment extends Fragment {
 
                     // Do work to refresh the list here.
                     page = 0;
+                    if(!NetworkUtils.isNetworkAvailable(mContext))
+                    {
+                        Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(handler, getUrl(), geParams(), 1).start();
                 }
             });
@@ -169,6 +175,10 @@ public class BaseListFragment extends Fragment {
 
                     Map<String, String> params = geParams();
                     params.put("pageIndex", String.valueOf(page));
+                    if(!NetworkUtils.isNetworkAvailable(mContext))
+                    {
+                        Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(handler, getUrl(), params, 1).start();
                 }
             });
@@ -187,6 +197,10 @@ public class BaseListFragment extends Fragment {
 
                 Map<String, String> params = geParams();
                 params.put("pageIndex", String.valueOf(page));
+                if(!NetworkUtils.isNetworkAvailable(mContext))
+                {
+                    Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                }
                 new UrlThread(handler, getUrl(), params, 1).start();
             }
         });

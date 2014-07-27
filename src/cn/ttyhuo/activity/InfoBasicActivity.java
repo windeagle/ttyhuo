@@ -12,9 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.*;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
 import cn.ttyhuo.R;
 import cn.ttyhuo.activity.base.BaseAddPicActivity;
 import cn.ttyhuo.adapter.CityListAdapter;
@@ -23,6 +21,7 @@ import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.helper.CityList;
 import cn.ttyhuo.utils.DialogUtils;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.NetworkUtils;
 import cn.ttyhuo.utils.UrlThread;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +36,7 @@ public class InfoBasicActivity extends BaseAddPicActivity {
     @Override
     protected String getPicUploadUrl()
     {
-        return UrlList.MAIN + "mvc/uploadTmpUserImg";
+        return UrlList.MAIN + "mvc/uploadUserImgFromUPYun";
     }
 
     @Override
@@ -84,6 +83,10 @@ public class InfoBasicActivity extends BaseAddPicActivity {
         if(progressBar != null)
             progressBar.setVisibility(View.VISIBLE);
         isDoingUpdate = true;
+        if(!NetworkUtils.isNetworkAvailable(mContext))
+        {
+            Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+        }
         new UrlThread(handler, UrlList.MAIN + "mvc/editUserInfoJson".toString(), 1).start();
 	}
 

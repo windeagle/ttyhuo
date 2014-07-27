@@ -73,6 +73,11 @@ public class ContactActivity extends ActionBarActivity {
             // 点击按钮 追加数据 并通知适配器
             @Override
             public void onClick(View v) {
+                if(!NetworkUtils.isNetworkAvailable(mContext))
+                {
+                    Toast.makeText(mContext, "网络不可用", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Toast.makeText(mContext, "正在操作", Toast.LENGTH_SHORT).show();
                 new UrlThread(innerHandler, UrlList.MAIN + "mvc/inviteUserByPhoneNo_" + search.getText().toString().replace(" ",""), 1).start();
             }

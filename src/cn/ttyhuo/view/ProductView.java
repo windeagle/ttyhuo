@@ -325,6 +325,10 @@ public class ProductView {
                                 }
                             }
                         };
+                        if(!NetworkUtils.isNetworkAvailable(context))
+                        {
+                            Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/purchase_" + productID, 1).start();
                     }
                 };
@@ -458,6 +462,10 @@ public class ProductView {
                         progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
                     progressDialog.show();
+                    if(!NetworkUtils.isNetworkAvailable(context))
+                    {
+                        Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(innerHandler, UrlList.MAIN + "mvc/" + pauseAction + productID, 1).start();
                 }
             });
@@ -476,6 +484,10 @@ public class ProductView {
                                 progressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
                             progressDialog.show();
+                            if(!NetworkUtils.isNetworkAvailable(context))
+                            {
+                                Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                            }
                             new UrlThread(innerHandler, UrlList.MAIN + "mvc/product_disable_" + productID, 2).start();
                         }
                     }, null, null).show();
@@ -542,6 +554,10 @@ public class ProductView {
                     if(progressBar != null)
                         progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                    if(!NetworkUtils.isNetworkAvailable(context))
+                    {
+                        Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                    }
                     new UrlThread(innerHandler, UrlList.MAIN + "mvc/thumbUp_1_" + productID, 2).start();
                 }
             });
@@ -555,6 +571,10 @@ public class ProductView {
                         if(progressBar != null)
                             progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                        if(!NetworkUtils.isNetworkAvailable(context))
+                        {
+                            Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/unFavorite_" + productID, 1).start();
                     }
                 });
@@ -569,6 +589,10 @@ public class ProductView {
                         if(progressBar != null)
                             progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                        if(!NetworkUtils.isNetworkAvailable(context))
+                        {
+                            Toast.makeText(context, "网络不可用", Toast.LENGTH_LONG).show();
+                        }
                         new UrlThread(innerHandler, UrlList.MAIN + "mvc/favorite_" + productID, 1).start();
                     }
                 });

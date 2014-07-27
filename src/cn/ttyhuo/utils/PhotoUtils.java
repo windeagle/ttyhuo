@@ -1,13 +1,5 @@
 package cn.ttyhuo.utils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import cn.ttyhuo.R;
 import cn.ttyhuo.model.ImageModel;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PhotoUtils {
 
@@ -297,7 +293,7 @@ public class PhotoUtils {
 
 	public static InputStream Bitmap2InputStream(Bitmap bm) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		bm.compress(CompressFormat.PNG, 75, out);
+		bm.compress(CompressFormat.PNG, 95, out);
 		InputStream inputStream = new ByteArrayInputStream(out.toByteArray());
 		return inputStream;
 	}
