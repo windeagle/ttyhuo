@@ -220,24 +220,32 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                     iv_cancel.setVisibility(View.GONE);
                     tv_cancel.setVisibility(View.GONE);
 
-                    if(status == 1 && iv_statusImg != null && tv_statusImg != null)
+                    if(iv_statusImg != null && tv_statusImg != null)
                     {
-                        iv_statusImg.setVisibility(View.VISIBLE);
-                        tv_statusImg.setVisibility(View.VISIBLE);
+                        if(status == 1)
+                        {
+                            iv_statusImg.setVisibility(View.VISIBLE);
+                            tv_statusImg.setVisibility(View.VISIBLE);
 
-                        View.OnClickListener statusImgListener = new View.OnClickListener() {
-                            // 点击按钮 追加数据 并通知适配器
-                            @Override
-                            public void onClick(View v)
-                            {
-                                Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(context, PurchaseStatusImageActivity.class);
-                                intent.putExtra("purchaseDetailID", pdID);
-                                context.startActivity(intent);
-                            }
-                        };
-                        iv_statusImg.setOnClickListener(statusImgListener);
-                        iv_statusImg.setOnClickListener(statusImgListener);
+                            View.OnClickListener statusImgListener = new View.OnClickListener() {
+                                // 点击按钮 追加数据 并通知适配器
+                                @Override
+                                public void onClick(View v)
+                                {
+                                    Toast.makeText(context, "正在操作", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(context, PurchaseStatusImageActivity.class);
+                                    intent.putExtra("purchaseDetailID", pdID);
+                                    context.startActivity(intent);
+                                }
+                            };
+                            iv_statusImg.setOnClickListener(statusImgListener);
+                            iv_statusImg.setOnClickListener(statusImgListener);
+                        }
+                        else
+                        {
+                            iv_statusImg.setVisibility(View.GONE);
+                            tv_statusImg.setVisibility(View.GONE);
+                        }
                     }
                 }
             } catch (Exception e) {
