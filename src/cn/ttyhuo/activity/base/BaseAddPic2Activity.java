@@ -234,7 +234,8 @@ public class BaseAddPic2Activity extends ActionBarActivity implements
 	}
 
     private void doHttpUploadPicToUPYun(String imgFile) {
-        mPicData.add(mPicData.size() - 1, imgFile);
+        mPicData.remove(picPos);
+        mPicData.add(picPos, imgFile);
         mPicAdapter.notifyDataSetChanged();
 
         if (XHttpHelper.checkHttp(mContext)) {
