@@ -385,8 +385,8 @@ public class BaseAddPic2Activity extends ActionBarActivity implements
                                             Toast.makeText(mContext, "操作成功", Toast.LENGTH_SHORT).show();
                                             if(jObject.has("msg"))
                                             {
-                                                mPicData.remove(mPicData.size() - 2);
-                                                mPicData.add(mPicData.size() - 1, jObject.getString("msg"));
+                                                mPicData.remove(picPos);
+                                                mPicData.add(picPos, jObject.getString("msg"));
                                                 mPicAdapter.notifyDataSetChanged();
                                             }
 
