@@ -148,13 +148,15 @@
     <LinearLayout style="@style/right_bottom_info_area">
 
         <ImageView
+                android:visibility="gone"
                 android:id="@+id/iv_purchase"
-                style="@style/little_info_area_icon"
-                android:src="@drawable/btn_icon_flag" />
+                style="@style/big_item_icon"
+                android:src="@drawable/btn_op_jiehuo" />
         <TextView
                 android:id="@+id/tv_purchase"
                 android:text="接货"
-                style="@style/right_bottom_info_text"/>
+                android:background="@drawable/op_bg_jiehuo"
+                style="@style/right_bottom_info_op_text"/>
 
         <ImageView
                 android:id="@+id/iv_cancel"
@@ -171,7 +173,7 @@
                 android:id="@+id/iv_statusImg"
                 style="@style/big_item_icon"
                 android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                android:src="@drawable/btn_op_loc" />
+                android:src="@drawable/btn_op_kanhuo" />
         <TextView
                 android:id="@+id/tv_statusImg"
                 android:paddingLeft="0px"
@@ -179,20 +181,24 @@
                 style="@style/right_bottom_info_text"/>
 
         <ImageView
-                style="@style/little_info_area_icon"
+                android:visibility="gone"
+                style="@style/big_item_icon"
                 android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                android:src="@drawable/btn_icon_love" />
+                android:src="@drawable/btn_op_love" />
         <TextView
                 android:id="@+id/tv_favoriteUserCount"
-                android:text="关注(0)"
-                style="@style/right_bottom_info_text"/>
+                android:text="收藏(0)"
+                android:background="@drawable/op_bg_love"
+                style="@style/right_bottom_info_op_text"/>
         <ImageView
-                style="@style/little_info_area_icon"
+                android:visibility="gone"
+                style="@style/big_item_icon"
                 android:layout_marginLeft="@dimen/area_horizontal_padding_24"
-                android:src="@drawable/btn_icon_thumbup" />
+                android:src="@drawable/btn_op_thumbup" />
         <TextView
                 android:id="@+id/tv_thumbUpCount"
-                style="@style/right_bottom_info_text"
-                android:text="顶(0)"/>
+                android:text="顶(0)"
+                android:background="@drawable/op_bg_thumbup"
+                style="@style/right_bottom_info_op_text"/>
     </LinearLayout>
 </LinearLayout>

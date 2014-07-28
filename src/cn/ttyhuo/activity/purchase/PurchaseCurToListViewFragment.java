@@ -46,6 +46,7 @@ public class PurchaseCurToListViewFragment extends BaseListFragment {
         mListView = new PullToRefreshListView(mContext);
         parent.addView(mListView, lvIndex, lv.getLayoutParams());
         lv = mListView.getRefreshableView();
+        lv.setDividerHeight(0);
         return lv;
     }
 

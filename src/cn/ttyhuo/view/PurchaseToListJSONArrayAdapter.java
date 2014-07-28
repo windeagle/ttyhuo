@@ -80,24 +80,23 @@ public class PurchaseToListJSONArrayAdapter extends BaseAdapter {
                 final ListView lv = (ListView)convertView.findViewById(R.id.lv_purchaseDetailList);
 
                 final ImageView iv_toggleIcon = (ImageView)convertView.findViewById(R.id.iv_toggleIcon);
+                final TextView tv_toggle = (TextView)convertView.findViewById(R.id.tv_toggle);
 
-                iv_toggleIcon.setOnClickListener(new View.OnClickListener() {
+                View.OnClickListener toggleListener = new View.OnClickListener() {
                     // 点击按钮 追加数据 并通知适配器
                     @Override
-                    public void onClick(View v)
-                    {
-                        if(lv.getVisibility() == View.VISIBLE)
-                        {
+                    public void onClick(View v) {
+                        if (lv.getVisibility() == View.VISIBLE) {
                             lv.setVisibility(View.GONE);
-                            iv_toggleIcon.setImageResource(R.drawable.icon_sp);
-                        }
-                        else
-                        {
+                            tv_toggle.setText("查看司机");
+                        } else {
                             lv.setVisibility(View.VISIBLE);
-                            iv_toggleIcon.setImageResource(R.drawable.icon_sp_up);
+                            tv_toggle.setText("收起司机");
                         }
                     }
-                });
+                };
+                iv_toggleIcon.setOnClickListener(toggleListener);
+                tv_toggle.setOnClickListener(toggleListener);
 
                 final JSONArray purchaseItemDetailsArr = jObject.getJSONArray("purchaseItemDetailList");
                 PurchaseItemDetailsListJSONArrayAdapter mJson = new PurchaseItemDetailsListJSONArrayAdapter(purchaseItemDetailsArr, context, lv);

@@ -230,7 +230,7 @@ public class UserView {
 
         if(JSONUtil.getBoolFromJson(jsonObject, "hasProduct"))
         {
-            iv_hasProduct.setVisibility(View.VISIBLE);
+            iv_hasProduct.setVisibility(View.GONE);
             tv_hasProduct.setVisibility(View.VISIBLE);
 
             View.OnClickListener theClick = new View.OnClickListener() {
@@ -481,9 +481,15 @@ public class UserView {
 
     private void setFavoriteAndThumbUp(final int userID, final int thumbUpCount, final int favoriteUserCount, final boolean alreadyFavorite, final Context context) {
         if(alreadyFavorite)
+        {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.user_cancelFavoriteUserCount, favoriteUserCount));
+            tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_cancel_view);
+        }
         else
+        {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.user_favoriteUserCount, favoriteUserCount));
+            tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_view);
+        }
         tv_thumbUpCount.setText(context.getResources().getString(R.string.user_thumbUpCount, thumbUpCount));
 
         try{

@@ -281,8 +281,7 @@ public class ProductView {
             if(JSONUtil.getBoolFromJson(jsonObject, "canBuy"))
             {
                 tv_purchase.setVisibility(View.VISIBLE);
-                iv_purchase.setVisibility(View.VISIBLE);
-                tv_purchase.setEnabled(true);
+                //iv_purchase.setVisibility(View.VISIBLE);
                 View.OnClickListener purchaseOnClickListener = new View.OnClickListener() {
                     public void onClick(View v) {
                         if (progressBar != null)
@@ -317,6 +316,7 @@ public class ProductView {
                                         Toast.makeText(context, "操作成功", Toast.LENGTH_SHORT).show();
                                         tv_purchase.setText("已接货");
                                         tv_purchase.setOnClickListener(null);
+                                        iv_purchase.setOnClickListener(null);
                                     } else {
                                         Toast.makeText(context, jObject.getString("errMsg"), Toast.LENGTH_LONG).show();
                                     }
@@ -333,10 +333,10 @@ public class ProductView {
                     }
                 };
                 tv_purchase.setOnClickListener(purchaseOnClickListener);
+                iv_purchase.setOnClickListener(purchaseOnClickListener);
             }
             else
             {
-                tv_purchase.setEnabled(false);
                 tv_purchase.setVisibility(View.GONE);
                 iv_purchase.setVisibility(View.GONE);
             }
@@ -498,9 +498,15 @@ public class ProductView {
 
     private void setFavoriteAndThumbUp(final int productID, final int thumbUpCount, final int favoriteUserCount, final boolean alreadyFavorite, final Context context) {
         if(alreadyFavorite)
+        {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.product_cancelFavoriteUserCount, favoriteUserCount));
+            tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_cancel_love);
+        }
         else
+        {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.product_favoriteUserCount, favoriteUserCount));
+            tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_love);
+        }
         tv_thumbUpCount.setText(context.getResources().getString(R.string.product_thumbUpCount, thumbUpCount));
 
         try{
