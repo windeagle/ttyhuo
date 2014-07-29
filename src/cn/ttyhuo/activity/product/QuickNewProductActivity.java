@@ -237,15 +237,16 @@ public class QuickNewProductActivity extends BaseAddPicActivity {
         }
         ccity.setSelection(ccIndex, true);
 
-        cityText.setText(AddressData.PROVINCES[pIndex]);
+        if(!AddressData.PROVINCES[pIndex].equals("不限"))
+            cityText.setText(AddressData.PROVINCES[pIndex]);
         if(!AddressData.CITIES[country.getSelectedItemPosition()][cIndex].equals("不限"))
             cityText.setText(
-                    AddressData.PROVINCES[country.getSelectedItemPosition()] + "-" +
+                    AddressData.PROVINCES[country.getSelectedItemPosition()] + " " +
                             AddressData.CITIES[country.getSelectedItemPosition()][cIndex]);
         if(!AddressData.COUNTIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()][ccIndex].equals("不限"))
             cityText.setText(
-                    AddressData.PROVINCES[country.getSelectedItemPosition()] + "-" +
-                            AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()] + "-" +
+                    AddressData.PROVINCES[country.getSelectedItemPosition()] + " " +
+                            AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()] + " " +
                             AddressData.COUNTIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()][ccIndex]);
 
         country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -255,7 +256,10 @@ public class QuickNewProductActivity extends BaseAddPicActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3)
             {
                 updateCities(city, ccity, position);
-                cityText.setText(AddressData.PROVINCES[position]);
+                if(!AddressData.PROVINCES[position].equals("不限"))
+                    cityText.setText(AddressData.PROVINCES[position]);
+                else
+                    cityText.setText("");
                 if (addrText.getText() != null && !addrText.getText().toString().contains(AddressData.PROVINCES[position]))
                     addrText.setText("");
             }
@@ -276,8 +280,15 @@ public class QuickNewProductActivity extends BaseAddPicActivity {
 
                 if(!AddressData.CITIES[country.getSelectedItemPosition()][position].equals("不限"))
                     cityText.setText(
-                            AddressData.PROVINCES[country.getSelectedItemPosition()] + "-" +
+                            AddressData.PROVINCES[country.getSelectedItemPosition()] + " " +
                                     AddressData.CITIES[country.getSelectedItemPosition()][position]);
+                else
+                {
+                    if(!AddressData.PROVINCES[country.getSelectedItemPosition()].equals("不限"))
+                        cityText.setText(AddressData.PROVINCES[country.getSelectedItemPosition()]);
+                    else
+                        cityText.setText("");
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0)
@@ -294,9 +305,23 @@ public class QuickNewProductActivity extends BaseAddPicActivity {
             {
                 if(!AddressData.COUNTIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()][position].equals("不限"))
                     cityText.setText(
-                            AddressData.PROVINCES[country.getSelectedItemPosition()] + "-" +
-                                    AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()] + "-" +
+                            AddressData.PROVINCES[country.getSelectedItemPosition()] + " " +
+                                    AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()] + " " +
                                     AddressData.COUNTIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()][position]);
+                else
+                {
+                    if(!AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()].equals("不限"))
+                        cityText.setText(
+                                AddressData.PROVINCES[country.getSelectedItemPosition()] + " " +
+                                        AddressData.CITIES[country.getSelectedItemPosition()][city.getSelectedItemPosition()]);
+                    else
+                    {
+                        if(!AddressData.PROVINCES[country.getSelectedItemPosition()].equals("不限"))
+                            cityText.setText(AddressData.PROVINCES[country.getSelectedItemPosition()]);
+                        else
+                            cityText.setText("");
+                    }
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0)
