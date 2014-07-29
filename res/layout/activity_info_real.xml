@@ -45,7 +45,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="长按图标，可以设为头像或删除"
+                    android:text="长按图标可删除"
                     android:textColor="@color/tw_gray"
                     android:layout_gravity="center_horizontal"
                     android:textSize="@dimen/font_tiny"

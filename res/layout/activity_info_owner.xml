@@ -142,7 +142,7 @@
 
                 <EditText
                         style="@style/field_edit_blank_16"
-                        android:hint="请输入厢体宽，单位：mm"
+                        android:hint="厢体宽，单位：mm"
                         android:inputType="number"
                         android:id="@+id/edit_kuan" />
 
@@ -156,7 +156,7 @@
 
                 <EditText
                         style="@style/field_edit_blank_16"
-                        android:hint="请输入厢体高，单位：mm"
+                        android:hint="厢体高，单位：mm"
                         android:inputType="number"
                         android:id="@+id/edit_gao" />
 

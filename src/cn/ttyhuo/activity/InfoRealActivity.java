@@ -95,7 +95,8 @@ public class InfoRealActivity extends BaseAddPic2Activity {
 			} else {
 				Calendar c = Calendar.getInstance();
 
-				year = c.get(Calendar.YEAR);
+                //前推30年
+                year = c.get(Calendar.YEAR) - 30;
 				month = c.get(Calendar.MONTH);
 				day = c.get(Calendar.DAY_OF_MONTH);
 			}

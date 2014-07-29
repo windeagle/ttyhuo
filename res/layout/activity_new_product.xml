@@ -51,7 +51,7 @@
 
                     <TextView
                             style="@style/wrap_h_center_content"
-                            android:text="长按图标可以删除"
+                            android:text="长按图标可删除"
                             android:textColor="@color/tw_gray"
                             android:textSize="@dimen/font_tiny"
                             android:layout_marginBottom="@dimen/text_vertical_margin"

@@ -413,7 +413,9 @@ public class ProductListViewFragment extends BaseListFragment {
 
         mProvinceData = CityList.getProvinceData();
         mCityData = CityList.getCity(mProvinceData.get(0));
+        mCheckProvince = mProvinceData.get(0);
         mCountyData = CityList.getCounty(mProvinceData.get(0), mCityData.get(0));
+        mCheckCity = mCityData.get(0);
 
         mProvinceAdapter = new CityListAdapter(mContext, mProvinceData);
         mCityAdapter = new CityListAdapter(mContext, mCityData);
@@ -465,12 +467,13 @@ public class ProductListViewFragment extends BaseListFragment {
                 {
                     showCity = mCheckProvince + " " + mCheckCity;
                 }
-                else
+                else if(!mCheckProvince.equals("不限"))
                 {
                     showCity = mCheckProvince;
                 }
 
-                currentCityTextView.setText(showCity);
+                if(showCity != null)
+                    currentCityTextView.setText(showCity);
                 dismissPopup();
             }
         });

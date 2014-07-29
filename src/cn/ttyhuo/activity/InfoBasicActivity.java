@@ -232,7 +232,9 @@ public class InfoBasicActivity extends BaseAddPicActivity {
 
         mProvinceData = CityList.getProvinceData();
         mCityData = CityList.getCity(mProvinceData.get(0));
+        mCheckProvince = mProvinceData.get(0);
         mCountyData = CityList.getCounty(mProvinceData.get(0), mCityData.get(0));
+        mCheckCity = mCityData.get(0);
 
         mProvinceAdapter = new CityListAdapter(mContext, mProvinceData);
         mCityAdapter = new CityListAdapter(mContext, mCityData);
@@ -283,12 +285,13 @@ public class InfoBasicActivity extends BaseAddPicActivity {
                 {
                     showCity = mCheckProvince + " " + mCheckCity;
                 }
-                else
+                else if(!mCheckProvince.equals("不限"))
                 {
                     showCity = mCheckProvince;
                 }
 
-                currentCityTextView.setText(showCity);
+                if(showCity != null)
+                    currentCityTextView.setText(showCity);
                 dismissPopup();
             }
         });
@@ -324,7 +327,8 @@ public class InfoBasicActivity extends BaseAddPicActivity {
 			} else {
 				Calendar c = Calendar.getInstance();
 
-				year = c.get(Calendar.YEAR);
+                //前推30年
+				year = c.get(Calendar.YEAR) - 30;
 				month = c.get(Calendar.MONTH);
 				day = c.get(Calendar.DAY_OF_MONTH);
 			}

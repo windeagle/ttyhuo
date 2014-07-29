@@ -226,7 +226,7 @@ public class UserView {
         boolean alreadyFavorite = jObject.getBoolean("alreadyFavorite");
         final int userID = jObject.getInt("userID");
 
-        setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount, alreadyFavorite, context);
+        setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount, alreadyFavorite, context, jObject);
 
         if(JSONUtil.getBoolFromJson(jsonObject, "hasProduct"))
         {
@@ -479,7 +479,13 @@ public class UserView {
         return verifyFlag;
     }
 
-    private void setFavoriteAndThumbUp(final int userID, final int thumbUpCount, final int favoriteUserCount, final boolean alreadyFavorite, final Context context) {
+    private void setFavoriteAndThumbUp(final int userID, final int thumbUpCount, final int favoriteUserCount,
+                                       final boolean alreadyFavorite, final Context context, JSONObject jObject) {
+        try {
+            jObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if(alreadyFavorite)
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.user_cancelFavoriteUserCount, favoriteUserCount));
@@ -520,12 +526,12 @@ public class UserView {
                             if(msg.what == 1)
                             {
                                 if(alreadyFavorite)
-                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount - 1, false, context);
+                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount - 1, false, context, jObject);
                                 else
-                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount + 1, true, context);
+                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount + 1, true, context, jObject);
                             }
                             if(msg.what == 2)
-                                tv_thumbUpCount.setText(context.getResources().getString(R.string.product_thumbUpCount, thumbUpCount + 1));
+                                setFavoriteAndThumbUp(userID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, jObject);
                         }
                         else
                         {

@@ -248,7 +248,7 @@ public class ProductView {
             setOperation(productID, (byte)statusInt, context);
         }
 
-        setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount, alreadyFavorite, context);
+        setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount, alreadyFavorite, context, jsonObject);
 
         if(tv_genhuo != null)
         {
@@ -496,7 +496,13 @@ public class ProductView {
         }
     }
 
-    private void setFavoriteAndThumbUp(final int productID, final int thumbUpCount, final int favoriteUserCount, final boolean alreadyFavorite, final Context context) {
+    private void setFavoriteAndThumbUp(final int productID, final int thumbUpCount, final int favoriteUserCount,
+                                       final boolean alreadyFavorite, final Context context, JSONObject jObject) {
+        try {
+            jObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if(alreadyFavorite)
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.product_cancelFavoriteUserCount, favoriteUserCount));
@@ -537,12 +543,12 @@ public class ProductView {
                             if(msg.what == 1)
                             {
                                 if(alreadyFavorite)
-                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount - 1, false, context);
+                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount - 1, false, context, jObject);
                                 else
-                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount + 1, true, context);
+                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount + 1, true, context, jObject);
                             }
                             if(msg.what == 2)
-                                tv_thumbUpCount.setText(context.getResources().getString(R.string.product_thumbUpCount, thumbUpCount + 1));
+                                setFavoriteAndThumbUp(productID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, jObject);
                         }
                         else
                         {

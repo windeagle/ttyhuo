@@ -123,7 +123,7 @@
         <activity
             android:name=".activity.ShowPicActivity"
             android:screenOrientation="portrait"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
                 android:name=".activity.ContactActivity"
                 android:screenOrientation="portrait"
@@ -132,19 +132,19 @@
         <activity
                 android:name=".activity.product.NewProductActivity"
                 android:screenOrientation="portrait"
-                />
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
                 android:name=".activity.product.QuickNewProductActivity"
                 android:screenOrientation="portrait"
-                />
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
                 android:name=".activity.product.ProductEditActivity"
                 android:screenOrientation="portrait"
-                />
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
                 android:name=".activity.PurchaseStatusImageActivity"
                 android:screenOrientation="portrait"
-                />
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <activity
                 android:name="baidumapsdk.demo.BMapApiDemoMain"

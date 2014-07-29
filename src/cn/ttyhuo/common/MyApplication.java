@@ -118,7 +118,7 @@ public class MyApplication extends Application {
             newCookie.setPath(h.getPath());
             newCookie.setSecure(h.isSecure());
             newCookie.setComment(h.getComment());
-            jCookieStore.add(URI.create(h.getDomain()), newCookie);
+            jCookieStore.add(URI.create("http://" + h.getDomain()), newCookie);
         }
     }
 

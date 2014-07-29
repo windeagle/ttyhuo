@@ -29,6 +29,7 @@ public class UserInfoActivity extends BaseWithPicActivity {
     UserView oneView;
     LinearLayout root;
     ListView lv_routes;
+    boolean isMyself = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +74,14 @@ public class UserInfoActivity extends BaseWithPicActivity {
 
         if(userID == loggedUserID)
         {
+            isMyself = true;
             iv_userEdit.setOnClickListener(this);
             tv_hasProduct.setText("我的货源");
             ly_call_footer.setVisibility(View.GONE);
         }
         else
         {
+            isMyself = false;
             iv_userEdit.setVisibility(View.GONE);
             ly_call_footer.setVisibility(View.VISIBLE);
         }
@@ -102,6 +105,7 @@ public class UserInfoActivity extends BaseWithPicActivity {
 
         if (intent != null) {
             mContext.startActivity(intent);
+            finish();
         }
     }
 
@@ -125,6 +129,16 @@ public class UserInfoActivity extends BaseWithPicActivity {
                 else
                 {
                     setupView(jObject);
+
+                    if(isMyself)
+                    {
+                        TextView tv_hasProduct = (TextView) findViewById(R.id.tv_hasProduct);
+                        tv_hasProduct.setVisibility(View.GONE);
+                        TextView tv_favoriteUserCount = (TextView) findViewById(R.id.tv_favoriteUserCount);
+                        tv_favoriteUserCount.setVisibility(View.GONE);
+                        TextView tv_thumbUpCount = (TextView) findViewById(R.id.tv_thumbUpCount);
+                        tv_thumbUpCount.setVisibility(View.GONE);
+                    }
                 }
 
             } catch (JSONException e) {

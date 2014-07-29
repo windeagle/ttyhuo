@@ -79,7 +79,7 @@ public class ContactActivity extends ActionBarActivity {
                     return;
                 }
                 Toast.makeText(mContext, "正在操作", Toast.LENGTH_SHORT).show();
-                new UrlThread(innerHandler, UrlList.MAIN + "mvc/inviteUserByPhoneNo_" + search.getText().toString().replace(" ",""), 1).start();
+                new UrlThread(innerHandler, UrlList.MAIN + "mvc/inviteUserByPhoneNo_" + search.getText().toString().replace(" ","").replace("-",""), 1).start();
             }
         });
 		ViewGroup parent = (ViewGroup) lv.getParent();
@@ -230,7 +230,7 @@ public class ContactActivity extends ActionBarActivity {
                     {
                         if(c == null || c.getName() == null)
                             continue;
-                        if(c.getName().contains(search.getText().toString().trim()) || c.getPhone().replace(" ","").contains(search.getText().toString().trim()))
+                        if(c.getName().contains(search.getText().toString().trim()) || c.getPhone().replace(" ","").replace("-","").contains(search.getText().toString().trim()))
                             mTotalDatas.add(c);
                     }
                 }
@@ -259,11 +259,11 @@ public class ContactActivity extends ActionBarActivity {
                 HashMap<String, ContactModel> contactMap = new HashMap<String, ContactModel>(subList.size());
                 for(ContactModel c : subList)
                 {
-                    phoneNoStr.append(c.getPhone().replace(" ",""));
+                    phoneNoStr.append(c.getPhone().replace(" ","").replace("-",""));
                     phoneNoStr.append(",");
-                    contactMap.put(c.getPhone().replace(" ",""), c);
+                    contactMap.put(c.getPhone().replace(" ","").replace("-",""), c);
                 }
-                paramMap.put("phoneNoList", phoneNoStr.deleteCharAt(phoneNoStr.length() - 1).toString().replace(" ",""));
+                paramMap.put("phoneNoList", phoneNoStr.deleteCharAt(phoneNoStr.length() - 1).toString().replace(" ","").replace("-",""));
 
                 HttpURLConnection conn = (HttpURLConnection) HttpRequestUtil.sendGetRequest(UrlList.MAIN + "mvc/getUsersByPhoneNoList", paramMap, null);
                 if(conn.getResponseCode()==200)

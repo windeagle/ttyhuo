@@ -65,9 +65,8 @@
 
                     <ImageView
                             android:id="@+id/iv_huoyuan"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0px"
+                            android:layout_height="0px"
                             android:scaleType="centerInside"
                             android:src="@drawable/big_img_cube" />
 
@@ -78,9 +77,8 @@
 
                     <ImageView
                             android:id="@+id/iv_invite"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0px"
+                            android:layout_height="0px"
                             android:scaleType="centerInside"
                             android:src="@drawable/big_img_invite" />
 
@@ -95,9 +93,8 @@
                     <ImageView
                             android:visibility="gone"
                             android:id="@+id/iv_fabu"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0px"
+                            android:layout_height="0px"
                             android:scaleType="centerInside"
                             android:src="@drawable/big_img_new" />
 
@@ -109,9 +106,8 @@
 
                     <ImageView
                             android:id="@+id/iv_quick_fabu"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0px"
+                            android:layout_height="0px"
                             android:scaleType="centerInside"
                             android:src="@drawable/big_img_new" />
 
@@ -122,9 +118,8 @@
 
                     <ImageView
                             android:id="@+id/iv_yonghu"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0px"
+                            android:layout_height="0px"
                             android:scaleType="centerInside"
                             android:src="@drawable/big_img_truck" />
 
@@ -134,9 +129,9 @@
             <ImageView
                     android:id="@+id/iv_guanggao"
                     android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitStart"
+                    android:layout_width="0px"
+                    android:layout_height="0px"
+                    android:scaleType="centerInside"
                     android:src="@drawable/img_guanggao" />
 
             <cn.ttyhuo.view.BigItemLayout android:visibility="gone" android:id="@+id/ly_huoyuan" ttyhuo:bigItemIcon="@drawable/item_icon_cube" ttyhuo:bigItemText="我要找货" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />

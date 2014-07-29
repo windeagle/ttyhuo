@@ -204,7 +204,7 @@
                     android:src="@drawable/btn_op_thumbup" />
             <TextView
                     android:id="@+id/tv_thumbUpCount"
-                    android:text="顶(0)"
+                    android:text="赞(0)"
                     android:background="@drawable/op_bg_thumbup"
                     android:drawableBottom="@drawable/icon_op_u_thumbup"
                     style="@style/right_bottom_info_op_text"/>

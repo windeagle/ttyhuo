@@ -149,7 +149,43 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
     @Override
     protected View createViewOfHasLogin(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setUrl(UrlList.MAIN + "mvc/loginJson");
-        return inflater.inflate(R.layout.fragment_my, null);
+        View view = inflater.inflate(R.layout.fragment_my, null);
+
+        Activity context = getActivity();
+
+        iv_huoyuan = (ImageView)view.findViewById(R.id.iv_huoyuan);
+        iv_huoyuan.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
+        iv_huoyuan.getLayoutParams().height = iv_huoyuan.getLayoutParams().width;
+        iv_huoyuan.setOnClickListener(editClick);
+
+        iv_yonghu = (ImageView)view.findViewById(R.id.iv_yonghu);
+        iv_yonghu.getLayoutParams().width = iv_huoyuan.getLayoutParams().width;
+        iv_yonghu.getLayoutParams().height = iv_huoyuan.getLayoutParams().width;
+        iv_yonghu.setOnClickListener(editClick);
+
+        iv_fabu = (ImageView)view.findViewById(R.id.iv_fabu);
+        iv_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
+        iv_fabu.getLayoutParams().height = (int)(iv_fabu.getLayoutParams().width * 315.0f/638.0f);
+        iv_fabu.setOnClickListener(editClick);
+
+        iv_quick_fabu = (ImageView)view.findViewById(R.id.iv_quick_fabu);
+        iv_quick_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
+        iv_quick_fabu.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 315.0f/638.0f);
+        iv_quick_fabu.setOnClickListener(editClick);
+
+        ImageView iv_guanggao = (ImageView)view.findViewById(R.id.iv_guanggao);
+        iv_guanggao.getLayoutParams().width = PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 2;
+        iv_guanggao.getLayoutParams().height = (int)(iv_guanggao.getLayoutParams().width * 180.0f/214.0f);
+
+        iv_invite = (ImageView)view.findViewById(R.id.iv_invite);
+        iv_invite.getLayoutParams().width = iv_quick_fabu.getLayoutParams().width;
+        iv_invite.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 315.0f/638.0f);
+        iv_invite.setOnClickListener(editClick);
+
+        MyApplication myApplication = ((MyApplication)getActivity().getApplication());
+        myApplication.versionHandler = versionHandler;
+
+        return view;
     }
 
     @Override
@@ -188,33 +224,6 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
         ly_fabu = (LinearLayout)getView().findViewById(R.id.ly_fabu);
         ly_fabu.setOnClickListener(editClick);
 
-        Activity context = getActivity();
-
-        iv_huoyuan = (ImageView)getView().findViewById(R.id.iv_huoyuan);
-        iv_huoyuan.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
-        iv_huoyuan.getLayoutParams().height = iv_huoyuan.getLayoutParams().width;
-        iv_huoyuan.setOnClickListener(editClick);
-
-        iv_yonghu = (ImageView)getView().findViewById(R.id.iv_yonghu);
-        iv_yonghu.getLayoutParams().width = iv_huoyuan.getLayoutParams().width;
-        iv_yonghu.getLayoutParams().height = iv_huoyuan.getLayoutParams().width;
-        iv_yonghu.setOnClickListener(editClick);
-
-        iv_fabu = (ImageView)getView().findViewById(R.id.iv_fabu);
-        iv_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
-        iv_fabu.getLayoutParams().height = (int)(iv_fabu.getLayoutParams().width * 263.0f/532.0f);
-        iv_fabu.setOnClickListener(editClick);
-
-        iv_quick_fabu = (ImageView)getView().findViewById(R.id.iv_quick_fabu);
-        iv_quick_fabu.getLayoutParams().width = (PxUtils.getDeviceWidth(context) - PxUtils.dip2px(context, 5) * 3)/2;
-        iv_quick_fabu.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 263.0f/532.0f);
-        iv_quick_fabu.setOnClickListener(editClick);
-
-        iv_invite = (ImageView)getView().findViewById(R.id.iv_invite);
-        iv_invite.getLayoutParams().width = iv_quick_fabu.getLayoutParams().width;
-        iv_invite.getLayoutParams().height = (int)(iv_quick_fabu.getLayoutParams().width * 263.0f/532.0f);
-        iv_invite.setOnClickListener(editClick);
-
         ly_fensi = (LinearLayout)getView().findViewById(R.id.ly_fensi);
         ly_fensi.setOnClickListener(editClick);
         ly_guanzhu = (LinearLayout)getView().findViewById(R.id.ly_guanzhu);
@@ -242,9 +251,6 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
         ly_footer_truck_btn.setOnClickListener(editClick);
         ly_footer_my_btn = (LinearLayout)getView().findViewById(R.id.ly_footer_my_btn);
         ly_footer_my_btn.setOnClickListener(editClick);
-
-        MyApplication myApplication = ((MyApplication)getActivity().getApplication());
-        myApplication.versionHandler = versionHandler;
     }
 
     Handler versionHandler = new Handler() {
