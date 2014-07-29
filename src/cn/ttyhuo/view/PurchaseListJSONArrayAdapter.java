@@ -238,7 +238,7 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                             fl_status.setFieldValueText("车主取消");
                         }
                         else if(status == -2){
-                            fl_status.setFieldNameText("货主拒绝");
+                            fl_status.setFieldValueText("货主拒绝");
                         }
                         else {
                             fl_status.setFieldValueText("交易成功");
