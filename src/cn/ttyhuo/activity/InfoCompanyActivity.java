@@ -75,7 +75,7 @@ public class InfoCompanyActivity extends BaseAddPic2Activity {
         tv_table_sample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://ttyhuo-document.stor.sinaapp.com/company.doc");
+                Uri uri = Uri.parse("http://ttyh-document.oss-cn-qingdao.aliyuncs.com/company.doc");
                 Intent it = new Intent(Intent.ACTION_VIEW, uri);
                 InfoCompanyActivity.this.startActivity(it);
             }

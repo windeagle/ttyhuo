@@ -501,11 +501,13 @@ public class ProductView {
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.product_cancelFavoriteUserCount, favoriteUserCount));
             tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_cancel_love);
+            tv_favoriteUserCount.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, R.drawable.icon_op_u_c_love);
         }
         else
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.product_favoriteUserCount, favoriteUserCount));
             tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_love);
+            tv_favoriteUserCount.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, R.drawable.icon_op_u_love);
         }
         tv_thumbUpCount.setText(context.getResources().getString(R.string.product_thumbUpCount, thumbUpCount));
 

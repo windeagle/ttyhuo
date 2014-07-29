@@ -484,11 +484,13 @@ public class UserView {
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.user_cancelFavoriteUserCount, favoriteUserCount));
             tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_cancel_view);
+            tv_favoriteUserCount.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, R.drawable.icon_op_u_c_view);
         }
         else
         {
             tv_favoriteUserCount.setText(context.getResources().getString(R.string.user_favoriteUserCount, favoriteUserCount));
             tv_favoriteUserCount.setBackgroundResource(R.drawable.op_bg_view);
+            tv_favoriteUserCount.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, R.drawable.icon_op_u_view);
         }
         tv_thumbUpCount.setText(context.getResources().getString(R.string.user_thumbUpCount, thumbUpCount));
 

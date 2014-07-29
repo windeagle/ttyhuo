@@ -263,7 +263,7 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
                                 "确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Uri uri = Uri.parse("http://ttyhuo-document.stor.sinaapp.com/TTyhuo.apk");
+                                        Uri uri = Uri.parse("http://ttyh-document.oss-cn-qingdao.aliyuncs.com/TTyhuo.apk");
                                         Intent it = new Intent(Intent.ACTION_VIEW, uri);
                                         getActivity().startActivity(it);
                                     }

@@ -63,7 +63,7 @@ public class InfoRealActivity extends BaseAddPic2Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, BigImageActivity.class);
-                intent.putExtra("url", "http://ttyhuo-document.stor.sinaapp.com/pic_sample.jpg");
+                intent.putExtra("url", "http://ttyh-document.oss-cn-qingdao.aliyuncs.com/pic_sample.jpg");
                 InfoRealActivity.this.startActivity(intent);
             }
         });

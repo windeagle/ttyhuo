@@ -156,6 +156,7 @@
                 android:id="@+id/tv_purchase"
                 android:text="接货"
                 android:background="@drawable/op_bg_jiehuo"
+                android:drawableBottom="@drawable/icon_op_u_jiehuo"
                 style="@style/right_bottom_info_op_text"/>
 
         <ImageView
@@ -189,6 +190,7 @@
                 android:id="@+id/tv_favoriteUserCount"
                 android:text="收藏(0)"
                 android:background="@drawable/op_bg_love"
+                android:drawableBottom="@drawable/icon_op_u_love"
                 style="@style/right_bottom_info_op_text"/>
         <ImageView
                 android:visibility="gone"
@@ -199,6 +201,7 @@
                 android:id="@+id/tv_thumbUpCount"
                 android:text="顶(0)"
                 android:background="@drawable/op_bg_thumbup"
+                android:drawableBottom="@drawable/icon_op_u_thumbup"
                 style="@style/right_bottom_info_op_text"/>
     </LinearLayout>
 </LinearLayout>
