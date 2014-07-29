@@ -3,7 +3,7 @@
               android:id="@+id/ly_myproduct_footer"
               android:layout_width="match_parent"
               android:layout_height="@dimen/activity_footer_height"
-              android:background="#323232"
+              android:background="@color/activity_header_bg"
               android:gravity="center"
               android:orientation="horizontal" >
     <LinearLayout android:id="@+id/ly_footer_home_btn"

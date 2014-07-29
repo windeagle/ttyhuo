@@ -110,9 +110,11 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
             fl_providerSeqNo = (FieldLayout)convertView.findViewById(R.id.fl_providerSeqNo);
             if(fl_purchaseTime != null && !purchaseJObject.isNull("createTime"))
                 fl_purchaseTime.setFieldValueText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(purchaseJObject.getLong("createTime"))));
+
             if(fl_checkTime != null && !purchaseJObject.isNull("checkTime"))
             {
                 fl_checkTime.setVisibility(View.VISIBLE);
+                fl_checkTime.setFieldNameText("装货时间");
                 fl_checkTime.setFieldValueText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(purchaseJObject.getLong("checkTime"))));
             }
             else
@@ -187,6 +189,8 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                     }
                 };
 
+                FieldLayout fl_status = (FieldLayout)convertView.findViewById(R.id.fl_status);
+                fl_status.setVisibility(View.GONE);
                 if(status == 0)
                 {
                     iv_cancel.setVisibility(View.VISIBLE);
@@ -219,6 +223,27 @@ public class PurchaseListJSONArrayAdapter extends BaseAdapter {
                 {
                     iv_cancel.setVisibility(View.GONE);
                     tv_cancel.setVisibility(View.GONE);
+
+                    if(status == -1){
+                        fl_checkTime.setFieldNameText("取消时间");
+                    }
+                    else if(status == -2){
+                        fl_checkTime.setFieldNameText("拒绝时间");
+                    }
+
+                    if(status != 1)
+                    {
+                        fl_status.setVisibility(View.VISIBLE);
+                        if(status == -1){
+                            fl_status.setFieldValueText("车主取消");
+                        }
+                        else if(status == -2){
+                            fl_status.setFieldNameText("货主拒绝");
+                        }
+                        else {
+                            fl_status.setFieldValueText("交易成功");
+                        }
+                    }
 
                     if(iv_statusImg != null && tv_statusImg != null)
                     {

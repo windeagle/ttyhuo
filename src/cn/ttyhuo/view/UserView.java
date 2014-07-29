@@ -219,7 +219,14 @@ public class UserView {
         tv_lastPlace.setText(distince + "km");
         JSONUtil.setValueFromJson(tv_lastTime, jObject, "latlngDate", "未知");
         if(tv_mobileNo != null)
-            JSONUtil.setValueFromJson(tv_mobileNo, jObject, "mobileNo", "");
+        {
+            String mobileNo = JSONUtil.getStringFromJson(jObject, "mobileNo", "");
+            if(mobileNo.length() > 7)
+            {
+                mobileNo = mobileNo.substring(0, 3) + "****" +  mobileNo.substring(7);
+            }
+            tv_mobileNo.setText(mobileNo);
+        }
 
         int thumbUpCount = jObject.getInt("thumbUpCount");
         int favoriteUserCount = jObject.getInt("favoriteUserCount");
@@ -412,10 +419,10 @@ public class UserView {
         {
             verifyFlag += 2;
             if(line_truck != null) line_truck.setVisibility(View.VISIBLE);
-            if(line_route != null) line_route.setVisibility(View.VISIBLE);
+            if(line_route != null) line_route.setVisibility(View.GONE);
             ly_truck.setVisibility(View.VISIBLE);
             if(ly_route != null)
-                ly_route.setVisibility(View.VISIBLE);
+                ly_route.setVisibility(View.GONE);
 //            try{
 //                if(jsonObject.has("userRoutes") && jsonObject.getJSONArray("userRoutes").length() > 0)
 //                    ly_route.setVisibility(View.VISIBLE);
@@ -480,9 +487,9 @@ public class UserView {
     }
 
     private void setFavoriteAndThumbUp(final int userID, final int thumbUpCount, final int favoriteUserCount,
-                                       final boolean alreadyFavorite, final Context context, JSONObject jObject) {
+                                       final boolean alreadyFavorite, final Context context, final JSONObject ojObject) {
         try {
-            jObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
+            ojObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -526,12 +533,12 @@ public class UserView {
                             if(msg.what == 1)
                             {
                                 if(alreadyFavorite)
-                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount - 1, false, context, jObject);
+                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount - 1, false, context, ojObject);
                                 else
-                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount + 1, true, context, jObject);
+                                    setFavoriteAndThumbUp(userID, thumbUpCount, favoriteUserCount + 1, true, context, ojObject);
                             }
                             if(msg.what == 2)
-                                setFavoriteAndThumbUp(userID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, jObject);
+                                setFavoriteAndThumbUp(userID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, ojObject);
                         }
                         else
                         {

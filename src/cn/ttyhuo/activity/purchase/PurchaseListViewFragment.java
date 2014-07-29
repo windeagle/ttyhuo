@@ -11,9 +11,13 @@ import cn.ttyhuo.activity.base.BaseListFragment;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.JSONUtil;
 import cn.ttyhuo.view.PurchaseListJSONArrayAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -40,7 +44,7 @@ public class PurchaseListViewFragment extends BaseListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (savedInstanceState != null)
-            pageFlag = savedInstanceState.getInt("pageIndex");
+            pageFlag = savedInstanceState.getInt("pageFlag");
         return super.onCreateView(inflater,container, savedInstanceState);
     }
 
@@ -57,12 +61,20 @@ public class PurchaseListViewFragment extends BaseListFragment {
 
     protected String getUrl()
     {
-        return new String(UrlList.MAIN + "mvc/user_purchasesJson?all=0&pageFlag=" + pageFlag);
+        return new String(UrlList.MAIN + "mvc/user_purchasesJson");
     }
 
     protected ListView getListView()
     {
         lv = (ListView) getView().findViewById(R.id.lv_purchaseList);
+        ViewGroup parent = (ViewGroup) lv.getParent();
+        // Remove ListView and add PullToRefreshListView in its place
+        int lvIndex = parent.indexOfChild(lv);
+        parent.removeViewAt(lvIndex);
+        mListView = new PullToRefreshListView(mContext);
+        parent.addView(mListView, lvIndex, lv.getLayoutParams());
+        lv = mListView.getRefreshableView();
+        lv.setDividerHeight(0);
         return lv;
     }
 
@@ -79,17 +91,32 @@ public class PurchaseListViewFragment extends BaseListFragment {
         return view_page_footer;
     }
 
+    protected Map<String, String> geParams()
+    {
+        Map<String, String> ret = new HashMap<String, String>();
+
+        ret.put("pageFlag", String.valueOf(pageFlag));
+
+        return ret;
+    }
+
     protected void processJSON(String result)
     {
         try {
             JSONArray object = new JSONObject(result).getJSONArray("purchases");
 
             JSONArray mDataDelta = object;//.get("items");
-            totalPage = 3;//(Integer) object.get("totalPage");
+            //totalPage = 3;//(Integer) object.get("totalPage");
             if (mJson == null) {
                 mData = mDataDelta;
                 mJson = new PurchaseListJSONArrayAdapter(mData, getActivity());
-                lv.setAdapter(mJson);//为ListView绑定适配器
+                mListView.setAdapter(mJson);//为ListView绑定适配器
+            }
+            else if (page == 0)
+            {
+                mData = mDataDelta;
+                mJson.setList(mData);
+                mJson.notifyDataSetChanged();
             } else {
                 mData = JSONUtil.joinJSONArray(mData, mDataDelta);
                 mJson.setList(mData);

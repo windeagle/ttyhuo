@@ -24,6 +24,11 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/white"
                     android:hint="在此输入搜索内容" />
+
+            <FrameLayout android:layout_width="2dp"
+                         android:layout_height="match_parent"
+                         android:layout_margin="6dp" android:background="@color/activity_header_bg_div"></FrameLayout>
+
             <ImageView
                     android:id="@+id/iv_search"
                     android:layout_width="@dimen/big_icon_size"

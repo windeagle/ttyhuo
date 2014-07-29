@@ -27,7 +27,7 @@
                       android:layout_height="@dimen/activity_header_height"
                       android:layout_width="0px"
                       android:layout_weight="1"
-                      android:background="@color/activity_footer_bg"
+                      android:background="@color/activity_select_tag_bg"
                       android:gravity="center"
                       android:text="简易货源"
                       style="@style/textsize_16_white"/>
@@ -38,7 +38,7 @@
                       android:layout_width="0px"
                       android:layout_weight="1"
                       android:gravity="center"
-                      android:background="@color/activity_select_tag_bg"
+                      android:background="@color/activity_footer_bg"
                       android:text="多车货源"
                       style="@style/textsize_16_white"/>
         </LinearLayout>

@@ -11,6 +11,7 @@ import cn.ttyhuo.activity.base.BaseListFragment;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.JSONUtil;
 import cn.ttyhuo.view.PurchaseToListJSONArrayAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,17 +67,15 @@ public class PurchaseToListViewFragment extends BaseListFragment {
     protected ListView getListView()
     {
         lv = (ListView) getView().findViewById(R.id.lv_purchaseList);
+        ViewGroup parent = (ViewGroup) lv.getParent();
+        // Remove ListView and add PullToRefreshListView in its place
+        int lvIndex = parent.indexOfChild(lv);
+        parent.removeViewAt(lvIndex);
+        mListView = new PullToRefreshListView(mContext);
+        parent.addView(mListView, lvIndex, lv.getLayoutParams());
+        lv = mListView.getRefreshableView();
+        lv.setDividerHeight(0);
         return lv;
-
-//        ViewGroup parent = (ViewGroup) lv.getParent();
-//        // Remove ListView and add PullToRefreshListView in its place
-//        int lvIndex = parent.indexOfChild(lv);
-//        parent.removeViewAt(lvIndex);
-//        mListView = new PullToRefreshListView(mContext);
-//        parent.addView(mListView, lvIndex, lv.getLayoutParams());
-//        lv = mListView.getRefreshableView();
-//        lv.setDividerHeight(0);
-//        return lv;
     }
 
     protected View getEmptyView()
@@ -111,7 +110,7 @@ public class PurchaseToListViewFragment extends BaseListFragment {
             if (mJson == null) {
                 mData = mDataDelta;
                 mJson = new PurchaseToListJSONArrayAdapter(mData, getActivity());
-                lv.setAdapter(mJson);//为ListView绑定适配器
+                mListView.setAdapter(mJson);//为ListView绑定适配器
             }
             else if (page == 0)
             {

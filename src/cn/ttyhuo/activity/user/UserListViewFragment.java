@@ -283,7 +283,7 @@ public class UserListViewFragment extends BaseListFragment {
     {
         Map<String, String> ret = new HashMap<String, String>();
 
-        //ret.put("onlyDriver", "true");
+        ret.put("onlyDriver", "true");
         ret.put("orderFlag", String.valueOf(orderFlag));
         CommonUtils.setOptionsPostStr(ret, "truckTypeFlags", truckTypeFlags);
         CommonUtils.setOptionsPostStr(ret, "loadLimitFlags", loadLimitFlags);

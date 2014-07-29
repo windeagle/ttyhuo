@@ -132,6 +132,7 @@
     <LinearLayout style="@style/field_area"
                   android:id="@+id/ly_purchaseInfo"
                   android:paddingBottom="@dimen/area_vertical_padding_8">
+        <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_status" ttyhuo:fieldName="状态" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
         <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_purchaseTime" ttyhuo:fieldName="接单时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
         <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_checkTime" ttyhuo:fieldName="提货时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
         <cn.ttyhuo.view.FieldLayout android:id="@+id/fl_confirmTime" ttyhuo:fieldName="卸货时间" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />

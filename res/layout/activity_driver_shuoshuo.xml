@@ -19,7 +19,7 @@
                 <EditText
                         style="@style/field_edit"
                         android:layout_marginLeft="0px"
-                        android:hint="车主在这里发布自己的车辆状态，求货源、求回程带货？在这里喊出来，货主根据关键字搜素就能找到你了！"
+                        android:hint="想要回程带货？想尽快接货？在这里一句话说明当前车源信息，如下午三点青浦去机场，带货请联系。为了信息匹配更加有效，请及时更新当前车况信息。"
                         android:id="@+id/edit_driver_shuoshuo" />
 
             </LinearLayout>

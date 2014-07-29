@@ -311,14 +311,15 @@ public class ProductView {
                                     boolean success = jObject.has("success");
                                     //服务器未登录
                                     if (notLogin) {
-                                        Toast.makeText(context, "您尚未登录！", Toast.LENGTH_LONG).show();
+                                        DialogUtils.createNormalDialog(context, 0, "尚未登录", "您尚未登录！", null, null, null, null).show();
                                     } else if (success) {
                                         Toast.makeText(context, "操作成功", Toast.LENGTH_SHORT).show();
+                                        DialogUtils.createNormalDialog(context, 0, "操作成功", jObject.getString("msg"), null, null, null, null).show();
                                         tv_purchase.setText("已接货");
                                         tv_purchase.setOnClickListener(null);
                                         iv_purchase.setOnClickListener(null);
                                     } else {
-                                        Toast.makeText(context, jObject.getString("errMsg"), Toast.LENGTH_LONG).show();
+                                        DialogUtils.createNormalDialog(context, 0, "出错了", jObject.getString("errMsg"), null, null, null, null).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -497,9 +498,9 @@ public class ProductView {
     }
 
     private void setFavoriteAndThumbUp(final int productID, final int thumbUpCount, final int favoriteUserCount,
-                                       final boolean alreadyFavorite, final Context context, JSONObject jObject) {
+                                       final boolean alreadyFavorite, final Context context, final JSONObject ojObject) {
         try {
-            jObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
+            ojObject.put("thumbUpCount", thumbUpCount).put("favoriteUserCount", favoriteUserCount).put("alreadyFavorite", alreadyFavorite);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -543,12 +544,12 @@ public class ProductView {
                             if(msg.what == 1)
                             {
                                 if(alreadyFavorite)
-                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount - 1, false, context, jObject);
+                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount - 1, false, context, ojObject);
                                 else
-                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount + 1, true, context, jObject);
+                                    setFavoriteAndThumbUp(productID, thumbUpCount, favoriteUserCount + 1, true, context, ojObject);
                             }
                             if(msg.what == 2)
-                                setFavoriteAndThumbUp(productID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, jObject);
+                                setFavoriteAndThumbUp(productID, thumbUpCount + 1, favoriteUserCount, alreadyFavorite, context, ojObject);
                         }
                         else
                         {
