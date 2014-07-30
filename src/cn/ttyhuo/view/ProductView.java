@@ -319,7 +319,7 @@ public class ProductView {
                                         tv_purchase.setOnClickListener(null);
                                         iv_purchase.setOnClickListener(null);
                                     } else {
-                                        DialogUtils.createNormalDialog(context, 0, "出错了", jObject.getString("errMsg"), null, null, null, null).show();
+                                        DialogUtils.createNormalDialog(context, 0, "提示", jObject.getString("errMsg"), null, null, null, null).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

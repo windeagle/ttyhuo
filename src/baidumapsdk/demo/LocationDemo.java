@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -61,6 +60,11 @@ public class LocationDemo extends Activity implements
     private Button requestLocButton;
     private BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
 
+    private LinearLayout ly_bottomArea;
+    private TextView tv_mark_name;
+    private TextView tv_mark_addr;
+    private Button btn_select_addr;
+
     private MyApplication myApplication;
     private MyLocationListener myListener = new MyLocationListener();
 
@@ -106,6 +110,11 @@ public class LocationDemo extends Activity implements
                 android.R.layout.simple_dropdown_item_1line);
         keyWorldsView.setAdapter(sugAdapter);
 
+        ly_bottomArea = (LinearLayout) findViewById(R.id.ly_bottomArea);
+        tv_mark_name = (TextView) findViewById(R.id.tv_mark_name);
+        tv_mark_addr = (TextView) findViewById(R.id.tv_mark_addr);
+        btn_select_addr = (Button) findViewById(R.id.btn_select_addr);
+
         setupLocationModeBtn();
 
         setupReturnMyLoc();
@@ -126,6 +135,8 @@ public class LocationDemo extends Activity implements
             @Override
             public void onMapClick(LatLng point) {
                 mBaiduMap.hideInfoWindow();
+                ly_bottomArea.setVisibility(View.GONE);
+
             }
             @Override
             public boolean onMapPoiClick(MapPoi mapPoi) {
@@ -221,14 +232,12 @@ public class LocationDemo extends Activity implements
                 if (cs.length() <= 0) {
                     return;
                 }
-                String city = ((EditText) findViewById(R.id.city)).getText()
-                        .toString();
                 /**
                  * 使用建议搜索服务获取建议列表，结果在onSuggestionResult()中更新
                  */
                 mSuggestionSearch
                         .requestSuggestion((new SuggestionSearchOption())
-                                .keyword(cs.toString()).city(city));
+                                .keyword(cs.toString()).city(intentCity));
             }
         });
     }
@@ -253,12 +262,14 @@ public class LocationDemo extends Activity implements
         if (intent.hasExtra("intentAddress")) {
             Bundle b = intent.getExtras();
             intentAddress = b.getString("intentAddress");
+            AutoCompleteTextView editSearchKey = (AutoCompleteTextView) findViewById(R.id.searchkey);
+            editSearchKey.setText(intentAddress);
         }
 
         if (intent.hasExtra("intentCity")) {
             Bundle b = intent.getExtras();
             intentCity = b.getString("intentCity");
-            String[] intentCityArr = intentCity.split("-");
+            String[] intentCityArr = intentCity.split(" ");
             if(intentCityArr.length > 1)
                 intentCity = intentCityArr[1];
         }
@@ -281,7 +292,7 @@ public class LocationDemo extends Activity implements
 
                 if(firstLatLng != null)
                 {
-                    MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(firstLatLng);
+                    MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(firstLatLng, 14.0f);
                     mBaiduMap.animateMapStatus(u);
                 }
 
@@ -353,7 +364,7 @@ public class LocationDemo extends Activity implements
                 {
                     LatLng ll = new LatLng(location.getLatitude(),
                             location.getLongitude());
-                    MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+                    MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 14.0f);
                     mBaiduMap.animateMapStatus(u);
                 }
                 myApplication.mLocationClient.requestLocation();
@@ -409,8 +420,8 @@ public class LocationDemo extends Activity implements
 				isFirstLoc = false;
 				LatLng ll = new LatLng(location.getLatitude(),
 						location.getLongitude());
-				MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
-				mBaiduMap.animateMapStatus(u);
+                MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 14.0f);
+                mBaiduMap.animateMapStatus(u);
 			}
 		}
 	}
@@ -455,6 +466,8 @@ public class LocationDemo extends Activity implements
 
     public void goToNextPage(View v) {
         load_Index++;
+        if(load_Index > 0)
+            geoPoiInfo = null;
         mBaiduMap.clear();
         AutoCompleteTextView editSearchKey = (AutoCompleteTextView) findViewById(R.id.searchkey);
         if(editSearchKey.getText().toString().trim().isEmpty())
@@ -468,22 +481,53 @@ public class LocationDemo extends Activity implements
                 .pageNum(load_Index));
     }
 
+    private PoiInfo geoPoiInfo;
+
     @Override
     public void onGetPoiResult(PoiResult result) {
+        PoiOverlay overlay = new MyPoiOverlay(mBaiduMap);
         if (result == null
                 || result.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {
+
+            if(geoPoiInfo != null)
+            {
+                mBaiduMap.addOverlay(new MarkerOptions().position(geoPoiInfo.location)
+                        .title(geoPoiInfo.address)
+                        .icon(BitmapDescriptorFactory
+                                .fromResource(R.drawable.icon_marka)));
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLngZoom(geoPoiInfo.location, 14.0f));
+                mBaiduMap.setOnMarkerClickListener(markerClickListener);
+
+                return;
+            }
+
             return;
         }
         if (result.error == SearchResult.ERRORNO.NO_ERROR) {
-            PoiOverlay overlay = new MyPoiOverlay(mBaiduMap);
 
             mBaiduMap.setOnMarkerClickListener(overlay);
+            if(geoPoiInfo != null)
+                result.getAllPoi().add(geoPoiInfo);
             overlay.setData(result);
             overlay.addToMap();
             overlay.zoomToSpan();
 
             return;
         }
+
+        if(geoPoiInfo != null)
+        {
+
+            mBaiduMap.addOverlay(new MarkerOptions().position(geoPoiInfo.location)
+                    .title(geoPoiInfo.address)
+                    .icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.icon_marka)));
+            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLngZoom(geoPoiInfo.location, 14.0f));
+            mBaiduMap.setOnMarkerClickListener(markerClickListener);
+
+            return;
+        }
+
         if (result.error == SearchResult.ERRORNO.AMBIGUOUS_KEYWORD) {
 
             // 当输入关键字在本市没有找到，但在其他城市找到时，返回包含该关键字信息的城市列表
@@ -542,51 +586,78 @@ public class LocationDemo extends Activity implements
 //                        .poiUid(poi.uid));
 //            }
 
-            popupText.setText(poi.address);
-            popupText.setBackgroundResource(R.drawable.popup);
             final LatLng ll = poi.location;
-            Point p = mBaiduMap.getProjection().toScreenLocation(ll);
-            p.y -= 47;
-            LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
-            InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
-                public void onInfoWindowClick() {
-                    mBaiduMap.hideInfoWindow();
 
-                    Intent intent = getIntent();
-                    intent.putExtra("addr", poi.address);
-                    intent.putExtra("lat", ll.latitude);
-                    intent.putExtra("lng", ll.longitude);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-            };
-            mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
+//            popupText.setText(poi.address);
+//            popupText.setBackgroundResource(R.drawable.popup);
+//            Point p = mBaiduMap.getProjection().toScreenLocation(ll);
+//            p.y -= 47;
+//            LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
+//            InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
+//                public void onInfoWindowClick() {
+//                    mBaiduMap.hideInfoWindow();
+//
+//                    Intent intent = getIntent();
+//                    intent.putExtra("addr", poi.address);
+//                    intent.putExtra("lat", ll.latitude);
+//                    intent.putExtra("lng", ll.longitude);
+//                    setResult(RESULT_OK, intent);
+//                    finish();
+//                }
+//            };
+//            mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
+
+            setupBottomArea(poi.name, poi.address , ll);
+
             return true;
         }
     }
 
     private boolean onMapPoiClick(final MapPoi poi) {
 
-        popupText.setText(poi.getName());
-        popupText.setBackgroundResource(R.drawable.popup);
         final LatLng ll = poi.getPosition();
-        Point p = mBaiduMap.getProjection().toScreenLocation(ll);
-        p.y -= 47;
-        LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
-        InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
-            public void onInfoWindowClick() {
-                mBaiduMap.hideInfoWindow();
+
+//        popupText.setText(poi.getName());
+//        popupText.setBackgroundResource(R.drawable.popup);
+//        Point p = mBaiduMap.getProjection().toScreenLocation(ll);
+//        p.y -= 47;
+//        LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
+//        InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
+//            public void onInfoWindowClick() {
+//                mBaiduMap.hideInfoWindow();
+//
+//                Intent intent = getIntent();
+//                intent.putExtra("addr", poi.getName());
+//                intent.putExtra("lat", ll.latitude);
+//                intent.putExtra("lng", ll.longitude);
+//                setResult(RESULT_OK, intent);
+//                finish();
+//            }
+//        };
+//        mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
+
+        setupBottomArea(poi.getName(), poi.getName(), ll);
+
+        return false;
+    }
+
+    private void setupBottomArea(String title, final String addr, final LatLng ll) {
+        tv_mark_name.setText(title);
+        tv_mark_addr.setText(addr);
+        btn_select_addr.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ly_bottomArea.setVisibility(View.GONE);
 
                 Intent intent = getIntent();
-                intent.putExtra("addr", poi.getName());
+                intent.putExtra("addr", addr);
                 intent.putExtra("lat", ll.latitude);
                 intent.putExtra("lng", ll.longitude);
                 setResult(RESULT_OK, intent);
                 finish();
             }
-        };
-        mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
-        return false;
+        });
+        ly_bottomArea.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -623,24 +694,26 @@ public class LocationDemo extends Activity implements
          * @param marker 被点击的 marker
          */
         public boolean onMarkerClick(final Marker marker){
-            popupText.setText(marker.getTitle());
-            popupText.setBackgroundResource(R.drawable.popup);
-            Point p = mBaiduMap.getProjection().toScreenLocation(marker.getPosition());
-            p.y -= 47;
-            LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
-            InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
-                public void onInfoWindowClick() {
-                    mBaiduMap.hideInfoWindow();
+//            popupText.setText(marker.getTitle());
+//            popupText.setBackgroundResource(R.drawable.popup);
+//            Point p = mBaiduMap.getProjection().toScreenLocation(marker.getPosition());
+//            p.y -= 47;
+//            LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
+//            InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
+//                public void onInfoWindowClick() {
+//                    mBaiduMap.hideInfoWindow();
+//
+//                    Intent intent = getIntent();
+//                    intent.putExtra("addr", marker.getTitle());
+//                    intent.putExtra("lat", marker.getPosition().latitude);
+//                    intent.putExtra("lng", marker.getPosition().longitude);
+//                    setResult(RESULT_OK, intent);
+//                    finish();
+//                }
+//            };
+//            mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
 
-                    Intent intent = getIntent();
-                    intent.putExtra("addr", marker.getTitle());
-                    intent.putExtra("lat", marker.getPosition().latitude);
-                    intent.putExtra("lng", marker.getPosition().longitude);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-            };
-            mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
+            setupBottomArea(marker.getTitle(), marker.getTitle(), marker.getPosition());
 
 //            mShareUrlSearch
 //                    .requestLocationShareUrl(new LocationShareURLOption()
@@ -659,26 +732,28 @@ public class LocationDemo extends Activity implements
             final BDLocation location = ((MyApplication)LocationDemo.this.getApplication()).nowLocation;
             if(location != null)
             {
-                popupText.setText(location.getAddrStr());
-                popupText.setBackgroundResource(R.drawable.popup);
+//                popupText.setText(location.getAddrStr());
+//                popupText.setBackgroundResource(R.drawable.popup);
                 final LatLng tmpPoint = new LatLng(location.getLatitude(),
                         location.getLongitude());
-                Point p = mBaiduMap.getProjection().toScreenLocation(tmpPoint);
-                p.y -= 47;
-                LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
-                InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
-                    public void onInfoWindowClick() {
-                        mBaiduMap.hideInfoWindow();
+//                Point p = mBaiduMap.getProjection().toScreenLocation(tmpPoint);
+//                p.y -= 47;
+//                LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
+//                InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
+//                    public void onInfoWindowClick() {
+//                        mBaiduMap.hideInfoWindow();
+//
+//                        Intent intent = getIntent();
+//                        intent.putExtra("addr", location.getAddrStr());
+//                        intent.putExtra("lat", tmpPoint.latitude);
+//                        intent.putExtra("lng", tmpPoint.longitude);
+//                        setResult(RESULT_OK, intent);
+//                        finish();
+//                    }
+//                };
+//                mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
 
-                        Intent intent = getIntent();
-                        intent.putExtra("addr", location.getAddrStr());
-                        intent.putExtra("lat", tmpPoint.latitude);
-                        intent.putExtra("lng", tmpPoint.longitude);
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
-                };
-                mBaiduMap.showInfoWindow(new InfoWindow(popupText, llInfo, listener));
+                setupBottomArea(location.getAddrStr(), location.getAddrStr(), tmpPoint);
 
 //                mShareUrlSearch
 //                        .requestLocationShareUrl(new LocationShareURLOption()
@@ -694,15 +769,9 @@ public class LocationDemo extends Activity implements
     public void onGetGeoCodeResult(GeoCodeResult result) {
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR || result.getAddress() == null || result.getLocation() == null)
         {
-            mBaiduMap.clear();
-            AutoCompleteTextView editSearchKey = (AutoCompleteTextView) findViewById(R.id.searchkey);
-            if(editSearchKey.getText().toString().trim().isEmpty())
-                return;
-
-            mPoiSearch.searchInCity((new PoiCitySearchOption())
-                    .city(intentCity)
-                    .keyword(editSearchKey.getText().toString())
-                    .pageNum(0));
+            load_Index = -1;
+            geoPoiInfo = null;
+            goToNextPage(null);
 
             //Toast.makeText(LocationDemo.this, "抱歉，未能找到结果", Toast.LENGTH_LONG).show();
             return;
@@ -710,14 +779,23 @@ public class LocationDemo extends Activity implements
 
         currentAddr = result.getAddress();
 
-        mBaiduMap.addOverlay(new MarkerOptions().position(result.getLocation())
-                .title(result.getAddress())
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.icon_marka)));
-        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(result
-                .getLocation()));
+//        mBaiduMap.addOverlay(new MarkerOptions().position(result.getLocation())
+//                .title(result.getAddress())
+//                .icon(BitmapDescriptorFactory
+//                        .fromResource(R.drawable.icon_marka)));
+//        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLngZoom(result
+//                .getLocation(), 14.0f));
+//
+//        mBaiduMap.setOnMarkerClickListener(markerClickListener);
 
-        mBaiduMap.setOnMarkerClickListener(markerClickListener);
+        geoPoiInfo = new PoiInfo();
+        geoPoiInfo.address = currentAddr;
+        geoPoiInfo.location = result.getLocation();
+        geoPoiInfo.name = currentAddr;
+
+        load_Index = -1;
+        goToNextPage(null);
+
         String strInfo = String.format("纬度：%f 经度：%f",
                 result.getLocation().latitude, result.getLocation().longitude);
         //Toast.makeText(LocationDemo.this, strInfo, Toast.LENGTH_LONG).show();
@@ -730,14 +808,14 @@ public class LocationDemo extends Activity implements
             //        .show();
         }
 
+        mBaiduMap.clear();
+
         currentAddr = result.getAddress();
 
         mBaiduMap.addOverlay(new MarkerOptions().position(result.getLocation())
                 .title(result.getAddress())
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.icon_marka)));
-        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(result
-                .getLocation()));
 
         mBaiduMap.setOnMarkerClickListener(markerClickListener);
         //Toast.makeText(LocationDemo.this, result.getAddress(),

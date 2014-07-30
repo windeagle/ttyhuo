@@ -150,21 +150,32 @@
                             android:layout_alignParentTop="true"
                             android:src="@drawable/btn_icon_call" />
 
-                    <TextView
-                            android:id="@+id/tv_toggle"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            style="@style/textsize_18_434343"
-                            android:layout_gravity="center_vertical"
-                            android:text="查看司机"/>
+                    <LinearLayout android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal"
+                                  android:paddingRight="4dp"
+                                  android:paddingLeft="4dp"
+                                  android:paddingTop="2dp"
+                                  android:background="@drawable/btn_bg_info">
 
-                    <ImageView
-                            android:id="@+id/iv_toggleIcon"
-                            android:layout_width="@dimen/item_icon_size"
-                            android:layout_height="@dimen/item_icon_size"
-                            android:scaleType="centerInside"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/btn_op_siji" />
+                        <TextView
+                                android:id="@+id/tv_toggle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:paddingLeft="4dp"
+                                style="@style/textsize_16_434343"
+                                android:layout_gravity="center_vertical"
+                                android:text="查看司机"/>
+
+                        <ImageView
+                                android:id="@+id/iv_toggleIcon"
+                                android:layout_width="@dimen/item_icon_size"
+                                android:layout_height="@dimen/item_icon_size"
+                                android:scaleType="centerInside"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/btn_op_siji" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

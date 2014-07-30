@@ -3,46 +3,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="@color/activity_footer_bg">
 
-        <EditText
-                android:visibility="gone"
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="北京" />
-
-        <AutoCompleteTextView
-                android:id="@+id/searchkey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="" />
-
-        <Button
-                android:id="@+id/geocode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_nan"
-                android:onClick="SearchButtonProcess"
-                android:text="查找" />
-
-        <Button
-                android:visibility="gone"
-                android:id="@+id/map_next_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_nv"
-                android:onClick="goToNextPage"
-                android:text="下一页" />
-    </LinearLayout>
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="0px"
+            android:layout_weight="1">
 
         <com.baidu.mapapi.map.MapView
                 android:id="@+id/bmapView"
@@ -50,6 +15,67 @@
                 android:layout_height="fill_parent"
                 android:clickable="true" />
 
+        <LinearLayout
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#663BB43C">
+
+            <LinearLayout
+                    style="@style/search_area"
+                    android:layout_margin="6dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/search_item_lineHeight_34"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/selector_search"
+                    android:orientation="horizontal" >
+                <EditText
+                        android:visibility="gone"
+                        android:id="@+id/city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="北京" />
+                <AutoCompleteTextView
+                        android:id="@+id/searchkey"
+                        style="@style/textsize_16_9F9F9F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/search_area_margin"
+                        android:layout_marginRight="@dimen/search_area_margin"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/white"
+                        android:hint="在此输入搜索内容" />
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/geocode"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_marginRight="6dp"
+                    android:padding="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/search_item_lineHeight_34"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:onClick="SearchButtonProcess"
+                    android:text="查找" />
+
+            <Button
+                    android:id="@+id/map_next_data"
+                    style="@style/textsize_16_9F9F9F"
+                    android:layout_marginRight="6dp"
+                    android:padding="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/search_item_lineHeight_34"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:onClick="goToNextPage"
+                    android:text="下一页" />
+        </LinearLayout>
 
         <LinearLayout
                 android:visibility="gone"
@@ -155,4 +181,50 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ly_bottomArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/activity_footer_bg">
+
+        <LinearLayout
+                android:layout_margin="6dp"
+                android:layout_height="wrap_content"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView android:id="@+id/tv_mark_name"
+                      style="@style/textsize_18_white"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content" />
+
+            <TextView android:id="@+id/tv_mark_addr"
+                      style="@style/textsize_16_white"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:layout_marginTop="3dp"/>
+
+        </LinearLayout>
+
+        <FrameLayout android:layout_width="2dp"
+                     android:layout_height="match_parent"
+                     android:layout_marginTop="6dp" android:layout_marginBottom="6dp" android:background="@color/activity_header_bg_div"></FrameLayout>
+
+        <Button
+                android:id="@+id/btn_select_addr"
+                style="@style/textsize_16_9F9F9F"
+                android:layout_margin="6dp"
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/search_item_lineHeight_34"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="选择" />
+
+    </LinearLayout>
 </LinearLayout>

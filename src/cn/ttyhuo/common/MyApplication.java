@@ -130,8 +130,8 @@ public class MyApplication extends Application {
     public LocationClient mLocationClient;
     public MyLocationListener mMyLocationListener;
 
-    private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Hight_Accuracy;
-    private String tempcoor="bdll09";
+    private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Device_Sensors;
+    private String tempcoor="bd09ll";
 
     public int scanSpan = 30000;
     public TextView mLocationResult;
@@ -149,8 +149,19 @@ public class MyApplication extends Application {
 
         option.setNeedDeviceDirect(true);//返回的定位结果包含手机机头的方向
 
+        if(NetworkUtils.isGpsOpen(context))
+            Toast.makeText(context, "GPS is ready", Toast.LENGTH_SHORT);
+        else
+        {
+            NetworkUtils.openGPS(context);
+            Toast.makeText(context, "GPS 定位关闭，请打开定位!", Toast.LENGTH_SHORT).show();
+//            Intent intent=new Intent(Settings.ACTION_SECURITY_SETTINGS);
+//            context.startActivity(intent);
+        }
+
         mLocationClient.setLocOption(option);
     }
+
     /**
      * 实现实位回调监听
      */
@@ -208,9 +219,9 @@ public class MyApplication extends Application {
             sb.append(location.getSpeed());
             sb.append("\nsatellite : ");
             sb.append(location.getSatelliteNumber());
-            sb.append("\ndirection : ");
-            sb.append(location.getAddrStr());
             sb.append("\naddr : ");
+            sb.append(location.getAddrStr());
+            sb.append("\ndirection : ");
             sb.append(location.getDirection());
 //            } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
 //                sb.append("\naddr : ");

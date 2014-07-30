@@ -64,14 +64,14 @@
         </service>
 
         <!-- meta-data需要写在application中 -->
-        <meta-data
-                android:name="com.baidu.lbsapi.API_KEY"
-                android:value="ixNWTUBstpZpk6mgYbQu8nv2"
-        />
         <!--<meta-data-->
-        <!--android:name="com.baidu.lbsapi.API_KEY"-->
-        <!--android:value="SescICw4rm91UukwhLi54g0E"-->
+                <!--android:name="com.baidu.lbsapi.API_KEY"-->
+                <!--android:value="ixNWTUBstpZpk6mgYbQu8nv2"-->
         <!--/>-->
+        <meta-data
+        android:name="com.baidu.lbsapi.API_KEY"
+        android:value="SescICw4rm91UukwhLi54g0E"
+        />
 
         <activity
             android:name=".activity.MainPage"
