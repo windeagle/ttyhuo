@@ -48,7 +48,9 @@ public class DriverShuoShuoFragment extends LoginNeedBaseFragment {
             okBtn = (Button)context.findViewById(R.id.okBtn);
             progressBar = (ProgressBar) context.findViewById(R.id.progressBar1);
             edit_driver_shuoshuo = (EditText)context.findViewById(R.id.edit_driver_shuoshuo);
-            if((jObject.getJSONObject("loggedUser").getInt("verifyFlag") & 2) == 2)
+            int verifyFlag = jObject.getJSONObject("loggedUser").getInt("verifyFlag");
+            int industryType = jObject.getJSONObject("loggedUser").getInt("industryType");
+            if((verifyFlag & 2) == 2 || ((verifyFlag & 4) == 4 && industryType == 1))
                 okBtn.setOnClickListener(okClick);
             else
                 okBtn.setText("通过车主认证后退出并重新登录才能发表车源说说！");

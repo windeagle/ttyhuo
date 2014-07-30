@@ -329,7 +329,7 @@ public class UserView {
         {
             String industryType = jObject.getString("industryType");
             if(industryType.equals("1"))
-                iv_userVerify.setImageResource(R.drawable.icon_verify_5_1);
+                iv_userVerify.setImageResource(R.drawable.icon_verify_5_12);
             else
                 iv_userVerify.setImageResource(R.drawable.icon_verify_5);
         }
@@ -339,7 +339,7 @@ public class UserView {
             if(industryType.equals("1"))
                 iv_userVerify.setImageResource(R.drawable.icon_verify_7_1);
             else
-                iv_userVerify.setImageResource(R.drawable.icon_verify_7);
+                iv_userVerify.setImageResource(R.drawable.icon_verify_72);
         }
         else
             iv_userVerify.setVisibility(View.GONE);

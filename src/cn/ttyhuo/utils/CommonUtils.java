@@ -127,9 +127,9 @@ public class CommonUtils {
             else if(verifyFlag == 5)
                 userVerifyImg.setImageResource(R.drawable.icon_verify_5);
             else if(verifyFlag == 7)
-                userVerifyImg.setImageResource(R.drawable.icon_verify_7);
+                userVerifyImg.setImageResource(R.drawable.icon_verify_72);
             else if(verifyFlag == 13)
-                userVerifyImg.setImageResource(R.drawable.icon_verify_5_1);
+                userVerifyImg.setImageResource(R.drawable.icon_verify_5_12);
             else if(verifyFlag == 15)
                 userVerifyImg.setImageResource(R.drawable.icon_verify_7_1);
             else
