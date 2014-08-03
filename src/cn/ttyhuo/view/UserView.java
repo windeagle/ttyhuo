@@ -185,12 +185,12 @@ public class UserView {
 
         int gender = jsonObject.getInt("gender");
         if(gender == 2){
-            iv_gender.setImageDrawable(context.getResources().getDrawable(R.drawable.icon_nv_big));
-            ll_gender.setBackground(context.getResources().getDrawable(R.drawable.bg_nv));
+            iv_gender.setImageResource(R.drawable.icon_nv_big);
+            ll_gender.setBackgroundResource(R.drawable.bg_nv);
         }
         else if(gender == 1){
-            iv_gender.setImageDrawable(context.getResources().getDrawable(R.drawable.icon_nan_big));
-            ll_gender.setBackground(context.getResources().getDrawable(R.drawable.bg_nan));
+            iv_gender.setImageResource(R.drawable.icon_nan_big);
+            ll_gender.setBackgroundResource(R.drawable.bg_nan);
         }
         else
         {

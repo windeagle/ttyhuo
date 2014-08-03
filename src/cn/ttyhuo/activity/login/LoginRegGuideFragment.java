@@ -269,7 +269,7 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
                                 "确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Uri uri = Uri.parse("http://ttyh-document.oss-cn-qingdao.aliyuncs.com/TTyhuo.apk");
+                                        Uri uri = Uri.parse(UrlList.DOWNLOAD_URL);
                                         Intent it = new Intent(Intent.ACTION_VIEW, uri);
                                         getActivity().startActivity(it);
                                     }
@@ -352,7 +352,7 @@ public class LoginRegGuideFragment extends LoginNeedBaseFragment {
                 case R.id.iv_yonghu:
                     intent = new Intent(mContext, MainPage.class);
                     intent.putExtra("contentFragment", "UserListViewFragment");
-                    intent.putExtra("windowTitle", "用户列表");
+                    intent.putExtra("windowTitle", "车主搜索");
                     intent.putExtra("hasWindowTitle", true);
                     break;
                 case R.id.ly_fabu:

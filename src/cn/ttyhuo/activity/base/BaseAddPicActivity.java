@@ -235,13 +235,8 @@ public class BaseAddPicActivity extends ActionBarActivity implements
                     mContext.getString(R.string.app_name),
                     mContext.getText(R.string.operating), true, false, null);
 
-            // 空间名
-            String bucket = "ttyhuo-img";
-            // 表单 API 验证密匙：需要访问又拍云管理后台的空间管理页面获取
-            String form_api_secret = "dQSH8ws5Bz6mZOIBzQWZva6Saos=";
-
             Map<String, Object> options = new HashMap<String, Object>();
-            options.put("bucket", bucket);
+            options.put("bucket", UrlList.UPYunUserImgBucket);
 
             Calendar c = Calendar.getInstance();
             c.setTime(new Date());
@@ -292,14 +287,14 @@ public class BaseAddPicActivity extends ActionBarActivity implements
             //通常我们建议这一步在用户自己的服务器上进行，并通过http请求取得签名后的结果。
             //String signature = UpYunUtils.signature(policy + "&" + form_api_secret);
             // 计算签名值，具体说明请参阅"Signature 签名"
-            String signature = UPYunDigestUtil.getInstance().encipher(policy + '&' + form_api_secret);
+            String signature = UPYunDigestUtil.getInstance().encipher(policy + '&' + UrlList.form_api_secret);
 
             //http://v0.api.upyun.com/ttyhuo-img
             //ttyhuo-img.b0.upaiyun.com
             //psVvg+Y2tNd+ZZrCyJKMuY2UPJE=
             //t7X7+F33Ab7rF+7k0LqChk3n0io=String url = getPicUploadUrl();
 
-            String url = "http://v0.api.upyun.com/ttyhuo-img";
+            String url = "http://v0.api.upyun.com/" + UrlList.UPYunUserImgBucket;
             RequestParams params = getRequestParams();
             params.put("policy", policy);
             params.put("signature", signature);
@@ -358,7 +353,7 @@ public class BaseAddPicActivity extends ActionBarActivity implements
                             String returnStr = obj.getString("url");
 
                             Map<String, String> params = getParams();
-                            params.put("upyunImgUrl", "http://ttyhuo-img.b0.upaiyun.com" + returnStr);
+                            params.put("upyunImgUrl", "http://" + UrlList.UPYunUserImgBucket + ".b0.upaiyun.com" + returnStr);
 
                             Handler handler = new Handler() {
                                 public void handleMessage(android.os.Message msg) {
