@@ -823,30 +823,30 @@ public class LocationDemo extends Activity implements
 
     }
 
-    /**
-     * 发起搜索
-     *
-     * @param v
-     */
-    public void SearchButtonProcess(View v) {
-        if (v.getId() == R.id.reversegeocode) {
-            EditText lat = (EditText) findViewById(R.id.lat);
-            EditText lon = (EditText) findViewById(R.id.lon);
-            LatLng ptCenter = new LatLng((Float.valueOf(lat.getText()
-                    .toString())), (Float.valueOf(lon.getText().toString())));
-            // 反Geo搜索
-            mSearch.reverseGeoCode(new ReverseGeoCodeOption()
-                    .location(ptCenter));
-        } else if (v.getId() == R.id.geocode) {
-            mBaiduMap.clear();
-            AutoCompleteTextView editSearchKey = (AutoCompleteTextView) findViewById(R.id.searchkey);
-            if(editSearchKey.getText().toString().trim().isEmpty())
-                return;
-            // Geo搜索
-            mSearch.geocode(new GeoCodeOption().city(intentCity).address(
-                    editSearchKey.getText().toString()));
-        }
-    }
+//    /**
+//     * 发起搜索
+//     *
+//     * @param v
+//     */
+//    public void SearchButtonProcess(View v) {
+//        if (v.getId() == R.id.reversegeocode) {
+//            EditText lat = (EditText) findViewById(R.id.lat);
+//            EditText lon = (EditText) findViewById(R.id.lon);
+//            LatLng ptCenter = new LatLng((Float.valueOf(lat.getText()
+//                    .toString())), (Float.valueOf(lon.getText().toString())));
+//            // 反Geo搜索
+//            mSearch.reverseGeoCode(new ReverseGeoCodeOption()
+//                    .location(ptCenter));
+//        } else if (v.getId() == R.id.geocode) {
+//            mBaiduMap.clear();
+//            AutoCompleteTextView editSearchKey = (AutoCompleteTextView) findViewById(R.id.searchkey);
+//            if(editSearchKey.getText().toString().trim().isEmpty())
+//                return;
+//            // Geo搜索
+//            mSearch.geocode(new GeoCodeOption().city(intentCity).address(
+//                    editSearchKey.getText().toString()));
+//        }
+//    }
 
     @Override
     public void onGetPoiDetailShareUrlResult(ShareUrlResult result) {
