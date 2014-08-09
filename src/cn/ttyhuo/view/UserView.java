@@ -160,10 +160,17 @@ public class UserView {
             jObject = jsonObject.getJSONObject("userWithLatLng");
 
         String userStatus = JSONUtil.getStringFromJson(jObject, "status", "正常");
-        if(!userStatus.equals("正常") && tv_userStatus != null)
+        if(!userStatus.equals("正常"))
         {
-            tv_userStatus.setText("(" + userStatus + ")");
+            if(tv_userStatus != null)
+                tv_userStatus.setText("(" + userStatus + ")");
         }
+        else
+        {
+            if(tv_userStatus != null)
+                tv_userStatus.setText("");
+        }
+
         if(tv_userTypeStr != null)
             tv_userTypeStr.setText(JSONUtil.getStringFromJson(jsonObject, "userTypeStr", ""));
 
@@ -183,7 +190,7 @@ public class UserView {
         }
         tv_userName.setText(userName);
 
-        int gender = jsonObject.getInt("gender");
+        int gender = JSONUtil.getIntFromJson(jsonObject, "gender", 0);
         if(gender == 2){
             iv_gender.setImageResource(R.drawable.icon_nv_big);
             ll_gender.setBackgroundResource(R.drawable.bg_nv);
@@ -197,26 +204,16 @@ public class UserView {
             //TODO:保密的性别处理
         }
 
-        try {
-            Integer age = jsonObject.getInt("age");
-            tv_userAge.setText(age.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        double lat = 0.0;
-        double lng = 0.0;
-        String v = jObject.getString("lat");
-        if(!v.isEmpty() && !v.equals("null"))
-            lat = jObject.getDouble("lat");
+        Integer age = JSONUtil.getIntFromJson(jsonObject, "age", 0);
+        tv_userAge.setText(age.toString());
 
-        v = jObject.getString("lng");
-        if(!v.isEmpty() && !v.equals("null"))
-            lng = jObject.getDouble("lng");
+        double lat = JSONUtil.getDoubleFromJson(jObject, "lat", 0.0);
+        double lng = JSONUtil.getDoubleFromJson(jObject, "lng", 0.0);
 
-        String distince = ((MyApplication)((Activity)context).getApplication()).getDistance(lat, lng);
+        String distance = ((MyApplication)((Activity)context).getApplication()).getDistance(lat, lng);
 
         //TODO:
-        tv_lastPlace.setText(distince + "km");
+        tv_lastPlace.setText(distance + "km");
         JSONUtil.setValueFromJson(tv_lastTime, jObject, "latlngDate", "未知");
         if(tv_mobileNo != null)
         {
@@ -317,6 +314,13 @@ public class UserView {
                 });
             }
         }
+        else
+        {
+            if(tv_footer_call_btn != null)
+                tv_footer_call_btn.setOnClickListener(null);
+            if(iv_phoneIcon != null)
+                iv_phoneIcon.setOnClickListener(null);
+        }
     }
 
     private void setupUserVerifyImg(JSONObject jObject, int verifyFlag) throws JSONException {
@@ -367,7 +371,12 @@ public class UserView {
     }
 
     private int setupCompanyInfo(JSONObject jsonObject, JSONObject jObject, int verifyFlag) throws JSONException {
-        if(!JSONUtil.getBoolFromJson(jObject, "companyVerify"))
+        if(JSONUtil.getBoolFromJson(jObject, "companyVerify"))
+        {
+            verifyFlag += 4;
+        }
+
+        if(StringUtils.isEmpty(JSONUtil.getStringFromJson(jObject, "company", "")))
         {
             if(ly_company != null) ly_company.setVisibility(View.GONE);
             if(tv_company != null) tv_company.setVisibility(View.GONE);
@@ -375,7 +384,6 @@ public class UserView {
         }
         else
         {
-            verifyFlag += 4;
             if(ly_company != null) ly_company.setVisibility(View.VISIBLE);
             if(tv_company != null)
             {
@@ -401,28 +409,41 @@ public class UserView {
         return verifyFlag;
     }
 
-    private int setupTruckInfo(Context context, JSONObject jObject, JSONObject jsonObject, int verifyFlag) {
-        if(!JSONUtil.getBoolFromJson(jObject, "driverVerify"))
+    private int setupTruckInfo(Context context, JSONObject jObject, JSONObject jsonObject, int verifyFlag) throws JSONException {
+        if(JSONUtil.getBoolFromJson(jObject, "driverVerify"))
+        {
+            verifyFlag += 2;
+        }
+
+        if(jObject.get("truckInfo") == JSONObject.NULL)
         {
             ly_truck.setVisibility(View.GONE);
-            if(line_truck != null) line_truck.setVisibility(View.GONE);
-            if(line_route != null) line_route.setVisibility(View.GONE);
+            if(line_truck != null)
+                line_truck.setVisibility(View.GONE);
+
+            if(line_route != null)
+                line_route.setVisibility(View.GONE);
             if(ly_route != null)
                 ly_route.setVisibility(View.GONE);
+
             if(ll_driverAge != null)
                 ll_driverAge.setVisibility(View.GONE);
+
             tv_licensePlate.setVisibility(View.GONE);
+
             if(tv_driverShuoShuo != null)
                 tv_driverShuoShuo.setVisibility(View.GONE);
         }
         else
         {
-            verifyFlag += 2;
-            if(line_truck != null) line_truck.setVisibility(View.VISIBLE);
-            if(line_route != null) line_route.setVisibility(View.GONE);
             ly_truck.setVisibility(View.VISIBLE);
+            if(line_truck != null)
+                line_truck.setVisibility(View.VISIBLE);
+
             if(ly_route != null)
                 ly_route.setVisibility(View.GONE);
+            if(line_route != null)
+                line_route.setVisibility(View.GONE);
 //            try{
 //                if(jsonObject.has("userRoutes") && jsonObject.getJSONArray("userRoutes").length() > 0)
 //                    ly_route.setVisibility(View.VISIBLE);
@@ -437,7 +458,7 @@ public class UserView {
             try {
                 JSONObject truckInfoJsonObj = jObject.getJSONObject("truckInfo");
 
-                Integer truckType = truckInfoJsonObj.getInt("truckType");
+                Integer truckType =JSONUtil.getIntFromJson(truckInfoJsonObj,"truckType",0);
                 if(truckType != null && truckType > 0)
                     tv_truckType.setText(ConstHolder.TruckTypeItems[truckType - 1]);
                 else
@@ -477,7 +498,7 @@ public class UserView {
                     }
                 }
 
-                Integer age = new Date().getYear()  + 1900 - truckInfoJsonObj.getInt("releaseYear");
+                Integer age = new Date().getYear()  + 1900 - JSONUtil.getIntFromJson(truckInfoJsonObj,"releaseYear", 0);
                 tv_driverAge.setText(context.getResources().getString(R.string.user_driverAgeStr, age));
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.*;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +17,7 @@ import java.util.Set;
  */
 public class HttpRequestUtil {
 
+    public static final String LOG_TAG = "cn.ttyhuo.utils.HttpRequestUtil";
     public static CookieManager cookieManager = new CookieManager(null, CookiePolicy.ACCEPT_ALL);
 
     /**
@@ -31,16 +31,15 @@ public class HttpRequestUtil {
     public static URLConnection sendGetRequest(String url,
                                                Map<String, String> params, Map<String, String> headers)
             throws Exception{
+        LogUtils.d(LOG_TAG, url);
         cookieManager = new CookieManager(null, CookiePolicy.ACCEPT_ALL);
         MyApplication.getJavaCookieStore(cookieManager.getCookieStore());
         CookieHandler.setDefault(cookieManager);
         StringBuilder buf = new StringBuilder(url);
-        Set<Map.Entry<String, String>> entrys = null;
         // 如果是GET请求，则请求参数在URL中
         if (params != null && !params.isEmpty()) {
             buf.append("?");
-            entrys = params.entrySet();
-            for (Map.Entry<String, String> entry : entrys) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
                 buf.append(entry.getKey()).append("=")
                         .append(URLEncoder.encode(entry.getValue(), "UTF-8"))
                         .append("&");
@@ -48,12 +47,12 @@ public class HttpRequestUtil {
             buf.deleteCharAt(buf.length() - 1);
         }
         URL url1 = new URL(buf.toString());
+        LogUtils.d(LOG_TAG, buf.toString());
         HttpURLConnection conn = (HttpURLConnection) url1.openConnection();
         conn.setRequestMethod("GET");
         // 设置请求头
         if (headers != null && !headers.isEmpty()) {
-            entrys = headers.entrySet();
-            for (Map.Entry<String, String> entry : entrys) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
                 conn.setRequestProperty(entry.getKey(), entry.getValue());
             }
         }
@@ -73,15 +72,14 @@ public class HttpRequestUtil {
     public static URLConnection sendPostRequest(String url,
                                                 Map<String, String> params, Map<String, String> headers)
             throws Exception {
+        LogUtils.d(LOG_TAG, url);
         cookieManager = new CookieManager(null, CookiePolicy.ACCEPT_ALL);
         MyApplication.getJavaCookieStore(cookieManager.getCookieStore());
         CookieHandler.setDefault(cookieManager);
         StringBuilder buf = new StringBuilder();
-        Set<Map.Entry<String, String>> entrys = null;
         // 如果存在参数，则放在HTTP请求体，形如name=aaa&age=10
         if (params != null && !params.isEmpty()) {
-            entrys = params.entrySet();
-            for (Map.Entry<String, String> entry : entrys) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
                 buf.append(entry.getKey()).append("=")
                         .append(URLEncoder.encode(entry.getValue(), "UTF-8"))
                         .append("&");
@@ -89,17 +87,17 @@ public class HttpRequestUtil {
             buf.deleteCharAt(buf.length() - 1);
         }
         URL url1 = new URL(url);
+        LogUtils.d(LOG_TAG, buf.toString());
         HttpURLConnection conn = (HttpURLConnection) url1.openConnection();
         conn.setRequestMethod("POST");
-        conn.setDoOutput(true);
-        OutputStream out = conn.getOutputStream();
-        out.write(buf.toString().getBytes("UTF-8"));
         if (headers != null && !headers.isEmpty()) {
-            entrys = headers.entrySet();
-            for (Map.Entry<String, String> entry : entrys) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
                 conn.setRequestProperty(entry.getKey(), entry.getValue());
             }
         }
+        conn.setDoOutput(true);
+        OutputStream out = conn.getOutputStream();
+        out.write(buf.toString().getBytes("UTF-8"));
         conn.setConnectTimeout(5 * 1000);
         out.flush();
         out.close();

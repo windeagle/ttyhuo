@@ -10,7 +10,7 @@ public class UrlList {
     public static final String UPYunUserImgBucket = "ttyhuo-img";
     // 表单 API 验证密匙：需要访问又拍云管理后台的空间管理页面获取
     //prod
-    String form_api_secret = "dQSH8ws5Bz6mZOIBzQWZva6Saos=";
+    public static String form_api_secret = "dQSH8ws5Bz6mZOIBzQWZva6Saos=";
     //beta
     //public static String form_api_secret = "vTXCNvQtQVqBNcNxOo6gH09QZmo=";
 }

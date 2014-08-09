@@ -160,21 +160,17 @@ public class ProductView {
             }
         }
 
-        try{
-            final int provideUserID = jObject.getInt("provideUserID");
-            if(ly_provider != null)
-                ly_provider.setOnClickListener(new View.OnClickListener() {
-                    // 点击按钮 追加数据 并通知适配器
-                    @Override
-                    public void onClick(View v){
-                        Intent intent = new Intent(context, UserInfoActivity.class);
-                        intent.putExtra("userID", provideUserID);
-                        context.startActivity(intent);
-                    }
-                });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        final int provideUserID = JSONUtil.getIntFromJson(jObject, "provideUserID", 0);
+        if(ly_provider != null)
+            ly_provider.setOnClickListener(new View.OnClickListener() {
+                // 点击按钮 追加数据 并通知适配器
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(context, UserInfoActivity.class);
+                    intent.putExtra("userID", provideUserID);
+                    context.startActivity(intent);
+                }
+            });
 
         tv_fromCity.setText(CommonUtils.getFromCityStr(jObject));
         tv_toCity.setText(CommonUtils.getToCityStr(jObject));
@@ -182,7 +178,7 @@ public class ProductView {
         CommonUtils.setupDistance((Activity) context, tv_departurePlace, jObject);
         JSONUtil.setValueFromJson(tv_openTime, jsonObject, "windowOpenTime", "未知");
 
-        Integer truckType = jObject.getInt("truckType");
+        Integer truckType = JSONUtil.getIntFromJson(jObject, "truckType", 0);
         if(truckType != null && truckType > 0)
             tv_truckType.setText(ConstHolder.TruckTypeItems[truckType - 1]);
         else
@@ -360,6 +356,13 @@ public class ProductView {
             if(isMy && iv_phoneIcon != null)
                 iv_phoneIcon.setVisibility(View.GONE);
             CommonUtils.call(context, iv_phoneIcon, mobile);
+        }
+        else
+        {
+            if(tv_footer_call_btn != null)
+                tv_footer_call_btn.setOnClickListener(null);
+            if(iv_phoneIcon != null)
+                iv_phoneIcon.setOnClickListener(null);
         }
     }
 
