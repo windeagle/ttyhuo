@@ -147,21 +147,9 @@
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <activity
-                android:name="baidumapsdk.demo.BMapApiDemoMain"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_basemap"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
                 android:name="baidumapsdk.demo.BaseMapDemo"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="司机定位"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.MapFragmentDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_basemap"
                 android:screenOrientation="sensor" >
         </activity>
         <activity
@@ -171,57 +159,9 @@
                 android:screenOrientation="sensor" >
         </activity>
         <activity
-                android:name="baidumapsdk.demo.MultiMapViewDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_multimap"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.GeometryDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_geometry"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
                 android:name="baidumapsdk.demo.LocationDemo"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="地图选点（双击地图可创建自定义点）"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.MapControlDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_control"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.UISettingDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_ui"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.LayersDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_layers"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.OverlayDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_overlay"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.OfflineDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_offline"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.PoiSearchDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_poi"
                 android:screenOrientation="sensor" >
         </activity>
         <activity
@@ -229,46 +169,6 @@
                 android:configChanges="orientation|keyboardHidden"
                 android:label="demo_name_poi"
                 android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.RoutePlanDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_route"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.GeoCoderDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_geocode"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.BusLineSearchDemo"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_bus"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.ShareDemo"
-                android:label="demo_name_share" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.ShareDemoActivity"
-                android:label="demo_name_share" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.NaviDemo"
-                android:label="demo_name_navi" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.CloudSearchActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="demo_name_cloud"
-                android:screenOrientation="sensor" >
-        </activity>
-        <activity
-                android:name="baidumapsdk.demo.CloudSearchDemo"
-                android:label="title_activity_cloud_search_demo" >
         </activity>
     </application>
 
