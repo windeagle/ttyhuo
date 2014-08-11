@@ -45,30 +45,6 @@
                         android:src="@drawable/icon_verify_1" />
             </RelativeLayout>
 
-            <TextView
-                    android:id="@+id/tv_userName"
-                    style="@style/textsize_18_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/ry_userImg"
-                    android:layout_toRightOf="@id/ry_userImg" />
-
-            <TextView
-                    android:id="@+id/tv_userStatus"
-                    style="@style/textsize_14_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/tv_userName"
-                    android:layout_toRightOf="@id/tv_userName" />
-
-            <TextView
-                    android:id="@+id/tv_userTypeStr"
-                    style="@style/textsize_14_7F7F7F"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/ry_userImg"
-                    android:layout_toRightOf="@id/ry_userImg" />
-
             <ImageView
                     android:id="@+id/iv_userEdit"
                     android:layout_width="wrap_content"
@@ -122,25 +98,68 @@
                     <include layout="@layout/part_right_top_info"/>
 
                     <LinearLayout
-                            android:id="@+id/ll_mobile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/ll_gender"
                             android:paddingTop="@dimen/info_padding"
-                            android:orientation="horizontal" >
+                            android:orientation="vertical" >
 
                         <TextView
-                                style="@style/textsize_16_434343"
+                                android:id="@+id/tv_userName"
+                                style="@style/textsize_18_434343"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="手机号: " />
+                                android:paddingTop="@dimen/info_padding" />
 
-                        <TextView
-                                android:id="@+id/tv_mobileNo"
-                                style="@style/textsize_16_434343"
+                        <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/info_padding"
+                                android:orientation="horizontal" >
+                            <TextView
+                                    android:id="@+id/tv_userStatus"
+                                    style="@style/textsize_14_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <TextView
+                                    android:id="@+id/tv_userTypeStr"
+                                    style="@style/textsize_14_7F7F7F"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:id="@+id/ll_mobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/info_padding"
+                                android:orientation="horizontal" >
+                            <TextView
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="手机号: " />
+
+                            <TextView
+                                    android:id="@+id/tv_mobileNo"
+                                    style="@style/textsize_16_434343"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                        </LinearLayout>
                     </LinearLayout>
+
+                    <ImageView
+                            android:id="@+id/iv_qrcode"
+                            android:layout_width="128dp"
+                            android:layout_height="128dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/item_icon_fans"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/ll_gender"
+                            android:layout_marginTop="@dimen/area_vertical_padding_8"
+                            android:background="@color/activity_header_leftBtn_bg"
+                            android:layout_marginRight="@dimen/area_horizontal_padding_24" />
 
                     <LinearLayout style="@style/right_bottom_info_area"
                                   android:layout_below="@id/ll_mobile">

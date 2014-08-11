@@ -19,7 +19,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 把每行布局文件的各个控件包装成一个对象
@@ -27,6 +31,7 @@ import java.util.Date;
 public class UserView {
     ImageView iv_userFace;
     ImageView iv_userVerify;
+    ImageView iv_qrcode;
     TextView tv_userName;
 
     ImageView iv_gender;
@@ -89,6 +94,7 @@ public class UserView {
 
     public UserView(View convertView) {
         iv_userFace = (ImageView) convertView.findViewById(R.id.iv_userFace);
+        iv_qrcode = (ImageView) convertView.findViewById(R.id.iv_qrcode);
         iv_userVerify = (ImageView) convertView.findViewById(R.id.iv_userVerify);
         tv_userName = (TextView) convertView.findViewById(R.id.tv_userName);
 
@@ -282,6 +288,40 @@ public class UserView {
         setupUserVerifyImg(jObject, verifyFlag);
 
         setupFaceImg(context, imgUrl);
+
+        if(iv_qrcode != null)
+        {
+            Map<String, String> params = new HashMap<String, String>();
+            StringBuilder buf = new StringBuilder("http://qr.liantu.com/api.php");
+            params.put("text", "http://ttyh.aliapp.com/mvc/viewUser_" + userID);
+            params.put("bg", "ffffff");
+            params.put("fg", "cc0000");
+            params.put("fg", "gc0000");
+            params.put("el", "h");
+            params.put("w", "300");
+            params.put("m", "30");
+            params.put("pt", "00ff00");
+            params.put("inpt", "000000");
+            params.put("logo", "http://ttyh-document.oss-cn-qingdao.aliyuncs.com/ic_launcher.jpg");
+            try {
+                // 如果是GET请求，则请求参数在URL中
+                if (params != null && !params.isEmpty()) {
+                    buf.append("?");
+                    for (Map.Entry<String, String> entry : params.entrySet()) {
+                            buf.append(entry.getKey()).append("=")
+                                    .append(URLEncoder.encode(entry.getValue(), "UTF-8"))
+                                    .append("&");
+                    }
+                    buf.deleteCharAt(buf.length() - 1);
+                }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            String qrcodeUrl = buf.toString();
+            ImageLoader.getInstance().displayImage(qrcodeUrl, iv_qrcode, new DisplayImageOptions.Builder()
+                    .resetViewBeforeLoading(true).cacheInMemory(true)
+                    .cacheOnDisc(true).build());
+        }
 
         final String mobile = JSONUtil.getStringFromJson(jObject, "mobileNo", "");
         if(!mobile.isEmpty())
