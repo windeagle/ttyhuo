@@ -299,7 +299,7 @@ public class UserView {
             params.put("fg", "gc0000");
             params.put("el", "h");
             params.put("w", "300");
-            params.put("m", "30");
+            params.put("m", "10");
             params.put("pt", "00ff00");
             params.put("inpt", "000000");
             params.put("logo", "http://ttyh-document.oss-cn-qingdao.aliyuncs.com/ic_launcher.jpg");

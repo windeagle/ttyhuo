@@ -162,7 +162,7 @@
                             android:layout_marginRight="@dimen/area_horizontal_padding_24" />
 
                     <LinearLayout style="@style/right_bottom_info_area"
-                                  android:layout_below="@id/ll_mobile">
+                                  android:layout_below="@id/iv_qrcode">
 
                         <ImageView
                                 android:visibility="gone"
