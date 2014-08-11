@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
@@ -317,10 +317,31 @@ public class UserView {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            String qrcodeUrl = buf.toString();
+            final String qrcodeUrl = buf.toString();
             ImageLoader.getInstance().displayImage(qrcodeUrl, iv_qrcode, new DisplayImageOptions.Builder()
                     .resetViewBeforeLoading(true).cacheInMemory(true)
                     .cacheOnDisc(true).build());
+
+            iv_qrcode.setOnClickListener(new View.OnClickListener() {
+                // 点击按钮 追加数据 并通知适配器
+                @Override
+                public void onClick(View v){
+                    try {
+                        FileOutputStream fos = context.openFileOutput("qrcode.png", Context.MODE_WORLD_READABLE);
+                        FileInputStream fis = new FileInputStream(ImageLoader.getInstance().getDiscCache().get(qrcodeUrl));
+                        byte[] buf = new byte[1024];
+                        int len = 0;
+                        while ((len = fis.read(buf)) != -1) {
+                            fos.write(buf, 0, len);
+                        }
+                        fis.close();
+                        fos.close();
+                        shareMsg(context, "将二维码分享到", "将二维码分享到", "您的朋友与您分享一个天天有货二维码: ", context.getFileStreamPath("qrcode.png"));
+                    } catch (Exception e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
+                }
+            });
         }
 
         final String mobile = JSONUtil.getStringFromJson(jObject, "mobileNo", "");
@@ -361,6 +382,31 @@ public class UserView {
             if(iv_phoneIcon != null)
                 iv_phoneIcon.setOnClickListener(null);
         }
+    }
+
+    /**
+     * 分享功能
+     * @param context 上下文
+     * @param activityTitle Activity的名字
+     * @param msgTitle 消息标题
+     * @param msgText 消息内容
+     * @param imgPath 图片路径，不分享图片则传null
+     */
+    public static void shareMsg(Context context, String activityTitle, String msgTitle, String msgText,
+                                File f) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        if (f == null || !f.exists() || !f.isFile()) {
+            intent.setType("text/plain"); // 纯文本
+        } else {
+            intent.setType("image/png");
+            Uri u = Uri.fromFile(f);
+            //Uri u = Uri.parse(imgPath);
+            intent.putExtra(Intent.EXTRA_STREAM, u);
+        }
+        intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);
+        intent.putExtra(Intent.EXTRA_TEXT, msgText);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(Intent.createChooser(intent, activityTitle));
     }
 
     private void setupUserVerifyImg(JSONObject jObject, int verifyFlag) throws JSONException {
