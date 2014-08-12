@@ -23,7 +23,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="请点击加号上传本人手持身份证照片（要求身份证上信息清晰）和真实头像图片!"
+                    android:text="请点击加号上传身份证正面图片（要求身份证上信息清晰）和真实头像图片!"
                     android:textColor="@color/tw_light_black"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
@@ -31,7 +31,8 @@
                     android:layout_marginBottom="@dimen/text_vertical_margin"
                     />
 
-            <TextView android:id="@+id/tv_pic_sample"
+            <TextView android:visibility="gone"
+                    android:id="@+id/tv_pic_sample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看手持身份证图片示例"

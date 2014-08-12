@@ -584,8 +584,16 @@ public class UserView {
                     }
                 }
 
-                Integer age = new Date().getYear()  + 1900 - JSONUtil.getIntFromJson(truckInfoJsonObj,"releaseYear", 0);
-                tv_driverAge.setText(context.getResources().getString(R.string.user_driverAgeStr, age));
+                int driverAge = JSONUtil.getIntFromJson(truckInfoJsonObj,"releaseYear", 0);
+                if(driverAge > 0)
+                {
+                    Integer age = new Date().getYear()  + 1900 - driverAge;
+                    tv_driverAge.setText(context.getResources().getString(R.string.user_driverAgeStr, age));
+                }
+                else
+                {
+                    tv_driverAge.setText("驾龄未知");
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
