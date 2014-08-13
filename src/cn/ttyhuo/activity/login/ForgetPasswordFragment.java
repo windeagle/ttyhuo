@@ -1,8 +1,12 @@
 package cn.ttyhuo.activity.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,12 +20,15 @@ import cn.ttyhuo.activity.MainPage;
 import cn.ttyhuo.common.MyApplication;
 import cn.ttyhuo.common.UrlList;
 import cn.ttyhuo.utils.HttpRequestUtil;
+import cn.ttyhuo.utils.LogUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -80,6 +87,77 @@ public class ForgetPasswordFragment extends Fragment {
                 new SendCodeTask().execute(v.getContext());
             }
         });
+
+        getActivity().getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, c);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().getContentResolver().unregisterContentObserver(c);
+    }
+
+    Handler han = new Handler() {
+        @SuppressWarnings("deprecation")
+        public void handleMessage(android.os.Message msg) {
+            String codeStr = null;
+            try {
+                codeStr = getSmsYzm(getActivity());
+                confirmCode.setText(codeStr);
+            } catch (Exception e) {
+                LogUtils.e("验证码提取失败:" + codeStr);
+            }
+        };
+    };
+
+    ContentObserver c = new ContentObserver(han) {
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            han.sendEmptyMessage(0);
+        }
+    };
+
+    public static String JTPHONE = "1065505731068097";
+    public static int YZMLENGTH = 4;
+
+    public static String getSmsYzm(Activity c) {
+        Uri uri = Uri.parse("content://sms/inbox");
+        String[] projection = new String[] { "address", "person", "body" };
+        String selection = " address='" + JTPHONE + "' ";
+        String[] selectionArgs = new String[] {};
+        String sortOrder = "date desc";
+        @SuppressWarnings("deprecation")
+        Cursor cur = c.managedQuery(uri, projection, null, null,
+                sortOrder);
+        if(cur!=null&&cur.getCount()>0){
+            cur.moveToFirst();
+            String body = cur.getString(cur.getColumnIndex("body")).replaceAll(
+                    "\n", " ");
+            cur.close();
+            return getYzm(body);
+        }
+        cur.close();
+        return null;
+    }
+
+    /**
+     * 从短信字符窜提取验证码
+     * @param body 短信内容
+     * @return 接取出来的验证码
+     */
+    public static String getYzm(String body) {
+        // 首先([a-zA-Z0-9]{YZMLENGTH})是得到一个连续的六位数字字母组合
+        // (?<![a-zA-Z0-9])负向断言([0-9]{YZMLENGTH})前面不能有数字
+        // (?![a-zA-Z0-9])断言([0-9]{YZMLENGTH})后面不能有数字出现
+        Pattern p = Pattern
+                .compile("(?<![0-9])([0-9]{" + YZMLENGTH + "})(?![0-9])");
+        Matcher m = p.matcher(body);
+        if (m.find() && body.contains("天天有货")) {
+            System.out.println(m.group());
+            return m.group(0);
+        }
+        return null;
     }
 
     private void time()
